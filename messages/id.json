@@ -1,0 +1,20 @@
+{
+  "HomePage": {
+    "title": "Halo Dunia!",
+    "about": "Pergi ke about page"
+  },
+  "AboutPage" : {
+    "title": "Halo About!",
+    "about": "Pergi ke home page"
+  },
+   "Navbar": {
+    "items": [
+      { "label": "Models", "link": "/#hero" },
+      { "label": "Tentang", "link": "/beyoutiful" },
+      { "label": "After Sales", "link": "/#gallery" },
+      { "label": "Berita", "link": "/#rent-space" },
+      { "label": "Cari Dealer", "link": "/#our-tenant" },
+      { "label": "Test Drive", "link": "/#contact" }
+    ]
+  }
+}
