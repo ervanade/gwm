@@ -3,7 +3,33 @@ import { notFound } from 'next/navigation';
 import { routing } from '@/i18n/routing';
 import { getMessages } from 'next-intl/server';
 import Navbar from '@/components/navbar/Navbar';
+import localFont from 'next/font/local'
 import "./globals.css";
+
+const roboto = localFont({
+    src: [
+      {
+        path: './Roboto-Regular.woff2',
+        weight: '300',
+        style: 'normal',
+      },
+      {
+        path: './Roboto-Italic.woff2',
+        weight: '300',
+        style: 'normal',
+      },
+      {
+        path: './Roboto-Bold.woff2',
+        weight: '500',
+        style: 'normal',
+      },
+      {
+        path: './Roboto-BoldItalic.woff2',
+        weight: '700',
+        style: 'normal',
+      },
+    ],
+  })
 
 export default async function LocaleLayout({
     children,
