@@ -94,7 +94,7 @@ const Hero = ({ dataHero }) => {
                           target="_blank"
                           rel="noopener noreferrer"
                           aria-label="button"
-                          className="bg-sky-500 text-textDark px-6 py-3 lg:px-8 lg:py-4 rounded-lg font-semibold"
+                          className="bg-sky-500 text-white px-6 py-3 lg:px-8 lg:py-4 rounded-lg font-semibold"
                         >
                           Explore Models
                         </a>

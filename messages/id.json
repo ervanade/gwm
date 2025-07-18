@@ -10,7 +10,7 @@
    "Navbar": {
     "items": [
       { "label": "Models", "link": "/#hero" },
-      { "label": "Tentang", "link": "/beyoutiful" },
+      { "label": "Discover", "link": "/beyoutiful" },
       { "label": "After Sales", "link": "/#gallery" },
       { "label": "Berita", "link": "/#rent-space" },
       { "label": "Cari Dealer", "link": "/#our-tenant" },
