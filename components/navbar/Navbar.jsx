@@ -1,37 +1,25 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { FaBars, FaChevronDown } from "react-icons/fa6";
 import { useTranslations, useLocale } from "next-intl";
-import { usePathname, useRouter } from "@/i18n/navigation";
+import { Locale, routing, usePathname, useRouter } from "@/i18n/navigation";
 import { useParams } from "next/navigation";
+
 import Image from "next/image";
 import Link from "next/link";
-
-const modelTabs = ["all", "tank", "haval", "ora"];
-const dummyModels = [
-  { id: 1, image: "/assets/tank-500.png", title: "TANK 500", subtitle: "Luxury Offroad" },
-  { id: 2, image: "/assets/haval-h6.png", title: "HAVAL H6", subtitle: "SUV Hybrid" },
-  { id: 3, image: "/assets/ora.png", title: "ORA O3 BEV", subtitle: "Electric Hatchback" },
-  { id: 4, image: "/assets/tank-300.png", title: "TANK 300", subtitle: "Premium SUV" },
-  { id: 5, image: "/assets/haval-jolion.png", title: "HAVAL JOLION", subtitle: "Smart SUV" },
-];
 
 const Navbar = () => {
   const [color, setColor] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
-  const [megaMenuOpen, setMegaMenuOpen] = useState(null);
-  const [activeTab, setActiveTab] = useState("all");
-  const [menuLevel, setMenuLevel] = useState("main");
 
   const t = useTranslations("Navbar");
   const locale = useLocale();
   const router = useRouter();
   const params = useParams();
-  const pathname = usePathname();
 
-  const menuRef = useRef(null);
+  const pathname = usePathname();
 
   const switchLocale = (lang) => {
     router.replace({ pathname, params }, { locale: lang });
@@ -43,25 +31,16 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", changeColor);
   }, []);
 
-  useEffect(() => {
-    const handleClickOutside = (e) => {
-      if (menuRef.current && !menuRef.current.contains(e.target)) {
-        setMegaMenuOpen(null);
-      }
-    };
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, []);
-
   const navItems = t.raw("items");
-  const subMenu = [
-    { name: "About Us", name_id: "Tentang Kami", link: "/about" },
-    { name: "ERA", name_id: "ERA", link: "/era" },
-  ];
 
-  const filteredModels = activeTab === "all"
-    ? dummyModels
-    : dummyModels.filter((m) => m.title.toLowerCase().includes(activeTab));
+  const scrollToId = (id) => {
+    const el = document.getElementById(id);
+    if (el) {
+      const y = el.getBoundingClientRect().top + window.scrollY - 100;
+      window.scrollTo({ top: y, behavior: "smooth" });
+      history.replaceState(null, "", `#${id}`);
+    }
+  };
 
   return (
     <div
@@ -110,27 +89,34 @@ const Navbar = () => {
               >
                 {item.label}
               </Link>
-            );
-          })}
+            )
+          )}
 
+          {/* LANGUAGE SWITCHER */}
           <div className="relative">
             <button
-              onClick={() => setDropdownOpen(!dropdownOpen)}
-              className="px-2 py-1 rounded  border-white cursor-pointer flex items-center gap-1"
+              onClick={() => setDropdownOpen((prev) => !prev)}
+              className="w-[60px] text-sm px-2 py-1 rounded border border-gray-600 bg-[#2a2a2a] text-white hover:bg-[#3a3a3a] flex items-center justify-between gap-1"
             >
-              {locale.toUpperCase()} <FaChevronDown className="text-xs" />
+              {locale.toUpperCase()}
+              <FaChevronDown className="text-xs" />
             </button>
+
             {dropdownOpen && (
-              <div className="absolute right-0 mt-2 bg-[#2a2a2a] cursor-pointer border border-gray-600 rounded shadow-md z-50">
+              <div className="absolute right-0 mt-2 bg-[#2a2a2a] border border-gray-600 rounded shadow-md z-50">
                 {["id", "en"].map((lng) => (
                   <button
                     key={lng}
                     disabled={locale === lng}
                     onClick={() => {
-                      switchLocale(lng);
+                      if (locale !== lng) switchLocale(lng);
                       setDropdownOpen(false);
                     }}
-                    className={`block w-full px-4 py-2 text-left text-sm transition ${locale === lng ? "bg-sky-500 text-white font-bold cursor-default" : "text-white hover:bg-[#3a3a3a]"}`}
+                    className={`block w-full px-4 py-2 text-left text-sm transition ${
+                      locale === lng
+                        ? "bg-sky-500 text-white font-bold cursor-default"
+                        : "text-white hover:bg-[#3a3a3a]"
+                    }`}
                   >
                     {lng.toUpperCase()}
                   </button>
@@ -138,94 +124,88 @@ const Navbar = () => {
               </div>
             )}
           </div>
-
-          <a
-                          href="https://wa.me/+6281181110556"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          aria-label="button"
-                          className="bg-sky-500 text-white px-6 py-2 lg:px-6 lg:py-3 rounded-lg font-semibold text-sm"
-                        >
-                          Test Drive
-                        </a>
         </div>
 
-        {/* MOBILE MENU */}
-        <button onClick={() => setMenuOpen(true)} className="lg:hidden text-white text-2xl">
-          <FaBars />
+        {/* MOBILE MENU BUTTON */}
+        <button
+          className="lg:hidden text-2xl"
+          onClick={() => setMenuOpen(!menuOpen)}
+        >
+          <FaBars className={color ? "text-textDark" : "text-white"} />
         </button>
-      </div>
 
-      {/* MOBILE PANEL */}
-      <div className={`lg:hidden overlow-auto fixed inset-0 z-50 bg-[#3D3D3D] text-white p-6 transition-transform duration-300 ease-in-out ${menuOpen ? "translate-x-0" : "translate-x-full"}`}>
-        <div className="flex justify-between items-center mb-6">
-          <Image src="/logo-gwm.svg" width={120} height={50} alt="Logo" />
-          <button onClick={() => setMenuOpen(false)} className="text-xl">✕</button>
-        </div>
+        {/* MOBILE MENU PANEL */}
+        <div
+          className={`right-navbar z-50 space-y-6 flex flex-col items-center fixed top-0 ${
+            menuOpen ? "right-0" : "-right-[999px]"
+          } lg:hidden w-full max-w-[320px] py-12 px-8 bg-[#fff] text-dark h-full duration-300 transition-all ease-in-out shadow-lg`}
+        >
+          <button
+            className="absolute top-5 right-6"
+            onClick={() => setMenuOpen(false)}
+          >
+            <FaBars className="text-3xl text-dark hover:text-secondary transition duration-200" />
+          </button>
 
-        {menuLevel === "main" && (
-          <div className="space-y-4">
-            {navItems.map((item, index) => (
+          {navItems.map((item) =>
+            item.link.startsWith("#") ? (
               <button
-                key={index}
-                className="block w-full text-left text-lg"
+                key={item.link}
                 onClick={() => {
-                  if (item.label.toLowerCase() === "models") {
-                    setMenuLevel("models");
-                  } else if (item.label.toLowerCase() === "discover") {
-                    setMenuLevel("discover");
-                  } else {
-                    router.push(`/${locale}${item.link}`);
-                    setMenuOpen(false);
-                  }
+                  scrollToId(item.link.replace("#", ""));
+                  setMenuOpen(false);
                 }}
+                className="text-lg text-dark hover:text-orange-500 font-medium"
               >
-                {locale === "id" && item.label_id ? item.label_id : item.label}
+                {item.label}
               </button>
-            ))}
-          </div>
-        )}
+            ) : (
+              <Link
+                key={item.link}
+                href={`/${locale}${item.link}`}
+                className="text-lg text-dark hover:text-orange-500 font-medium"
+                onClick={() => setMenuOpen(false)}
+              >
+                {item.label}
+              </Link>
+            )
+          )}
 
-        {menuLevel === "models" && (
-          <div>
-            <button onClick={() => setMenuLevel("main")} className="mb-4 text-sm text-sky-400 underline">← Back to menu</button>
-            <h3 className="text-lg font-semibold">GWM Models</h3>
-            <div className="flex gap-4 border-b border-gray-500 pb-2 mt-2">
-              {modelTabs.map((tab) => (
-                <button
-                  key={tab}
-                  onClick={() => setActiveTab(tab)}
-                  className={`pb-1 ${activeTab === tab ? "border-b-2 border-sky-500 text-sky-500" : "text-white/70"}`}
-                >
-                  {tab.toUpperCase()}
-                </button>
-              ))}
-            </div>
-            <div className="grid gap-4 mt-4">
-              {filteredModels.map((car) => (
-                <div key={car.id} className="space-y-2">
-                  <Image src={car.image} alt={car.title} width={300} height={200} className="w-full h-40 object-cover rounded-md" />
-                  <h4 className="font-semibold">{car.title}</h4>
-                  <p className="text-sm text-white/70">{car.subtitle}</p>
-                </div>
-              ))}
-            </div>
+          {/* LANG SWITCH MOBILE */}
+          <div className="relative">
+            <button
+              onClick={() => setDropdownOpen((prev) => !prev)}
+              className="text-sm px-2 py-1 rounded border border-gray-300 hover:bg-gray-100"
+            >
+              {locale.toUpperCase()}
+            </button>
+            {dropdownOpen && (
+              <div className="absolute right-0 mt-2 bg-white text-textDark border rounded shadow-md">
+                {["id", "en"].map((lng) => (
+                  <button
+                    key={lng}
+                    onClick={() => {
+                      switchLocale(lng);
+                      setDropdownOpen(false);
+                    }}
+                    className="block w-full px-4 py-2 text-left hover:bg-gray-100"
+                  >
+                    {lng.toUpperCase()}
+                  </button>
+                ))}
+              </div>
+            )}
           </div>
-        )}
-
-        {menuLevel === "discover" && (
-          <div>
-            <button onClick={() => setMenuLevel("main")} className="mb-4 text-sm text-sky-400 underline">← Back to menu</button>
-            <div className="space-y-2">
-              {subMenu.map((sub, i) => (
-                <Link key={i} href={`/${locale}${sub.link}`} onClick={() => setMenuOpen(false)} className="block text-white hover:text-sky-400">
-                  {locale === "id" ? sub.name_id : sub.name}
-                </Link>
-              ))}
-            </div>
-          </div>
-        )}
+        </div>
       </div>
+
+      {/* OVERLAY */}
+      <div
+        className={`overlay w-screen h-screen absolute top-0 left-0 bg-black/20 z-[2] transition-all duration-300 lg:hidden ${
+          menuOpen ? "block" : "hidden"
+        }`}
+        onClick={() => setMenuOpen(false)}
+      ></div>
     </div>
   );
 };
