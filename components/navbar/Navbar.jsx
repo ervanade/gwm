@@ -45,8 +45,8 @@ const Navbar = () => {
   return (
     <div
       className={`${
-        color ? "!bg-[#3D3D3D] text-white !top-0 shadow-md" : ""
-      } navbar-fixed fixed top-0 left-0 w-full z-50 bg-[#3D3D3D]/80 text-white`}
+        color ? "!bg-[#fff] !text-[#282828] !top-0 shadow-md" : ""
+      } navbar-fixed fixed top-0 left-0 w-full z-50 text-white`}
     >
       <div className="relative mx-auto max-w-7xl px-6 lg:px-12 py-4 flex items-center">
         {/* LOGO */}
@@ -72,7 +72,7 @@ const Navbar = () => {
                 className={`text-sm ${
                   color
                     ? "text-textDark hover:text-black"
-                    : "text-[#f1efefce] hover:text-white"
+                    : "text-[#fff] hover:text-white"
                 }`}
               >
                 {item.label}
@@ -84,7 +84,7 @@ const Navbar = () => {
                 className={`text-sm ${
                   color
                     ? "text-textDark hover:text-black"
-                    : "text-[#f1efefce] hover:text-white"
+                    : "text-[#fff] hover:text-white"
                 }`}
               >
                 {item.label}
