@@ -92,10 +92,10 @@ const Navbar = () => {
   return (
     <div
       className={`fixed top-0 left-0 w-full z-50 ${
-        color ? "bg-[#3D3D3D]/80 shadow-md" : "bg-[#3D3D3D]/80"
+        color ? "bg-[#fff] shadow-md text-[#282828]" : "text-white"
       }`}
     >
-      <div className="mx-auto max-w-7xl px-6 lg:px-12 py-4 flex items-center justify-between text-white">
+      <div className="mx-auto max-w-7xl px-6 lg:px-12 py-4 flex items-center justify-between ">
         <Link href={`/${locale}/#hero`}>
           <Image
             src="/logo-gwm.svg"
