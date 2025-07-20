@@ -6,30 +6,38 @@ import Navbar from '@/components/navbar/Navbar';
 import localFont from 'next/font/local'
 import "./globals.css";
 
-// const roboto = localFont({
-//     src: [
-//       {
-//         path: './Roboto-Regular.woff2',
-//         weight: '300',
-//         style: 'normal',
-//       },
-//       {
-//         path: './Roboto-Italic.woff2',
-//         weight: '300',
-//         style: 'normal',
-//       },
-//       {
-//         path: './Roboto-Bold.woff2',
-//         weight: '500',
-//         style: 'normal',
-//       },
-//       {
-//         path: './Roboto-BoldItalic.woff2',
-//         weight: '700',
-//         style: 'normal',
-//       },
-//     ],
-//   })
+const helvetica = localFont({
+  src: [
+    {
+      path: './fonts/HelveticaNowDisplayLight.woff2',
+      weight: '300',
+      style: 'normal',
+      display: 'swap',
+      variable: '--font-helvetica',
+    },
+    {
+      path: './fonts/HelveticaNowDisplayRegular.woff2',
+      weight: '400',
+      style: 'normal',
+      display: 'swap',
+      variable: '--font-helvetica',
+    },
+    {
+      path: './fonts/HelveticaNowDisplayMedium.woff2',
+      weight: '500',
+      style: 'normal',
+      display: 'swap',
+      variable: '--font-helvetica',
+    },
+    {
+      path: './fonts/HelveticaNowDisplayBold.woff2',
+      weight: '700',
+      style: 'normal',
+      display: 'swap',
+      variable: '--font-helvetica',
+    },
+  ],
+})
 
 export default async function LocaleLayout({
   children,
@@ -43,8 +51,8 @@ export default async function LocaleLayout({
   const messages = await getMessages();
 
   return (
-    <html lang={locale}>
-      <body>
+    <html lang={locale} className={helvetica.className}>
+      <body className='!font-helvetica'>
         <NextIntlClientProvider messages={messages}>
           <Navbar />
           {children}

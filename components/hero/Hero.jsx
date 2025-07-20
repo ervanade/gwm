@@ -23,9 +23,8 @@ const Hero = ({ dataHero }) => {
     {
       link: "/",
       image_default: "/hero-1.jpg",
-      title: "Drive the Future with GWM",
-      title_en:
-        "THE PLACE TO INSPIRE AND BE INSPIRED IN BINTARO. WHERE CREATIVITY AND COLLABORATION THRIVE.",
+      title: "DRIVE THE FUTURE WITH GWM",
+      title_en: "DRIVE THE FUTURE WITH GWM",
       desc: "GWM Innovation in The New Energy Era",
       desc_en:
         "Experience the unique space to create, connect, and collaborate in the heart of Bintaro.",
@@ -33,9 +32,8 @@ const Hero = ({ dataHero }) => {
     {
       link: "/",
       image_default: "/hero-1.jpg",
-      title: "Drive the Future with GWM",
-      title_en:
-        "THE PLACE TO INSPIRE AND BE INSPIRED IN BINTARO. WHERE CREATIVITY AND COLLABORATION THRIVE.",
+      title: "DRIVE THE FUTURE WITH GWM",
+      title_en: "DRIVE THE FUTURE WITH GWM",
       desc: "GWM Innovation in The New Energy Era",
       desc_en:
         "Experience the unique space to create, connect, and collaborate in the heart of Bintaro.",
@@ -43,9 +41,8 @@ const Hero = ({ dataHero }) => {
     {
       link: "/",
       image_default: "/hero-1.jpg",
-      title: "Drive the Future with GWM",
-      title_en:
-        "THE PLACE TO INSPIRE AND BE INSPIRED IN BINTARO. WHERE CREATIVITY AND COLLABORATION THRIVE.",
+      title: "DRIVE THE FUTURE WITH GWM",
+      title_en: "DRIVE THE FUTURE WITH GWM",
       desc: "GWM Innovation in The New Energy Era",
       desc_en:
         "Experience the unique space to create, connect, and collaborate in the heart of Bintaro.",
@@ -82,7 +79,7 @@ const Hero = ({ dataHero }) => {
                 <div className="absolute top-[35%] left-0 right-0">
                   <div className="max-w-7xl mx-auto px-6 lg:px-12">
                     <div className="flex flex-col gap-2 items-center justify-start text-white space-y-4 lg:space-y-8 max-w-[600px] text-center md:items-start md:text-left">
-                      <p className="font-bebas text-2xl md:text-3xl lg:text-[32px] leading-tight">
+                      <p className="font-bold text-2xl md:text-3xl lg:text-[32px] leading-tight">
                         {lang === "en" ? item.title_en : item.title}
                       </p>
                       <p className="text-base sm:text-lg lg:text-xl text-white/85 leading-relaxed">
@@ -94,18 +91,18 @@ const Hero = ({ dataHero }) => {
                           target="_blank"
                           rel="noopener noreferrer"
                           aria-label="button"
-                          className="bg-sky-500 text-white px-6 py-3 lg:px-8 lg:py-4 rounded-lg font-semibold"
+                          className="bg-sky-500 text-white px-4 py-2 lg:px-6  rounded-lg font-semibold"
                         >
-                          Explore Models
+                          EXPLORE MODELS
                         </a>
                         <a
                           href="https://wa.me/+6281181110556"
                           target="_blank"
                           rel="noopener noreferrer"
                           aria-label="button"
-                          className="bg-transparent text-white px-6 py-3 lg:px-8 lg:py-4 rounded-lg font-semibold border border-white"
+                          className="bg-transparent text-white px-4 py-2 lg:px-6  rounded-lg font-semibold border border-white"
                         >
-                          Test Drive
+                          TEST DRIVE
                         </a>
                       </div>
                     </div>

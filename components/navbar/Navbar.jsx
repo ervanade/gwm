@@ -95,7 +95,7 @@ const Navbar = () => {
         color ? "bg-[#fff] shadow-md text-[#282828]" : "text-white"
       }`}
     >
-      <div className="mx-auto max-w-7xl px-6 lg:px-12 py-4 flex items-center justify-between ">
+      <div className="mx-auto max-w-7xl px-6 lg:px-12 py-4 flex items-center justify-between text-sm font-bold">
         <Link href={`/${locale}/#hero`}>
           <Image
             src="/logo-gwm.svg"
@@ -164,7 +164,7 @@ const Navbar = () => {
               );
             }
 
-            if (item.label.toLowerCase() === "discover") {
+            if (item.label.toLowerCase() === "tentang gwm") {
               return (
                 <div key={index} className="relative">
                   <button
@@ -213,7 +213,7 @@ const Navbar = () => {
               {locale.toUpperCase()} <FaChevronDown className="text-xs" />
             </button>
             {dropdownOpen && (
-              <div className="absolute right-0 mt-2 bg-[#2a2a2a] cursor-pointer border border-gray-600 rounded shadow-md z-50">
+              <div className="absolute right-0 mt-2 bg-[#fff]  cursor-pointer border border-gray-600 rounded shadow-md z-50">
                 {["id", "en"].map((lng) => (
                   <button
                     key={lng}
@@ -225,7 +225,7 @@ const Navbar = () => {
                     className={`block w-full px-4 py-2 text-left text-sm transition ${
                       locale === lng
                         ? "bg-sky-500 text-white font-bold cursor-default"
-                        : "text-white hover:bg-[#3a3a3a]"
+                        : "text-[#282828] hover:bg-[#ededed]"
                     }`}
                   >
                     {lng.toUpperCase()}

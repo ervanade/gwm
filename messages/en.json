@@ -13,8 +13,7 @@
       { "label": "Discover", "link": "/beyoutiful" },
       { "label": "After Sales", "link": "/#gallery" },
       { "label": "News", "link": "/#rent-space" },
-      { "label": "Find Dealer", "link": "/#our-tenant" },
-      { "label": "Test Drive", "link": "/#contact" }
+      { "label": "Find Dealer", "link": "/#our-tenant" }
     ]
   }
 }
