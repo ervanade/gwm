@@ -7,6 +7,7 @@ import 'swiper/css/scrollbar';
 import Hero from '@/components/hero/Hero';
 import Models from '@/components/models/Models';
 import OverviewProduct from '@/components/overviewProduct/OverviewProduct';
+import AfterSales from '@/components/afterSales/AfterSales';
 export default function HomePage() {
     const t = useTranslations('HomePage');
     return (
@@ -14,6 +15,7 @@ export default function HomePage() {
             <Hero dataHero={null} />
             <Models />
             <OverviewProduct />
+            <AfterSales />
         </>
     );
 }

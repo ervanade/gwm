@@ -9,11 +9,11 @@
   },
    "Navbar": {
     "items": [
-      { "label": "Models", "link": "/#hero" },
-      { "label": "Discover", "link": "/beyoutiful" },
-      { "label": "After Sales", "link": "/#gallery" },
-      { "label": "News", "link": "/#rent-space" },
-      { "label": "Find Dealer", "link": "/#our-tenant" }
+    { "label": "MODELS", "link": "/#hero" },
+      { "label": "DISCOVER GWM", "link": "/beyoutiful" },
+      { "label": "AFTER SALES", "link": "/#gallery" },
+      { "label": "NEWS & PROMO", "link": "/#rent-space" },
+      { "label": "DEALER LOCATIONS", "link": "/#our-tenant" }
     ]
   }
 }

@@ -60,7 +60,7 @@ const Models = () => {
   return (
     <div>
       <div className="max-w-7xl mx-auto w-full py-8 xl:py-16 bg-white text-dark p-8">
-        <h3 className="text-3xl font-bold text-center mb-6">MODELS</h3>{" "}
+        <h2 className="text-3xl font-bold text-center mb-12">MODELS</h2>{" "}
         {/* Tambah mb untuk spasi */}
         <div
           className="flex justify-center  gap-8 mb-6 overflow-x-auto pb-2 scrollbar-hide" // Tambah overflow-x-auto dan scrollbar-hide
@@ -78,7 +78,7 @@ const Models = () => {
             <button
               key={tab.name}
               onClick={() => setActiveTab(tab.name)}
-              className={`flex flex-col items-center justify-center pb-2 px-4 relative group
+              className={`flex cursor-pointer flex-col items-center justify-center pb-2 px-4 relative group
                 ${activeTab === tab.name ? "" : ""}`} // Kelas aktif akan ditangani oleh border dan text
             >
               {tab.logo ? (
@@ -113,7 +113,7 @@ const Models = () => {
             </button>
           ))}
         </div>
-        <div className="flex flex-wrap justify-center gap-6">
+        <div className="flex flex-wrap justify-center gap-2 lg:gap-4">
           {filteredModels.map((car) => (
             // Bungkus seluruh kartu dengan Link (jika internal) atau tag a
             // Jika menggunakan 'Link' dari next/link, pastikan mengimpornya di atas

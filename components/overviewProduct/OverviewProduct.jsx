@@ -94,7 +94,7 @@ const OverviewProduct = () => {
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>{" "}
         {/* Overlay for text readability */}
         <div className="absolute top-6 left-6 text-white">
-          <p className="text-sm font-light">{product.mainTitle}</p>
+          <p className="text-base font-light">{product.mainTitle}</p>
           <h4 className="text-2xl font-bold leading-tight">
             {product.subTitle}
           </h4>
@@ -111,7 +111,7 @@ const OverviewProduct = () => {
 
   return (
     <div className="w-full   text-dark">
-      <div className="max-w-7xl mx-auto w-full px-6 pb-12 md:pb-16">
+      <div className="max-w-7xl mx-auto w-full px-6 lg:px-12 pb-12 md:pb-16">
         {/* Mobile Slider (Swiper) */}
         {isMobile ? (
           <Swiper
@@ -153,7 +153,7 @@ const OverviewProduct = () => {
                 .map((product, index) => renderProductCard(product, index))}
             </div>
             {/* Second Row: 2 Images (Non-Square, Fixed Height) */}
-            <div className="grid grid-cols-2 gap-4 mt-4">
+            <div className="grid grid-cols-2 gap-4">
               {" "}
               {/* Grid for 2 items, mt-4 for gap between rows */}
               {highlightProductsData.slice(3, 5).map(

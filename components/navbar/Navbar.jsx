@@ -15,30 +15,35 @@ const dummyModels = [
     image: "/assets/tank-500.png",
     title: "TANK 500",
     subtitle: "Luxury Offroad",
+    link: "/models/tank-500", // Tambahkan properti link
   },
   {
     id: 2,
     image: "/assets/haval-h6.png",
     title: "HAVAL H6",
     subtitle: "SUV Hybrid",
+    link: "/models/haval-h6", // Tambahkan properti link
   },
   {
     id: 3,
     image: "/assets/ora.png",
     title: "ORA O3 BEV",
     subtitle: "Electric Hatchback",
+    link: "/models/ora-o3-bev", // Tambahkan properti link
   },
   {
     id: 4,
     image: "/assets/tank-300.png",
     title: "TANK 300",
     subtitle: "Premium SUV",
+    link: "/models/tank-300", // Tambahkan properti link
   },
   {
     id: 5,
     image: "/assets/haval-jolion.png",
     title: "HAVAL JOLION",
     subtitle: "Smart SUV",
+    link: "/models/haval-jolion", // Tambahkan properti link
   },
 ];
 
@@ -106,7 +111,7 @@ const Navbar = () => {
           />
         </Link>
 
-        <div className="hidden lg:flex items-center gap-6">
+        <div className="hidden lg:flex items-center gap-4 lg:gap-6">
           {navItems.map((item, index) => {
             if (item.label.toLowerCase() === "models") {
               return (
@@ -164,7 +169,10 @@ const Navbar = () => {
               );
             }
 
-            if (item.label.toLowerCase() === "tentang gwm") {
+            if (
+              item.label.toLowerCase() === "tentang gwm" ||
+              item.label.toLowerCase() === "discover gwm"
+            ) {
               return (
                 <div key={index} className="relative">
                   <button
@@ -177,7 +185,9 @@ const Navbar = () => {
                   >
                     {item.label} <FaChevronDown className="text-xs" />
                   </button>
-                  {megaMenuOpen === "discover" && (
+                  {(megaMenuOpen === "discover gwm" ||
+                    megaMenuOpen === "tentang gwm" ||
+                    megaMenuOpen === "discover") && (
                     <div className="absolute top-full mt-2 bg-white text-dark rounded shadow-md p-4 min-w-[200px]">
                       {subMenu.map((sub, i) => (
                         <Link
@@ -240,7 +250,7 @@ const Navbar = () => {
             target="_blank"
             rel="noopener noreferrer"
             aria-label="button"
-            className="bg-sky-500 text-white px-6 py-2 lg:px-6 lg:py-3 rounded-lg font-semibold text-sm"
+            className="bg-sky-500 text-white px-6 py-2 rounded-lg font-semibold text-sm"
           >
             Test Drive
           </a>
@@ -249,7 +259,7 @@ const Navbar = () => {
         {/* MOBILE MENU */}
         <button
           onClick={() => setMenuOpen(true)}
-          className="lg:hidden text-white text-2xl"
+          className={`lg:hidden ${color ? "text-dark" : "text-white"} text-2xl`}
         >
           <FaBars />
         </button>
@@ -257,7 +267,7 @@ const Navbar = () => {
 
       {/* MOBILE PANEL */}
       <div
-        className={`lg:hidden overlow-auto fixed inset-0 z-50 bg-[#3D3D3D] text-white p-6 transition-transform duration-300 ease-in-out ${
+        className={`lg:hidden overlow-auto fixed inset-0 z-50 bg-[#fff] text-dark p-6 transition-transform duration-300 ease-in-out ${
           menuOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
@@ -277,7 +287,10 @@ const Navbar = () => {
                 onClick={() => {
                   if (item.label.toLowerCase() === "models") {
                     setMenuLevel("models");
-                  } else if (item.label.toLowerCase() === "discover") {
+                  } else if (
+                    item.label.toLowerCase() === "discover gwm" ||
+                    item.label.toLowerCase() === "tentang gwm"
+                  ) {
                     setMenuLevel("discover");
                   } else {
                     router.push(`/${locale}${item.link}`);
@@ -295,7 +308,7 @@ const Navbar = () => {
           <div>
             <button
               onClick={() => setMenuLevel("main")}
-              className="mb-4 text-sm text-sky-400 underline"
+              className="mb-4 text-sky-400 cursor-pointer "
             >
               ← Back to menu
             </button>
@@ -308,26 +321,52 @@ const Navbar = () => {
                   className={`pb-1 ${
                     activeTab === tab
                       ? "border-b-2 border-sky-500 text-sky-500"
-                      : "text-white/70"
+                      : "text-dark"
                   }`}
                 >
                   {tab.toUpperCase()}
                 </button>
               ))}
             </div>
-            <div className="grid gap-4 mt-4">
+            <div className="grid gap-2 mt-4">
               {filteredModels.map((car) => (
-                <div key={car.id} className="space-y-2">
-                  <Image
-                    src={car.image}
-                    alt={car.title}
-                    width={300}
-                    height={200}
-                    className="w-full h-40 object-cover rounded-md"
-                  />
-                  <h4 className="font-semibold">{car.title}</h4>
-                  <p className="text-sm text-white/70">{car.subtitle}</p>
-                </div>
+                <a
+                  key={car.id}
+                  href={car.link} // Gunakan properti link dari data
+                  // Tambahkan group class agar hover pada elemen div bekerja
+                  className=" group p-4 rounded-lg block relative overflow-hidden 
+                                         w-full /* Item mengambil lebar penuh di mobile */
+                                         flex items-center gap-4 text-left /* Layout horizontal: gambar kiri, teks kanan */
+                
+                                         /* Kelas untuk breakpoint 'sm' (misal: 640px) dan seterusnya: */
+                                         sm:w-[calc(50%-12px)] /* 2 kolom di breakpoint sm, sesuaikan dengan gap 6 (24px total) */
+                                         sm:max-w-[300px] /* Batas lebar maksimum per item di sm+ */
+                                         sm:flex-col sm:text-center sm:space-y-2 sm:gap-0 /* Revert ke layout vertikal, teks di tengah */
+                
+                                         /* Kelas untuk breakpoint 'md' (misal: 768px) dan seterusnya: */
+                                         md:w-[calc(33.333%-16px)] /* 3 kolom di breakpoint md, sesuaikan dengan gap 6 */
+                
+                                         /* Kelas untuk breakpoint 'lg' (misal: 1024px) dan seterusnya: */
+                                         lg:w-[calc(25%-18px)] /* 4 kolom di breakpoint lg, sesuaikan dengan gap 6 */
+                                        "
+                >
+                  {/* Kontainer Gambar */}
+                  <div className="flex-shrink-0 w-1/2 sm:w-full overflow-hidden rounded-md">
+                    <Image
+                      src={car.image}
+                      alt={car.title}
+                      width={278}
+                      height={172}
+                      // Tambahkan transisi dan efek scale saat hover pada gambar itu sendiri
+                      className="w-full h-auto object-cover rounded-md transition-transform duration-300 group-hover:scale-105"
+                    />
+                  </div>
+                  {/* Kontainer Teks */}
+                  <div className="flex-grow sm:flex-none">
+                    <h4 className="font-semibold text-lg">{car.title}</h4>
+                    <p className="text-sm text-gray-600">{car.subtitle}</p>
+                  </div>
+                </a>
               ))}
             </div>
           </div>
@@ -337,7 +376,7 @@ const Navbar = () => {
           <div>
             <button
               onClick={() => setMenuLevel("main")}
-              className="mb-4 text-sm text-sky-400 underline"
+              className="mb-4  text-sky-400 "
             >
               ← Back to menu
             </button>
@@ -347,7 +386,7 @@ const Navbar = () => {
                   key={i}
                   href={`/${locale}${sub.link}`}
                   onClick={() => setMenuOpen(false)}
-                  className="block text-white hover:text-sky-400"
+                  className="block text-dark hover:text-sky-400"
                 >
                   {locale === "id" ? sub.name_id : sub.name}
                 </Link>
