@@ -128,9 +128,11 @@ const Navbar = () => {
                   </button>
                   {megaMenuOpen === "models" && (
                     <div
-          // Style dan class untuk positioning (top, height, fixed, full width)
-          className="fixed left-0 right-0 w-full overflow-y-auto bg-white text-dark shadow-xl p-8 lg:p-12 z-40 transition-all duration-300 h-[80vh] top-[72px]"
-        >                      <h3 className="text-xl font-semibold mb-4">GWM MODELS</h3>
+                      // Style dan class untuk positioning (top, height, fixed, full width)
+                      className="fixed left-0 right-0 w-full overflow-y-auto bg-white text-dark shadow-xl p-8 lg:p-12 z-40 transition-all duration-300 h-[80vh] top-[72px]"
+                    >
+                      {" "}
+                      <h3 className="text-xl font-semibold mb-4">GWM MODELS</h3>
                       <div className="flex gap-6 mb-6">
                         {modelTabs.map((tab) => (
                           <button
@@ -146,15 +148,15 @@ const Navbar = () => {
                           </button>
                         ))}
                       </div>
-                      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+                      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 2xl:grid-cols-5 gap-6">
                         {filteredModels.map((car) => (
                           <div key={car.id} className="space-y-2 text-center">
                             <Image
                               src={car.image}
                               alt={car.title}
-                              width={300}
-                              height={200}
-                              className="w-full h-40 object-cover rounded-md"
+                              width={278}
+                              height={172}
+                              className="w-full object-cover rounded-md"
                             />
                             <h4 className="font-semibold text-lg">
                               {car.title}
