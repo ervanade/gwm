@@ -122,22 +122,24 @@ const Navbar = () => {
                         megaMenuOpen === "models" ? null : "models"
                       )
                     }
-                    className="flex items-center gap-1 hover:text-primary"
+                    className={`flex items-center gap-1 hover:text-sky-400 cursor-pointer`}
                   >
                     {item.label} <FaChevronDown className="text-xs" />
                   </button>
                   {megaMenuOpen === "models" && (
-                    <div className="absolute left-[245%] -translate-x-1/2 top-full -ml-2 mt-8 w-screen max-w-7xl max-h-[80vh] overflow-auto bg-white text-dark shadow-xl p-8">
-                      <h3 className="text-xl font-semibold mb-4">GWM Models</h3>
+                    <div
+          // Style dan class untuk positioning (top, height, fixed, full width)
+          className="fixed left-0 right-0 w-full overflow-y-auto bg-white text-dark shadow-xl p-8 lg:p-12 z-40 transition-all duration-300 h-[80vh] top-[72px]"
+        >                      <h3 className="text-xl font-semibold mb-4">GWM MODELS</h3>
                       <div className="flex gap-6 mb-6">
                         {modelTabs.map((tab) => (
                           <button
                             key={tab}
                             onClick={() => setActiveTab(tab)}
-                            className={`pb-1 border-b-2 ${
+                            className={`pb-1 cursor-pointer border-b-2 ${
                               activeTab === tab
-                                ? "border-sky-500 text-sky-500 font-semibold"
-                                : "border-transparent hover:text-sky-500"
+                                ? "border-primary text-primary font-semibold"
+                                : "border-transparent hover:text-primary"
                             }`}
                           >
                             {tab.toUpperCase()}
@@ -181,7 +183,7 @@ const Navbar = () => {
                         megaMenuOpen === "discover" ? null : "discover"
                       )
                     }
-                    className="flex items-center gap-1 hover:text-primary"
+                    className="flex items-center gap-1 hover:text-sky-400 cursor-pointer"
                   >
                     {item.label} <FaChevronDown className="text-xs" />
                   </button>
@@ -208,7 +210,7 @@ const Navbar = () => {
               <Link
                 key={index}
                 href={`/${locale}${item.link}`}
-                className="hover:text-primary"
+                className="hover:text-sky-400 cursor-pointer"
               >
                 {item.label}
               </Link>
@@ -223,7 +225,7 @@ const Navbar = () => {
               {locale.toUpperCase()} <FaChevronDown className="text-xs" />
             </button>
             {dropdownOpen && (
-              <div className="absolute right-0 mt-2 bg-[#fff]  cursor-pointer border border-gray-600 rounded shadow-md z-50">
+              <div className="absolute right-0 mt-2 bg-[#fff]  cursor-pointer rounded shadow-md z-50">
                 {["id", "en"].map((lng) => (
                   <button
                     key={lng}
@@ -234,7 +236,7 @@ const Navbar = () => {
                     }}
                     className={`block w-full px-4 py-2 text-left text-sm transition ${
                       locale === lng
-                        ? "bg-sky-500 text-white font-bold cursor-default"
+                        ? "bg-primary text-white font-bold cursor-default"
                         : "text-[#282828] hover:bg-[#ededed]"
                     }`}
                   >
@@ -250,7 +252,7 @@ const Navbar = () => {
             target="_blank"
             rel="noopener noreferrer"
             aria-label="button"
-            className="bg-sky-500 text-white px-6 py-2 rounded-lg font-semibold text-sm"
+            className="bg-primary text-white px-6 py-2 rounded-lg font-semibold text-sm"
           >
             Test Drive
           </a>
@@ -267,12 +269,12 @@ const Navbar = () => {
 
       {/* MOBILE PANEL */}
       <div
-        className={`lg:hidden overlow-auto fixed inset-0 z-50 bg-[#fff] text-dark p-6 transition-transform duration-300 ease-in-out ${
+        className={`lg:hidden overflow-auto fixed inset-0 z-50 bg-[#fff] text-dark p-6 transition-transform duration-300 ease-in-out max-h-screen ${
           menuOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
         <div className="flex justify-between items-center mb-6">
-          <Image src="/logo-gwm.svg" width={120} height={50} alt="Logo" />
+          <Image src="/logo-gwm.svg" width={120} height={50} alt="Logo GWM" />
           <button onClick={() => setMenuOpen(false)} className="text-xl">
             ✕
           </button>
@@ -283,7 +285,7 @@ const Navbar = () => {
             {navItems.map((item, index) => (
               <button
                 key={index}
-                className="block w-full text-left text-lg"
+                className="block w-full text-left text-lg cursor-pointer hover:text-primary"
                 onClick={() => {
                   if (item.label.toLowerCase() === "models") {
                     setMenuLevel("models");
@@ -312,15 +314,15 @@ const Navbar = () => {
             >
               ← Back to menu
             </button>
-            <h3 className="text-lg font-semibold">GWM Models</h3>
+            <h3 className="text-lg font-semibold">GWM MODELS</h3>
             <div className="flex gap-4 border-b border-gray-500 pb-2 mt-2">
               {modelTabs.map((tab) => (
                 <button
                   key={tab}
                   onClick={() => setActiveTab(tab)}
-                  className={`pb-1 ${
+                  className={`pb-1 cursor-pointer hover:text-primary ${
                     activeTab === tab
-                      ? "border-b-2 border-sky-500 text-sky-500"
+                      ? "border-b-2 border-primary text-primary"
                       : "text-dark"
                   }`}
                 >
@@ -339,19 +341,18 @@ const Navbar = () => {
                                          flex items-center gap-4 text-left /* Layout horizontal: gambar kiri, teks kanan */
                 
                                          /* Kelas untuk breakpoint 'sm' (misal: 640px) dan seterusnya: */
-                                         sm:w-[calc(50%-12px)] /* 2 kolom di breakpoint sm, sesuaikan dengan gap 6 (24px total) */
-                                         sm:max-w-[300px] /* Batas lebar maksimum per item di sm+ */
-                                         sm:flex-col sm:text-center sm:space-y-2 sm:gap-0 /* Revert ke layout vertikal, teks di tengah */
+                                         lg:w-[calc(50%-12px)] /* 2 kolom di breakpoint sm, sesuaikan dengan gap 6 (24px total) */
+                                         lg:max-w-[300px] /* Batas lebar maksimum per item di sm+ */
+                                         lg:flex-col lg:text-center lg:space-y-2 lg:gap-0 /* Revert ke layout vertikal, teks di tengah */
                 
                                          /* Kelas untuk breakpoint 'md' (misal: 768px) dan seterusnya: */
-                                         md:w-[calc(33.333%-16px)] /* 3 kolom di breakpoint md, sesuaikan dengan gap 6 */
+                                         md:w-[calc(50%)] /* 3 kolom di breakpoint md, sesuaikan dengan gap 6 */
                 
                                          /* Kelas untuk breakpoint 'lg' (misal: 1024px) dan seterusnya: */
-                                         lg:w-[calc(25%-18px)] /* 4 kolom di breakpoint lg, sesuaikan dengan gap 6 */
                                         "
                 >
                   {/* Kontainer Gambar */}
-                  <div className="flex-shrink-0 w-1/2 sm:w-full overflow-hidden rounded-md">
+                  <div className="flex-shrink-0 w-2/5 lg:w-full overflow-hidden rounded-md">
                     <Image
                       src={car.image}
                       alt={car.title}

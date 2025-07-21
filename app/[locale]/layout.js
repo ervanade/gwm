@@ -4,7 +4,10 @@ import { routing } from '@/i18n/routing';
 import { getMessages } from 'next-intl/server';
 import Navbar from '@/components/navbar/Navbar';
 import localFont from 'next/font/local'
+    import { useLocale } from 'next-intl/server';
 import "./globals.css";
+import StickyMenu from '@/components/StickyMenu';
+import Footer from '@/components/footer/Footer';
 
 const helvetica = localFont({
   src: [
@@ -39,6 +42,62 @@ const helvetica = localFont({
   ],
 })
 
+export async function generateMetadata({params}) {
+  const { locale } = await params;
+  const isEnglish = locale?.includes('en');
+
+console.log(locale)
+
+  return {
+    title: isEnglish
+      ? 'GWM Inchape | Official GWM Car Dealership in Indonesia'
+      : 'GWM Inchape | Dealer Resmi Mobil GWM di Indonesia',
+    description: isEnglish
+      ? 'Visit GWM Inchcape, your official GWM car dealership in Indonesia. Explore the latest GWM models, attractive offers, and professional after-sales services.'
+      : 'Kunjungi GWM Inchcape, dealer resmi mobil GWM di Indonesia. Temukan berbagai model GWM terbaru, penawaran menarik, dan layanan purna jual profesional.',
+    keywords: isEnglish
+      ? ['GWM Inchcape', 'dealer GWM', 'mobil GWM', 'harga GWM', 'GWM terbaru', 'beli GWM', 'Servis GWM']
+      : ['GWM Inchcape', 'dealer GWM', 'mobil GWM', 'harga GWM', 'GWM terbaru', 'beli GWM', 'Servis GWM'],
+    applicationName: 'GWM Inchape',
+    authors: [{ name: 'GWM Inchape', url: 'https://gwminchape.co.id' }],
+    creator: 'GWM Inchape',
+    publisher: 'GWM Inchape',
+    metadataBase: new URL('https://gwminchape.co.id'),
+    // alternates: {
+    //   canonical: `/?lang=${lang}`,
+    //   languages: {
+    //     'en': '/?lang=en',
+    //     'id': '/?lang-id',
+    //   },
+    // },
+    openGraph: {
+      title: isEnglish
+      ? 'GWM Inchape | Official GWM Car Dealership in Indonesia'
+      : 'GWM Inchape | Dealer Resmi Mobil GWM di Indonesia',
+    description: isEnglish
+      ? 'Visit GWM Inchcape, your official GWM car dealership in [Your City/Region]. Explore the latest GWM models, attractive offers, and professional after-sales services.'
+      : 'Kunjungi GWM Inchcape, dealer resmi mobil GWM di [Kota/Wilayah Anda]. Temukan berbagai model GWM terbaru, penawaran menarik, dan layanan purna jual profesional.',
+      url: 'https://gwminchape.co.id',
+      siteName: 'GWM Inchape',
+      images: [
+        {
+          url: 'https://gwminchape.co.id/logo_ori.svg',
+          width: 1200,
+          height: 630,
+          alt: 'Logo GWM Inchape',
+        },
+      ],
+      locale: isEnglish ? 'en-US' : 'id-ID',
+      type: 'website',
+    },
+    robots: {
+      index: false,
+      follow: false,
+    },
+  };
+}
+
+
 export default async function LocaleLayout({
   children,
   params
@@ -56,6 +115,8 @@ export default async function LocaleLayout({
         <NextIntlClientProvider messages={messages}>
           <Navbar />
           {children}
+          <StickyMenu />
+          <Footer />
         </NextIntlClientProvider>
       </body>
     </html>

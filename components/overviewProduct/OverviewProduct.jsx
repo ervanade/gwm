@@ -94,7 +94,7 @@ const OverviewProduct = () => {
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>{" "}
         {/* Overlay for text readability */}
         <div className="absolute top-6 left-6 text-white">
-          <p className="text-base font-light">{product.mainTitle}</p>
+          <p className="text-base font-light mb-2">{product.mainTitle}</p>
           <h4 className="text-2xl font-bold leading-tight">
             {product.subTitle}
           </h4>
@@ -110,7 +110,7 @@ const OverviewProduct = () => {
   };
 
   return (
-    <div className="w-full   text-dark">
+    <div className="w-full bg-white  text-dark">
       <div className="max-w-7xl mx-auto w-full px-6 lg:px-12 pb-12 md:pb-16">
         {/* Mobile Slider (Swiper) */}
         {isMobile ? (
@@ -194,9 +194,10 @@ const OverviewProduct = () => {
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label="button"
-                      className="bg-transparent text-white px-4 py-2 lg:px-6  rounded-lg font-semibold border border-white"
+                      className="bg-transparent hover:bg-primary hover:border-transparent text-white px-4 py-2 lg:px-6  rounded-lg font-semibold border border-white flex items-center gap-2"
                     >
                       Discover More
+                      <FaChevronRight />
                     </a>
                   </div>
                 </div>
