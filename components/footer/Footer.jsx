@@ -1,4 +1,5 @@
 "use client";
+import { useLocale } from "next-intl";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
@@ -20,7 +21,7 @@ const Footer = ({ dataSettings }) => {
     tokopedia: "",
     shopee: "",
   };
-  const lang = 'id'
+  const locale = useLocale();
 
   return (
     <div className="footer">
@@ -30,10 +31,14 @@ const Footer = ({ dataSettings }) => {
             <div className="center flex-[2_2_0%] space-y-3">
               <ul className="space-y-3">
                 <li>
-                  <Link href={`/?lang=${lang}`} className="">
+                  <Link href={`/${locale}`} className="">
                     {/* <p className="font-bebas text-[40px] text-white">T-SPACE</p> */}
-                    <Image src="/logo-gwm.svg" width={120} height={50} alt="Logo" />
-
+                    <Image
+                      src="/logo-gwm.svg"
+                      width={120}
+                      height={50}
+                      alt="Logo"
+                    />
                   </Link>
                 </li>
                 <li className="flex items-center gap-2">
@@ -67,11 +72,11 @@ const Footer = ({ dataSettings }) => {
               </ul>
             </div>
             <div className="center flex-1 space-y-3">
-                <h3 className="font-bold">GWM MODELS</h3>
+              <h3 className="font-bold">GWM MODELS</h3>
               <ul className="space-y-3 lg:pt-4">
                 <li>
                   <Link
-                    href={`/?lang=${lang}`}
+                    href={`/${locale}`}
                     className="text-sm font-normal hover:text-primary"
                   >
                     HAVAL
@@ -79,30 +84,29 @@ const Footer = ({ dataSettings }) => {
                 </li>
                 <li>
                   <Link
-                    href={`/?lang=${lang}#rent-space`}
+                    href={`/${locale}`}
                     className="text-sm font-normal hover:text-primary"
                   >
-                   TANK
+                    TANK
                   </Link>
                 </li>
                 <li>
                   <Link
-                    href={`/beyoutiful?lang=${lang}`}
+                    href={`/${locale}`}
                     className="text-sm font-normal hover:text-primary"
                   >
                     ORA
                   </Link>
                 </li>
-
               </ul>
             </div>
 
             <div className="center flex-1 space-y-3">
-                <h3 className="font-bold">DISCOVER</h3>
+              <h3 className="font-bold">DISCOVER</h3>
               <ul className="space-y-3 lg:pt-4">
                 <li>
                   <Link
-                    href={`/?lang=${lang}`}
+                    href={`/${locale}`}
                     className="text-sm font-normal hover:text-primary"
                   >
                     ABOUT GWM
@@ -110,30 +114,29 @@ const Footer = ({ dataSettings }) => {
                 </li>
                 <li>
                   <Link
-                    href={`/?lang=${lang}#rent-space`}
+                    href={`/${locale}`}
                     className="text-sm font-normal hover:text-primary"
                   >
-                   ERA
+                    ERA
                   </Link>
                 </li>
                 <li>
                   <Link
-                    href={`/beyoutiful?lang=${lang}`}
+                    href={`/${locale}`}
                     className="text-sm font-normal hover:text-primary"
                   >
                     CONTACT US
                   </Link>
                 </li>
-
               </ul>
             </div>
 
             <div className="center flex-1 space-y-3">
-                <h3 className="font-bold">AFTER SALES</h3>
+              <h3 className="font-bold">AFTER SALES</h3>
               <ul className="space-y-3 lg:pt-4">
                 <li>
                   <Link
-                    href={`/?lang=${lang}`}
+                    href={`/${locale}`}
                     className="text-sm font-normal hover:text-primary"
                   >
                     WARRANTY
@@ -141,22 +144,21 @@ const Footer = ({ dataSettings }) => {
                 </li>
                 <li>
                   <Link
-                    href={`/?lang=${lang}#rent-space`}
+                    href={`/${locale}`}
                     className="text-sm font-normal hover:text-primary"
                   >
-                   ACCESSORIES
+                    ACCESSORIES
                   </Link>
                 </li>
-
               </ul>
             </div>
 
             <div className="center flex-1 space-y-3">
-                <h3 className="font-bold">HELP</h3>
+              <h3 className="font-bold">HELP</h3>
               <ul className="space-y-3 lg:pt-4">
                 <li>
                   <Link
-                    href={`/?lang=${lang}`}
+                    href={`/${locale}`}
                     className="text-sm font-normal hover:text-primary"
                   >
                     TEST DRIVE
@@ -164,28 +166,25 @@ const Footer = ({ dataSettings }) => {
                 </li>
                 <li>
                   <Link
-                    href={`/?lang=${lang}#rent-space`}
+                    href={`/${locale}`}
                     className="text-sm font-normal hover:text-primary"
                   >
-                   LOKASI DEALER
+                    LOKASI DEALER
                   </Link>
                 </li>
                 <li>
                   <Link
-                    href={`/beyoutiful?lang=${lang}`}
+                    href={`/${locale}`}
                     className="text-sm font-normal hover:text-primary"
                   >
                     NEWS & PROMO
                   </Link>
                 </li>
-
               </ul>
             </div>
 
             <div className="right flex-1 space-y-3 flex flex-col lg:pt-4">
-              <h2 className="text-dark font-bold text-sm">
-                FIND US
-              </h2>
+              <h2 className="text-dark font-bold text-sm">FIND US</h2>
               <div className="flex items-center gap-4 pb-5 w-max">
                 <a
                   target="_blank"

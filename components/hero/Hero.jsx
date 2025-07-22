@@ -12,12 +12,15 @@ import Link from "next/link";
 import Image from "next/image";
 import "./Hero.css";
 import parse from "html-react-parser";
+import { useLocale } from "next-intl";
 
 const HTMLDecoderEncoder = require("html-encoder-decoder");
 
 const Hero = ({ dataHero }) => {
   const heroData = dataHero?.data || null;
   const metaData = dataHero?.metadata || null;
+  const locale = useLocale();
+
   const lang = "id";
   const data = [
     {
@@ -86,21 +89,19 @@ const Hero = ({ dataHero }) => {
                         {lang === "en" ? item.desc_en : item.desc}
                       </p>
                       <div className="flex flex-col sm:flex-row gap-4">
-                        <a
-                          href="https://wa.me/+6281181110556"
-                          target="_blank"
-                          rel="noopener noreferrer"
+                        <Link
+                          href={`/${locale}#models`}
                           aria-label="button"
-                          className="bg-sky-500 text-white px-4 py-2 lg:px-6  rounded-lg font-semibold"
+                          className="bg-primary text-white px-4 py-2 lg:px-6  rounded-lg font-semibold"
                         >
                           EXPLORE MODELS
-                        </a>
+                        </Link>
                         <a
-                          href="https://wa.me/+6281181110556"
+                          href={`/${locale}/testdrive`}
                           target="_blank"
                           rel="noopener noreferrer"
                           aria-label="button"
-                          className="bg-transparent text-white px-4 py-2 lg:px-6  rounded-lg font-semibold border border-white"
+                          className="hover:bg-primary hover:border-transparent bg-transparent text-white px-4 py-2 lg:px-6  rounded-lg font-semibold border border-white"
                         >
                           TEST DRIVE
                         </a>

@@ -85,7 +85,7 @@ const Navbar = () => {
 
   const navItems = t.raw("items");
   const subMenu = [
-    { name: "About Us", name_id: "Tentang Kami", link: "/about" },
+    { name: "ABOUT US", name_id: "TENTANG KAMI", link: "/about" },
     { name: "ERA", name_id: "ERA", link: "/era" },
   ];
 
@@ -131,41 +131,45 @@ const Navbar = () => {
                       // Style dan class untuk positioning (top, height, fixed, full width)
                       className="fixed left-0 right-0 w-full overflow-y-auto bg-white text-dark shadow-xl p-8 lg:p-12 z-40 transition-all duration-300 h-[80vh] top-[72px]"
                     >
-                      {" "}
-                      <h3 className="text-xl font-semibold mb-4">GWM MODELS</h3>
-                      <div className="flex gap-6 mb-6">
-                        {modelTabs.map((tab) => (
-                          <button
-                            key={tab}
-                            onClick={() => setActiveTab(tab)}
-                            className={`pb-1 cursor-pointer border-b-2 ${
-                              activeTab === tab
-                                ? "border-primary text-primary font-semibold"
-                                : "border-transparent hover:text-primary"
-                            }`}
-                          >
-                            {tab.toUpperCase()}
-                          </button>
-                        ))}
-                      </div>
-                      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 2xl:grid-cols-5 gap-6">
-                        {filteredModels.map((car) => (
-                          <div key={car.id} className="space-y-2 text-center">
-                            <Image
-                              src={car.image}
-                              alt={car.title}
-                              width={278}
-                              height={172}
-                              className="w-full object-cover rounded-md"
-                            />
-                            <h4 className="font-semibold text-lg">
-                              {car.title}
-                            </h4>
-                            <p className="text-sm text-gray-600">
-                              {car.subtitle}
-                            </p>
-                          </div>
-                        ))}
+                      <div className="max-w-7xl mx-auto px-6 lg:px-12 py-4">
+                        {" "}
+                        <h3 className="text-xl font-semibold mb-4">
+                          GWM MODELS
+                        </h3>
+                        <div className="flex gap-6 mb-6">
+                          {modelTabs.map((tab) => (
+                            <button
+                              key={tab}
+                              onClick={() => setActiveTab(tab)}
+                              className={`pb-1 cursor-pointer border-b-2 ${
+                                activeTab === tab
+                                  ? "border-primary text-primary font-semibold"
+                                  : "border-transparent hover:text-primary"
+                              }`}
+                            >
+                              {tab.toUpperCase()}
+                            </button>
+                          ))}
+                        </div>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4  gap-6">
+                          {filteredModels.map((car) => (
+                            <div key={car.id} className="space-y-2 text-center">
+                              <Image
+                                src={car.image}
+                                alt={car.title}
+                                width={278}
+                                height={172}
+                                className="w-full object-cover rounded-md"
+                              />
+                              <h4 className="font-semibold text-lg">
+                                {car.title}
+                              </h4>
+                              <p className="text-sm text-gray-600">
+                                {car.subtitle}
+                              </p>
+                            </div>
+                          ))}
+                        </div>
                       </div>
                     </div>
                   )}
@@ -250,7 +254,7 @@ const Navbar = () => {
           </div>
 
           <a
-            href="https://wa.me/+6281181110556"
+            href={`/${locale}/testdrive`}
             target="_blank"
             rel="noopener noreferrer"
             aria-label="button"

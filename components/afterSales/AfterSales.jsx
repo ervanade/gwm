@@ -84,7 +84,7 @@ const AfterSales = () => {
         </p>
         <a
           href={product.link}
-          className="bg-transparent text-primary w-max px-4 py-2 lg:px-6  rounded-lg font-medium border border-primary  flex items-center text-base hover:text-sky-400 transition-colors"
+          className="bg-transparent text-primary w-max px-4 py-2 lg:px-6  rounded-lg font-medium border border-primary  flex items-center text-base hover:text-white hover:bg-primary transition-colors"
         >
           LEARN MORE <FaChevronRight className="ml-2 text-sm" />
         </a>
@@ -94,19 +94,18 @@ const AfterSales = () => {
 
   const renderWhyCard = (product, index) => {
     // Ukuran ikon yang diinginkan (contoh: 80px)
-    const iconSize = 124; 
+    const iconSize = 124;
 
     return (
-      <div className="flex flex-col gap-4 items-center"> 
-        
+      <div className="flex flex-col gap-4 items-center">
         <div className="w-[124px] h-[124px] relative overflow-hidden flex items-center justify-center">
           <Image
             src={product.image}
             alt={product.mainTitle + " " + product.subTitle}
-            width={iconSize}  // Lebar eksplisit
+            width={iconSize} // Lebar eksplisit
             height={iconSize} // Tinggi eksplisit (sama dengan lebar untuk square)
             className="object-contain" // Penting: 'object-contain' agar seluruh ikon terlihat (tidak terpotong)
-                                         // 'object-cover' akan memotong jika rasio gambar tidak pas dengan container
+            // 'object-cover' akan memotong jika rasio gambar tidak pas dengan container
             priority={index < 3} // Preload 3 gambar pertama
           />
         </div>
@@ -114,7 +113,7 @@ const AfterSales = () => {
 
         {/* --- Judul (Sekarang berada di bawah ikon) --- */}
         <h3 className="text-2xl font-bold leading-tight text-center">
-              {product.mainTitle}
+          {product.mainTitle}
         </h3>
         {/* --- Deskripsi --- */}
         <p className="text-dark text-sm lg:text-base md:min-h-18 text-center">
@@ -123,7 +122,7 @@ const AfterSales = () => {
         </p>
       </div>
     );
-};
+  };
   return (
     <div className="bg-white text-dark">
       <div className="max-w-7xl mx-auto w-full px-6 lg:px-12 py-12 md:py-16">
@@ -140,7 +139,9 @@ const AfterSales = () => {
       </div>
 
       <div className="max-w-7xl mx-auto w-full px-6 lg:px-12 py-12 md:py-16">
-        <h2 className="text-3xl font-bold text-center mb-12">WHY GWM INCHAPE</h2>{" "}
+        <h2 className="text-3xl font-bold text-center mb-12">
+          WHY GWM INCHAPE
+        </h2>{" "}
         <div className="grid grid-cols-1 gap-4">
           <div className="grid lg:grid-cols-3 gap-4">
             {" "}
