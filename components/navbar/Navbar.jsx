@@ -68,10 +68,40 @@ const Navbar = () => {
   };
 
   useEffect(() => {
-    const changeColor = () => setColor(window.scrollY > 5);
-    window.addEventListener("scroll", changeColor);
-    return () => window.removeEventListener("scroll", changeColor);
-  }, []);
+    // Menentukan apakah halaman saat ini adalah homepage atau halaman detail model
+    // `pathname` dari `usePathname()` adalah path tanpa prefix locale, contoh: '/', '/about', '/models/tank-500'
+    const isHomepageOrModelDetailPage =
+      pathname === "/" || pathname.startsWith("/models/");
+
+    const handleScrollColor = () => {
+      if (window.scrollY > 5) {
+        // Jika di-scroll ke bawah, navbar selalu solid (color: true)
+        setColor(true);
+      } else {
+        // Jika di paling atas halaman (scrollY <= 5)
+        // Navbar solid jika BUKAN homepage/models detail page (color: true)
+        // Navbar transparan jika homepage/models detail page (color: false)
+        setColor(!isHomepageOrModelDetailPage);
+      }
+    };
+
+    // Set warna awal navbar saat komponen di-mount atau pathname berubah
+    // Ini adalah kondisi default saat scrollY = 0
+    setColor(!isHomepageOrModelDetailPage);
+
+    // Tambahkan event listener untuk scroll
+    window.addEventListener("scroll", handleScrollColor);
+
+    // Cleanup event listener saat komponen di-unmount
+    return () => {
+      window.removeEventListener("scroll", handleScrollColor);
+    };
+  }, [pathname]);
+
+  useEffect(() => {
+    // Tutup MegaMenu setiap kali route/path berubah
+    setMegaMenuOpen(null);
+  }, [pathname]);
 
   useEffect(() => {
     const handleClickOutside = (e) => {
@@ -79,8 +109,10 @@ const Navbar = () => {
         setMegaMenuOpen(null);
       }
     };
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
+    // Gunakan event 'click' dan capture: true agar tetap menangkap event dari Swiper
+    document.addEventListener("click", handleClickOutside, true);
+    return () =>
+      document.removeEventListener("click", handleClickOutside, true);
   }, []);
 
   const navItems = t.raw("items");
@@ -97,7 +129,7 @@ const Navbar = () => {
   return (
     <div
       className={`fixed top-0 left-0 w-full z-50 ${
-        color ? "bg-[#fff] shadow-md text-[#282828]" : "text-white"
+        color ? "bg-[#fff] shadow text-[#282828]" : "text-white"
       }`}
     >
       <div className="mx-auto max-w-7xl px-6 lg:px-12 py-4 flex items-center justify-between text-sm font-bold">
@@ -153,21 +185,31 @@ const Navbar = () => {
                         </div>
                         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4  gap-6">
                           {filteredModels.map((car) => (
-                            <div key={car.id} className="space-y-2 text-center">
-                              <Image
-                                src={car.image}
-                                alt={car.title}
-                                width={278}
-                                height={172}
-                                className="w-full object-cover rounded-md"
-                              />
-                              <h4 className="font-semibold text-lg">
-                                {car.title}
-                              </h4>
-                              <p className="text-sm text-gray-600">
-                                {car.subtitle}
-                              </p>
-                            </div>
+                            <Link
+                              key={car.id}
+                              href={`/${locale}/${car.link}`} // Gunakan properti link dari data
+                              // Tambahkan group class agar hover pada elemen div bekerja
+                              className=" group"
+                            >
+                              <div
+                                key={car.id}
+                                className="space-y-2 text-center"
+                              >
+                                <Image
+                                  src={car.image}
+                                  alt={car.title}
+                                  width={278}
+                                  height={172}
+                                  className="w-full object-cover rounded-md group-hover:scale-105 transition-transform duration-300"
+                                />
+                                <h4 className="font-semibold text-lg">
+                                  {car.title}
+                                </h4>
+                                <p className="text-sm text-gray-600">
+                                  {car.subtitle}
+                                </p>
+                              </div>
+                            </Link>
                           ))}
                         </div>
                       </div>
@@ -291,7 +333,7 @@ const Navbar = () => {
             {navItems.map((item, index) => (
               <button
                 key={index}
-                className="block w-full text-left text-lg cursor-pointer hover:text-primary"
+                className="block w-full text-left text-lg cursor-pointer hover:text-primary font-bold"
                 onClick={() => {
                   if (item.label.toLowerCase() === "models") {
                     setMenuLevel("models");
@@ -338,9 +380,9 @@ const Navbar = () => {
             </div>
             <div className="grid gap-2 mt-4">
               {filteredModels.map((car) => (
-                <a
+                <Link
                   key={car.id}
-                  href={car.link} // Gunakan properti link dari data
+                  href={`/${locale}${car.link}`} // Gunakan properti link dari data
                   // Tambahkan group class agar hover pada elemen div bekerja
                   className=" group p-4 rounded-lg block relative overflow-hidden 
                                          w-full /* Item mengambil lebar penuh di mobile */
@@ -373,7 +415,7 @@ const Navbar = () => {
                     <h4 className="font-semibold text-lg">{car.title}</h4>
                     <p className="text-sm text-gray-600">{car.subtitle}</p>
                   </div>
-                </a>
+                </Link>
               ))}
             </div>
           </div>

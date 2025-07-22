@@ -1,7 +1,7 @@
 "use client";
+import { Link } from "@/i18n/navigation";
 import { useLocale } from "next-intl";
 import Image from "next/image";
-import Link from "next/link";
 import React from "react";
 import {
   FaBuilding,
@@ -21,7 +21,6 @@ const Footer = ({ dataSettings }) => {
     tokopedia: "",
     shopee: "",
   };
-  const locale = useLocale();
 
   return (
     <div className="footer">
@@ -31,7 +30,7 @@ const Footer = ({ dataSettings }) => {
             <div className="center flex-[2_2_0%] space-y-3">
               <ul className="space-y-3">
                 <li>
-                  <Link href={`/${locale}`} className="">
+                  <Link href={`/`} className="">
                     {/* <p className="font-bebas text-[40px] text-white">T-SPACE</p> */}
                     <Image
                       src="/logo-gwm.svg"
@@ -76,7 +75,7 @@ const Footer = ({ dataSettings }) => {
               <ul className="space-y-3 lg:pt-4">
                 <li>
                   <Link
-                    href={`/${locale}`}
+                    href={`/`}
                     className="text-sm font-normal hover:text-primary"
                   >
                     HAVAL
@@ -84,7 +83,7 @@ const Footer = ({ dataSettings }) => {
                 </li>
                 <li>
                   <Link
-                    href={`/${locale}`}
+                    href={`/`}
                     className="text-sm font-normal hover:text-primary"
                   >
                     TANK
@@ -92,7 +91,7 @@ const Footer = ({ dataSettings }) => {
                 </li>
                 <li>
                   <Link
-                    href={`/${locale}`}
+                    href={`/`}
                     className="text-sm font-normal hover:text-primary"
                   >
                     ORA
@@ -106,7 +105,7 @@ const Footer = ({ dataSettings }) => {
               <ul className="space-y-3 lg:pt-4">
                 <li>
                   <Link
-                    href={`/${locale}`}
+                    href={`/`}
                     className="text-sm font-normal hover:text-primary"
                   >
                     ABOUT GWM
@@ -114,7 +113,7 @@ const Footer = ({ dataSettings }) => {
                 </li>
                 <li>
                   <Link
-                    href={`/${locale}`}
+                    href={`/`}
                     className="text-sm font-normal hover:text-primary"
                   >
                     ERA
@@ -122,7 +121,7 @@ const Footer = ({ dataSettings }) => {
                 </li>
                 <li>
                   <Link
-                    href={`/${locale}`}
+                    href={`/`}
                     className="text-sm font-normal hover:text-primary"
                   >
                     CONTACT US
@@ -136,7 +135,7 @@ const Footer = ({ dataSettings }) => {
               <ul className="space-y-3 lg:pt-4">
                 <li>
                   <Link
-                    href={`/${locale}`}
+                    href={`/`}
                     className="text-sm font-normal hover:text-primary"
                   >
                     WARRANTY
@@ -144,7 +143,7 @@ const Footer = ({ dataSettings }) => {
                 </li>
                 <li>
                   <Link
-                    href={`/${locale}`}
+                    href={`/`}
                     className="text-sm font-normal hover:text-primary"
                   >
                     ACCESSORIES
@@ -158,7 +157,7 @@ const Footer = ({ dataSettings }) => {
               <ul className="space-y-3 lg:pt-4">
                 <li>
                   <Link
-                    href={`/${locale}`}
+                    href={`/`}
                     className="text-sm font-normal hover:text-primary"
                   >
                     TEST DRIVE
@@ -166,7 +165,7 @@ const Footer = ({ dataSettings }) => {
                 </li>
                 <li>
                   <Link
-                    href={`/${locale}`}
+                    href={`/`}
                     className="text-sm font-normal hover:text-primary"
                   >
                     LOKASI DEALER
@@ -174,7 +173,7 @@ const Footer = ({ dataSettings }) => {
                 </li>
                 <li>
                   <Link
-                    href={`/${locale}`}
+                    href={`/`}
                     className="text-sm font-normal hover:text-primary"
                   >
                     NEWS & PROMO

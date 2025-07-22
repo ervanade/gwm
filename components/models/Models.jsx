@@ -1,5 +1,6 @@
 "use client";
 
+import { Link } from "@/i18n/navigation";
 import Image from "next/image";
 import React, { useState } from "react";
 
@@ -120,9 +121,9 @@ const Models = () => {
           {filteredModels.map((car) => (
             // Bungkus seluruh kartu dengan Link (jika internal) atau tag a
             // Jika menggunakan 'Link' dari next/link, pastikan mengimpornya di atas
-            <a
+            <Link
               key={car.id}
-              href={car.link} // Gunakan properti link dari data
+              href={`${car.link}`} // Gunakan properti link dari data
               // Tambahkan group class agar hover pada elemen div bekerja
               className=" group p-4 rounded-lg block relative overflow-hidden 
                          w-full /* Item mengambil lebar penuh di mobile */
@@ -156,7 +157,7 @@ const Models = () => {
                 <h4 className="font-semibold text-lg">{car.title}</h4>
                 <p className="text-sm text-gray-600">{car.subtitle}</p>
               </div>
-            </a>
+            </Link>
           ))}
         </div>
       </div>
