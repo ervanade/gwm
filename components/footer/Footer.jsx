@@ -63,7 +63,7 @@ const Footer = ({ dataSettings }) => {
                       <span className="text-sm">
                         {dataSettings?.contact_email
                           ? dataSettings?.contact_email
-                          : `gwmigri@gwminchape.co.id`}
+                          : `gwmigri@gwminchcape.co.id`}
                       </span>
                     </li>
                   </ul>

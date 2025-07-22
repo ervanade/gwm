@@ -61,7 +61,7 @@ const Models = () => {
   return (
     <div>
       <div
-        className="max-w-7xl mx-auto w-full py-8 xl:py-16 bg-white text-dark p-8"
+        className="max-w-7xl mx-auto w-full py-8 xl:py-16 bg-white text-dark p-8 scroll-mt-[120px]"
         id="models"
       >
         <h2 className="text-3xl font-bold text-center mb-12">MODELS</h2>{" "}

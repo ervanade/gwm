@@ -89,13 +89,18 @@ const Hero = ({ dataHero }) => {
                         {lang === "en" ? item.desc_en : item.desc}
                       </p>
                       <div className="flex flex-col sm:flex-row gap-4">
-                        <Link
-                          href={`/${locale}#models`}
+                        <button
+                          onClick={() => {
+                            const el = document.getElementById("models");
+                            if (el) {
+                              el.scrollIntoView({ behavior: "smooth" });
+                            }
+                          }}
                           aria-label="button"
-                          className="bg-primary text-white px-4 py-2 lg:px-6  rounded-lg font-semibold"
+                          className="cursor-pointer bg-primary text-white px-4 py-2 lg:px-6 rounded-lg font-semibold"
                         >
                           EXPLORE MODELS
-                        </Link>
+                        </button>
                         <a
                           href={`/${locale}/testdrive`}
                           target="_blank"

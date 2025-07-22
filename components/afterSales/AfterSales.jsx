@@ -140,7 +140,7 @@ const AfterSales = () => {
 
       <div className="max-w-7xl mx-auto w-full px-6 lg:px-12 py-12 md:py-16">
         <h2 className="text-3xl font-bold text-center mb-12">
-          WHY GWM INCHAPE
+          WHY GWM INCHCAPE
         </h2>{" "}
         <div className="grid grid-cols-1 gap-4">
           <div className="grid lg:grid-cols-3 gap-4">
