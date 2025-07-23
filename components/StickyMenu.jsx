@@ -2,11 +2,12 @@
 import { FaDownload, FaMapMarkerAlt, FaCar, FaPhoneAlt, FaWhatsapp } from "react-icons/fa";
 import { useEffect, useState } from "react";
 import { IoDocumentOutline } from "react-icons/io5";
+import { Link } from "@/i18n/navigation";
 
 const menuItems = [
   { label: "Brochure", icon: <IoDocumentOutline />, link: "/brochure" },
-  { label: "Dealer", icon: <FaMapMarkerAlt />, link: "/dealer-location" },
-  { label: "Test Drive", icon: <FaCar />, link: "/test-drive" },
+  { label: "Dealer", icon: <FaMapMarkerAlt />, link: "/dealers" },
+  { label: "Test Drive", icon: <FaCar />, link: "/testdrive" },
   { label: "Contact", icon: <FaPhoneAlt />, link: "/contact" },
   { label: "WhatsApp", icon: <FaWhatsapp />, link: "https://wa.me/6281234567890" },
 ];
@@ -27,15 +28,15 @@ export default function StickyMenu() {
     return (
       <div className="fixed bottom-0 w-full bg-primary z-50 flex justify-around py-2 shadow-md">
         {menuItems.map((item, index) => (
-          <a
+          <Link
             key={index}
             href={item.link}
             target={item.label === "WhatsApp" ? "_blank" : "_self"}
-            className="flex flex-col items-center text-[10px] text-white hover:text-yellow-300"
+            className="flex flex-col items-center text-[10px] text-white hover:text-sky-200"
           >
             <div className="text-lg mb-1">{item.icon}</div>
             {item.label}
-          </a>
+          </Link>
         ))}
       </div>
     );
@@ -50,7 +51,7 @@ export default function StickyMenu() {
     >
       <div className="bg-primary text-white text-xs rounded-l-md overflow-hidden shadow-md transition-all duration-300">
         {menuItems.map((item, index) => (
-          <a
+          <Link
             key={index}
             href={item.link}
             target={item.label === "WhatsApp" ? "_blank" : "_self"}
@@ -60,7 +61,7 @@ export default function StickyMenu() {
           >
             <span className="text-lg">{item.icon}</span>
             {isHovered && <span>{item.label}</span>}
-          </a>
+          </Link>
         ))}
       </div>
     </div>

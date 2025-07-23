@@ -67,7 +67,7 @@ const Models = () => {
         <h2 className="text-3xl font-bold text-center mb-12">MODELS</h2>{" "}
         {/* Tambah mb untuk spasi */}
         <div
-          className="flex justify-center  gap-8 mb-6 overflow-x-auto pb-2 scrollbar-hide" // Tambah overflow-x-auto dan scrollbar-hide
+          className="flex justify-center  gap-2 md:gap-4 lg:gap-8 mb-6 overflow-x-auto pb-2 scrollbar-hide" // Tambah overflow-x-auto dan scrollbar-hide
           style={{
             // CSS kustom untuk scrollbar, bisa ditambahkan ke global.css atau langsung di sini
             // Untuk scrollbar aktif (biru)
@@ -91,7 +91,7 @@ const Models = () => {
                   alt={`${tab.label} Logo`}
                   width={100} // Lebar logo
                   height={80} // Tinggi logo agar sama
-                  className="object-contain" // Pastikan gambar tidak terpotong
+                  className="object-contain cursor-pointer" // Pastikan gambar tidak terpotong
                 />
               ) : (
                 // Teks "ALL" jika tidak ada logo

@@ -130,7 +130,7 @@ const Navbar = () => {
   return (
     <div
       className={`fixed top-0 left-0 w-full z-[55] ${
-        color ? "bg-[#fff] shadow text-[#282828]" : "text-white"
+        color ? "bg-[#fff] shadow text-[#282828] !sticky" : "text-white"
       }`}
     >
       <div className="mx-auto max-w-7xl px-6 lg:px-12 py-4 flex items-center justify-between text-xs xl:text-sm font-bold">
@@ -383,6 +383,20 @@ const Navbar = () => {
               </div>
             )}
           </div>
+          <div className="flex w-full">
+
+          <a
+            href={`/${locale}/testdrive`}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="button"
+            className="bg-primary text-white px-6 py-2 rounded-lg font-semibold text-base"
+          >
+            Test Drive
+
+          </a>
+          </div>
+
           </div>
         )}
 

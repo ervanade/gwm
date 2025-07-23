@@ -67,7 +67,7 @@ export function Gallery() {
         className="w-full"
       >
         {galleryImages.map((img, idx) => (
-          <SwiperSlide key={idx} className="!w-32 !h-20 cursor-pointer">
+          <SwiperSlide key={idx} className="!w-20 !h-12 !lg:w-28 !lg:h-16 cursor-pointer">
             <div
               className={`rounded-lg overflow-hidden w-full h-full border-2 ${
                 activeIndex === idx

@@ -18,7 +18,7 @@ const highlightProductsData = [
     subTitle: "JOLION ULTRA",
     buttonText: "JOLION ULTRA",
     image: "/assets/h-jolion.png", // Make sure this path exists
-    link: "#", // Replace with actual link
+    link: "/models/haval-jolion", // Replace with actual link
   },
   {
     id: 2,
@@ -36,7 +36,7 @@ const highlightProductsData = [
     subTitle: "O3 BEV",
     buttonText: "ORA O3 BEV",
     image: "/assets/h-ora.png", // Make sure this path exists
-    link: "#",
+    link: "/models/ora-bev",
   },
   {
     id: 4,
@@ -45,7 +45,7 @@ const highlightProductsData = [
     subTitle: "TANK 300",
     buttonText: "TANK 300",
     image: "/assets/h-tank300.png", // Make sure this path exists
-    link: "#",
+    link: "/models/tank-300",
   },
   {
     id: 5,
@@ -54,7 +54,7 @@ const highlightProductsData = [
     subTitle: "TANK 500",
     buttonText: "TANK 500",
     image: "/assets/h-tank500.png", // Make sure this path exists
-    link: "#",
+    link: "/models/tank-500",
   },
 ];
 const OverviewProduct = () => {
@@ -190,16 +190,14 @@ const OverviewProduct = () => {
                     inci.
                   </p>
                   <div className="flex flex-col sm:flex-row gap-4">
-                    <a
-                      href="https://wa.me/+6281181110556"
-                      target="_blank"
-                      rel="noopener noreferrer"
+                    <Link
+                      href="/models/haval-h6-hev"
                       aria-label="button"
-                      className="bg-transparent hover:bg-primary hover:border-transparent text-white px-4 py-2 lg:px-6  rounded-lg font-semibold border border-white flex items-center gap-2"
+                      className="cursor-pointer bg-transparent hover:bg-primary hover:border-transparent text-white px-4 py-2 lg:px-6  rounded-lg font-semibold border border-white flex items-center gap-2"
                     >
                       Discover More
                       <FaChevronRight />
-                    </a>
+                    </Link>
                   </div>
                 </div>
               </div>
