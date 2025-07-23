@@ -9,11 +9,11 @@
   },
    "Navbar": {
     "items": [
-      { "label": "MODELS", "link": "/#hero" },
-      { "label": "TENTANG GWM", "link": "/beyoutiful" },
-      { "label": "AFTER SALES", "link": "/#gallery" },
-      { "label": "NEWS & PROMO", "link": "/#rent-space" },
-      { "label": "LOKASI DEALER", "link": "/#our-tenant" }
+      { "label": "MODELS", "link": "/models" },
+      { "label": "TENTANG GWM", "link": "/about" },
+      { "label": "AFTER SALES", "link": "/aftersales" },
+      { "label": "NEWS & PROMO", "link": "/news" },
+      { "label": "LOKASI DEALER", "link": "/dealers" }
     ]
   }
 }

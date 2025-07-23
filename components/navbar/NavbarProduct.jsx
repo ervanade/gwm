@@ -33,7 +33,7 @@ export default function ProductNavbar({ modelName = "TANK 500" }) {
     <div
       ref={navbarRef}
       className={`w-full  transition-all duration-300 ${
-        isSticky ? "fixed top-[72px] bg-white shadow z-[51] " : "relative"
+        isSticky ? "fixed top-[90px] bg-white shadow z-[51] border-t border-black/10 " : "relative"
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 lg:px-12 py-3 flex flex-wrap items-center justify-between border-b border-gray-200 text-sm font-medium">

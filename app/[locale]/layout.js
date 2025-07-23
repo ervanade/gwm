@@ -46,8 +46,6 @@ export async function generateMetadata({ params }) {
   const { locale } = await params;
   const isEnglish = locale?.includes('en');
 
-  console.log(locale)
-
   return {
     title: isEnglish
       ? 'GWM Inchcape | Official GWM Car Dealership in Indonesia'

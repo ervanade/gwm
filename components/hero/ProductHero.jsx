@@ -22,7 +22,7 @@ const ProductHero = ({ image, title, subtitle, price }) => {
 
       {/* Overlay Text Content */}
       <div className="absolute bottom-1/8 left-0 right-0 z-10">
-        <div className="max-w-7xl mx-auto px-6 lg:px-12 text-white">
+        <div className="max-w-7xl mx-auto px-6 lg:px-12 xl:px-16 text-white">
           <div className="max-w-[480px] flex flex-col gap-3 text-left">
             <p className="text-lg font-medium text-white/80">{subtitle}</p>
             <h1 className="text-3xl md:text-5xl font-bold">{title}</h1>

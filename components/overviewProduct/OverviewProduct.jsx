@@ -8,6 +8,7 @@ import { FaChevronRight } from "react-icons/fa"; // Import the chevron icon
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/navigation";
+import { Link } from "@/i18n/navigation";
 // import "swiper/css/pagination"; // Uncomment if you use Pagination module
 const highlightProductsData = [
   {
@@ -26,7 +27,7 @@ const highlightProductsData = [
     subTitle: "H6 HEV",
     buttonText: "H6 HEV",
     image: "/assets/h-havalh6.png", // Make sure this path exists
-    link: "#",
+    link: "/models/haval-h6-hev",
   },
   {
     id: 3,
@@ -99,12 +100,12 @@ const OverviewProduct = () => {
             {product.subTitle}
           </h4>
         </div>
-        <a
+        <Link
           href={product.link}
           className="absolute bottom-5 right-4 flex items-center text-white text-lg font-semibold hover:text-sky-400 transition-colors"
         >
           {product.buttonText} <FaChevronRight className="ml-2 text-sm" />
-        </a>
+        </Link>
       </div>
     );
   };

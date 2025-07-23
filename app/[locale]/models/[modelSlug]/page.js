@@ -1,10 +1,13 @@
+import ExteriorColorSection from '@/components/exteriorColor/ExteriorColor'
 import ProductHero from '@/components/hero/ProductHero'
 import NavbarProduct from '@/components/navbar/NavbarProduct'
+import Features from '@/components/product/Features'
+import { Gallery } from '@/components/product/Gallery'
 import React from 'react'
 
 const page = () => {
     return (
-        <div>
+        <div className='bg-white text-dark'>
             <ProductHero
                 image="/hero-1.jpg"
                 title="HAVAL H6 HEV"
@@ -13,20 +16,11 @@ const page = () => {
             />
             <NavbarProduct modelName="H6 HEV" />
 
-            <div id="exterior" className="min-h-screen px-6 py-12 bg-gray-50">
-                <h2 className="text-xl font-bold mb-4">Exterior Color</h2>
-                {/* Konten warna mobil */}
-            </div>
+<ExteriorColorSection />
 
-            <div id="features" className="min-h-screen px-6 py-12">
-                <h2 className="text-xl font-bold mb-4">Car Features</h2>
-                {/* Fitur mobil */}
-            </div>
+           <Features />
 
-            <div id="specs" className="min-h-screen px-6 py-12 bg-gray-50">
-                <h2 className="text-xl font-bold mb-4">Specifications</h2>
-                {/* Spesifikasi teknis */}
-            </div>
+           <Gallery />
 
         </div>
     )

@@ -128,11 +128,11 @@ const Navbar = () => {
 
   return (
     <div
-      className={`fixed top-0 left-0 w-full z-50 ${
+      className={`fixed top-0 left-0 w-full z-[55] ${
         color ? "bg-[#fff] shadow text-[#282828]" : "text-white"
       }`}
     >
-      <div className="mx-auto max-w-7xl px-6 lg:px-12 py-4 flex items-center justify-between text-sm font-bold">
+      <div className="mx-auto max-w-7xl px-6 lg:px-12 py-4 flex items-center justify-between text-xs xl:text-sm font-bold">
         <Link href={`/${locale}/#hero`}>
           <Image
             src="/logo-gwm.svg"
@@ -161,9 +161,9 @@ const Navbar = () => {
                   {megaMenuOpen === "models" && (
                     <div
                       // Style dan class untuk positioning (top, height, fixed, full width)
-                      className="fixed left-0 right-0 w-full overflow-y-auto bg-white text-dark shadow-xl p-8 lg:p-12 z-40 transition-all duration-300 h-[80vh] top-[72px]"
+                      className="fixed left-0 right-0 w-full overflow-y-auto bg-white text-dark shadow-xl px-8 lg:px-16 py-8 z-[53] transition-all duration-300 h-[80vh] top-[72px]"
                     >
-                      <div className="max-w-7xl mx-auto px-6 lg:px-12 py-4">
+                      <div className="max-w-7xl mx-auto ">
                         {" "}
                         <h3 className="text-xl font-semibold mb-4">
                           GWM MODELS
@@ -238,7 +238,7 @@ const Navbar = () => {
                   {(megaMenuOpen === "discover gwm" ||
                     megaMenuOpen === "tentang gwm" ||
                     megaMenuOpen === "discover") && (
-                    <div className="absolute top-full mt-2 bg-white text-dark rounded shadow-md p-4 min-w-[200px]">
+                    <div className="absolute top-full mt-2 bg-white text-dark rounded shadow-md p-4 min-w-[200px] z-[54]">
                       {subMenu.map((sub, i) => (
                         <Link
                           key={i}
@@ -282,7 +282,7 @@ const Navbar = () => {
                       switchLocale(lng);
                       setDropdownOpen(false);
                     }}
-                    className={`block w-full px-4 py-2 text-left text-sm transition ${
+                    className={`block w-full px-4 py-2 text-left text-sm transition cursor-pointer ${
                       locale === lng
                         ? "bg-primary text-white font-bold cursor-default"
                         : "text-[#282828] hover:bg-[#ededed]"
@@ -309,7 +309,7 @@ const Navbar = () => {
         {/* MOBILE MENU */}
         <button
           onClick={() => setMenuOpen(true)}
-          className={`lg:hidden ${color ? "text-dark" : "text-white"} text-2xl`}
+          className={`lg:hidden ${color ? "text-dark" : "text-white"} text-2xl cursor-pointer`}
         >
           <FaBars />
         </button>
@@ -317,13 +317,13 @@ const Navbar = () => {
 
       {/* MOBILE PANEL */}
       <div
-        className={`lg:hidden overflow-auto fixed inset-0 z-50 bg-[#fff] text-dark p-6 transition-transform duration-300 ease-in-out max-h-screen ${
+        className={`lg:hidden overflow-auto fixed inset-0 z-[52] bg-[#fff] text-dark p-6 transition-transform duration-300 ease-in-out max-h-screen ${
           menuOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
         <div className="flex justify-between items-center mb-6">
           <Image src="/logo-gwm.svg" width={120} height={50} alt="Logo GWM" />
-          <button onClick={() => setMenuOpen(false)} className="text-xl">
+          <button onClick={() => setMenuOpen(false)} className="text-xl cursor-pointer">
             ✕
           </button>
         </div>
@@ -351,6 +351,35 @@ const Navbar = () => {
                 {locale === "id" && item.label_id ? item.label_id : item.label}
               </button>
             ))}
+              <div className="relative">
+            <button
+              onClick={() => setDropdownOpen(!dropdownOpen)}
+              className="px-2 py-1 rounded  border-white cursor-pointer flex items-center gap-1 font-bold"
+            >
+              {locale.toUpperCase()} <FaChevronDown className="text-xs" />
+            </button>
+            {dropdownOpen && (
+              <div className="absolute  mt-2 bg-[#fff]  cursor-pointer rounded shadow-md z-50">
+                {["id", "en"].map((lng) => (
+                  <button
+                    key={lng}
+                    disabled={locale === lng}
+                    onClick={() => {
+                      switchLocale(lng);
+                      setDropdownOpen(false);
+                    }}
+                    className={`block w-full px-4 py-2 text-left text-sm transition cursor-pointer ${
+                      locale === lng
+                        ? "bg-primary text-white font-bold cursor-default"
+                        : "text-[#282828] hover:bg-[#ededed]"
+                    }`}
+                  >
+                    {lng.toUpperCase()}
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
           </div>
         )}
 
