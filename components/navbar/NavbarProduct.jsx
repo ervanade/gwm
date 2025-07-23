@@ -13,7 +13,7 @@ export default function ProductNavbar({ modelName = "TANK 500" }) {
 
   useEffect(() => {
     const handleScroll = () => {
-      const threshold = window.innerHeight - 100;
+      const threshold = (window.innerHeight * 8/10) - 80;
       setIsSticky(window.scrollY > threshold);
     };
     window.addEventListener("scroll", handleScroll);
@@ -32,7 +32,7 @@ export default function ProductNavbar({ modelName = "TANK 500" }) {
   return (
     <div
       ref={navbarRef}
-      className={`w-full  transition-all duration-300 ${
+      className={`w-full  transition-all duration-200 ${
         isSticky ? "fixed top-[90px] bg-white shadow z-[51] border-t border-black/10 " : "relative"
       }`}
     >

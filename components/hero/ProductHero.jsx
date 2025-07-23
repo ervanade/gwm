@@ -8,7 +8,7 @@ const ProductHero = ({ image, title, subtitle, price }) => {
   const locale = useLocale();
 
   return (
-    <div className="relative w-full h-screen" id="hero">
+    <div className="relative w-full h-[80vh]" id="hero">
       {/* Background Image */}
       <Image
         src={image}
@@ -39,13 +39,13 @@ const ProductHero = ({ image, title, subtitle, price }) => {
             <div className="flex flex-col sm:flex-row gap-4 mt-4">
               <Link
                 href={`/${locale}/testdrive`}
-                className="bg-primary text-white px-5 py-3 rounded-lg font-semibold text-sm hover:bg-primary/90 transition"
+                className="bg-primary text-center text-white px-5 py-3 rounded-lg font-semibold text-sm hover:bg-primary/90 transition"
               >
                 Book Test Drive
               </Link>
               <a
                 href={`/${locale}/contact`}
-                className="border border-white text-white px-5 py-3 rounded-lg font-semibold text-sm hover:bg-white hover:text-primary transition"
+                className="border border-white text-center text-white px-5 py-3 rounded-lg font-semibold text-sm hover:bg-white hover:text-primary transition"
               >
                 Download Brochure
               </a>
