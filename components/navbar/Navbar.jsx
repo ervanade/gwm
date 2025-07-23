@@ -101,6 +101,7 @@ const Navbar = () => {
   useEffect(() => {
     // Tutup MegaMenu setiap kali route/path berubah
     setMegaMenuOpen(null);
+    setMenuOpen(false)
   }, [pathname]);
 
   useEffect(() => {
@@ -322,7 +323,9 @@ const Navbar = () => {
         }`}
       >
         <div className="flex justify-between items-center mb-6">
+          <Link href={`/${locale}`}>
           <Image src="/logo-gwm.svg" width={120} height={50} alt="Logo GWM" />
+          </Link>
           <button onClick={() => setMenuOpen(false)} className="text-xl cursor-pointer">
             ✕
           </button>

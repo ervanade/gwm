@@ -4,12 +4,11 @@ import React, { useState } from "react";
 import { FaChevronRight } from "react-icons/fa6";
 import parse from "html-react-parser";
 import { FaChevronDown } from "react-icons/fa";
-const highlightProductsData = [
+const highlightFeaturesData = [
   {
     id: 1,
     type: "square",
     mainTitle: "PERFORMANCE",
-    subTitle: "WARRANTY",
     desc: "1.5L Turbo Hybrid Engine Producing 243 PS / 530Nm with 19.2 km/L Fuel Economy",
     image: "/assets/cars/h6/feature-1.png", // Make sure this path exists
     link: "#", // Replace with actual link
@@ -18,7 +17,6 @@ const highlightProductsData = [
     id: 2,
     type: "square",
     mainTitle: "SAFETY & PLATFORM",
-    subTitle: "ACCESSORIES",
     desc: "Tingkatkan pengalaman berkendara Anda dengan aksesori resmi GWM yang dirancang untuk setiap model.",
     image: "/assets/cars/h6/feature-2.png", // Make sure this path exists
     link: "#",
@@ -27,7 +25,6 @@ const highlightProductsData = [
     id: 3,
     type: "square",
     mainTitle: "6 AIRBAGS",
-    subTitle: "ACCESSORIES",
     desc: "Ensure the safety of everyone on board with 6 airbags to provide optimal protection for the driver and passengers.",
     image: "/assets/cars/h6/feature-3.png", // Make sure this path exists
     link: "#",
@@ -111,13 +108,13 @@ const Features = () => {
 
   return (
     <div className="bg-white text-dark">
-      <div className="max-w-7xl mx-auto w-full px-6 lg:px-12 py-12 md:py-16">
+      <div className="max-w-7xl mx-auto w-full px-6 lg:px-12 py-12 md:py-16" id="features">
         <h2 className="text-3xl font-bold text-left mb-12">FEATURES</h2>{" "}
         <div className="grid grid-cols-1 gap-4">
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
             {" "}
             {/* Grid for 3 items */}
-            {highlightProductsData
+            {highlightFeaturesData
               .slice(0, 3)
               .map((product, index) => renderProductCard(product, index))}
           </div>

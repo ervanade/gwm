@@ -43,7 +43,7 @@ export default function ProductNavbar({ modelName = "TANK 500" }) {
             <button
               key={s.id}
               onClick={() => scrollToSection(s.id)}
-              className="hover:text-primary transition"
+              className="hover:text-primary transition cursor-pointer"
             >
               {s.label}
             </button>
