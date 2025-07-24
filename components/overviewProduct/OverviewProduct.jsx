@@ -169,6 +169,7 @@ const OverviewProduct = () => {
         <div className="">
           {/* <Link href={item?.link}> */}
           <div className="w-full relative h-[70vh] cursor-pointer">
+            <div className="absolute inset-0 bg-gradient-to-b lg:bg-gradient-to-r from-black/50 to-transparent z-10"></div>{" "}
             <Image
               src={`/assets/highlight1.png`}
               alt={"T-Space Hero"}
@@ -177,8 +178,7 @@ const OverviewProduct = () => {
               objectPosition="center" // Memusatkan gambar
             />
             {/* <div className="absolute inset-0 bg-gradient-to-r from-black/30 to-black/50" /> */}
-
-            <div className="absolute top-[35%] left-0 right-0">
+            <div className="absolute top-[35%] left-0 right-0 z-20">
               <div className="max-w-7xl mx-auto px-6 lg:px-12">
                 <div className="flex flex-col gap-2 items-center justify-start text-white space-y-4 lg:space-y-8 max-w-[600px] text-center md:items-start md:text-left">
                   <p className="font-bold text-2xl md:text-3xl lg:text-[32px] leading-tight">

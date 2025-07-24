@@ -1,7 +1,11 @@
-'use client'
+"use client";
 import Image from "next/image";
-import React, { useState } from "react";
-import { FaChevronRight } from "react-icons/fa6";
+import React, { useState, useRef } from "react";
+import { FaChevronRight, FaChevronLeft } from "react-icons/fa6";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/navigation";
 import parse from "html-react-parser";
 import { FaChevronDown } from "react-icons/fa";
 const highlightFeaturesData = [
@@ -32,9 +36,9 @@ const highlightFeaturesData = [
 ];
 
 const dummySpecs = [
-    {
-      title: "Dimensions & Weight",
-      content: `
+  {
+    title: "Dimensions & Weight",
+    content: `
         <ul class="list-disc pl-5 space-y-1">
           <li>Length: 5070 mm</li>
           <li>Width: 1934 mm</li>
@@ -43,10 +47,10 @@ const dummySpecs = [
           <li>Kerb Weight: 2450 kg</li>
         </ul>
       `,
-    },
-    {
-      title: "Engine & Transmission",
-      content: `
+  },
+  {
+    title: "Engine & Transmission",
+    content: `
         <ul class="list-disc pl-5 space-y-1">
           <li>Engine: 2.0L Turbo Petrol</li>
           <li>Transmission: 9-Speed Automatic</li>
@@ -54,10 +58,10 @@ const dummySpecs = [
           <li>Drive Type: AWD</li>
         </ul>
       `,
-    },
-    {
-      title: "Brakes & Suspension",
-      content: `
+  },
+  {
+    title: "Brakes & Suspension",
+    content: `
         <ul class="list-disc pl-5 space-y-1">
           <li>Front Brakes: Ventilated Disc</li>
           <li>Rear Brakes: Disc</li>
@@ -65,10 +69,10 @@ const dummySpecs = [
           <li>Rear Suspension: Multi-link</li>
         </ul>
       `,
-    },
-  ];
+  },
+];
 const Features = () => {
-    const [activeIdx, setActiveIdx] = useState(null);
+  const [activeIdx, setActiveIdx] = useState(null);
 
   const renderProductCard = (product, index) => {
     const isSquare = product.type === "square";
@@ -108,23 +112,65 @@ const Features = () => {
 
   return (
     <div className="bg-white text-dark">
-      <div className="max-w-7xl mx-auto w-full px-6 lg:px-12 py-12 md:py-16" id="features">
-        <h2 className="text-3xl font-bold text-left mb-12">FEATURES</h2>{" "}
-        <div className="grid grid-cols-1 gap-4">
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {" "}
-            {/* Grid for 3 items */}
-            {highlightFeaturesData
-              .slice(0, 3)
-              .map((product, index) => renderProductCard(product, index))}
-          </div>
+      <div className="max-w-7xl mx-auto w-full px-6 lg:px-12 py-12 md:py-16">
+        <h2 className="text-3xl font-bold mb-12">FEATURES</h2>
+
+        <div className="relative group">
+          <Swiper
+            modules={[Navigation]}
+            spaceBetween={16}
+            slidesPerView={1.2}
+            navigation={{
+              nextEl: ".feature-next",
+              prevEl: ".feature-prev",
+            }}
+            breakpoints={{
+              640: { slidesPerView: 1.5 },
+              768: { slidesPerView: 2 },
+              1024: { slidesPerView: 3 },
+            }}
+            className="w-full"
+          >
+            {highlightFeaturesData.map((feature) => (
+              <SwiperSlide key={feature.id}>
+                <div className="flex flex-col gap-3 cursor-pointer">
+                  <div className="relative aspect-square overflow-hidden rounded-lg">
+                    <Image
+                      src={feature.image}
+                      alt={feature.mainTitle}
+                      fill
+                      sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
+                      className="object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
+                  </div>
+                  <h4 className="font-bold text-base lg:text-lg text-dark">
+                    {feature.mainTitle}
+                  </h4>
+                  <p className="text-sm lg:text-base text-gray-700">
+                    {feature.desc}
+                  </p>
+                </div>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+
+          {/* Custom Arrows */}
+          <button className="cursor-pointer feature-prev absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white p-2 rounded-full shadow group-hover:opacity-100 opacity-0 transition  text-primary">
+            <FaChevronLeft className="w-4 h-4" />
+          </button>
+          <button className="cursor-pointer feature-next absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white p-2 rounded-full shadow group-hover:opacity-100 opacity-0 transition  text-primary">
+            <FaChevronRight className="w-4 h-4" />
+          </button>
         </div>
       </div>
+
       <div className="mx-auto w-full text-black" id="hero">
         {/* Hero Desktop */}
         <div className="">
           {/* <Link href={item?.link}> */}
           <div className="w-full relative h-[70vh] cursor-pointer">
+            <div className="absolute inset-0 bg-gradient-to-b lg:bg-gradient-to-r from-black/50 to-transparent z-10"></div>{" "}
             <Image
               src={`/assets/highlight1.png`}
               alt={"T-Space Hero"}
@@ -133,8 +179,7 @@ const Features = () => {
               objectPosition="center" // Memusatkan gambar
             />
             {/* <div className="absolute inset-0 bg-gradient-to-r from-black/30 to-black/50" /> */}
-
-            <div className="absolute top-[35%] left-0 right-0">
+            <div className="absolute top-[35%] left-0 right-0 z-20">
               <div className="max-w-7xl mx-auto px-6 lg:px-12">
                 <div className="flex flex-col gap-2 items-center justify-start text-white space-y-4 lg:space-y-8 max-w-[600px] text-center md:items-start md:text-left">
                   <p className="font-bold text-2xl md:text-3xl lg:text-[32px] leading-tight">
@@ -165,54 +210,56 @@ const Features = () => {
       </div>
 
       <section id="specs" className="max-w-7xl mx-auto px-6 lg:px-12 py-12">
-      <h2 className="text-3xl font-bold text-center mb-12">HAVAL H6 - SPECIFICATION</h2>{" "}
-      <div className="flex flex-col lg:flex-row gap-8 justify-center items-center">
-        {/* Left: Image */}
-        <div className="lg:w-1/2 w-full">
-          <Image
-            src="/assets/cars/h6/h6-grey-side.png"
-            alt="Spec Illustration"
-            width={800}
-            height={600}
-            className="rounded-lg w-full object-cover"
-          />
-        </div>
+        <h2 className="text-3xl font-bold text-center mb-12">
+          HAVAL H6 - SPECIFICATION
+        </h2>{" "}
+        <div className="flex flex-col lg:flex-row gap-8 justify-center items-center">
+          {/* Left: Image */}
+          <div className="lg:w-1/2 w-full">
+            <Image
+              src="/assets/cars/h6/h6-grey-side.png"
+              alt="Spec Illustration"
+              width={800}
+              height={600}
+              className="rounded-lg w-full object-cover"
+            />
+          </div>
 
-        {/* Right: Accordion */}
-        <div className="lg:w-1/2 w-full space-y-4">
-          {dummySpecs.map((item, i) => {
-            const isOpen = activeIdx === i;
-            return (
-              <div
-                key={i}
-                className="border-b border-gray-200 rounded-lg overflow-hidden"
-              >
-                <button
-                  onClick={() => setActiveIdx(isOpen ? null : i)}
-                  className="w-full px-5 py-4 flex justify-between items-center text-left font-medium text-gray-800 cursor-pointer"
-                >
-                  {item.title}
-                  <FaChevronDown
-                    className={`w-5 h-5 transition-transform ${
-                      isOpen ? "rotate-180" : ""
-                    }`}
-                  />
-                </button>
+          {/* Right: Accordion */}
+          <div className="lg:w-1/2 w-full space-y-4">
+            {dummySpecs.map((item, i) => {
+              const isOpen = activeIdx === i;
+              return (
                 <div
-                  className={`transition-all duration-300 px-5 overflow-hidden ${
-                    isOpen ? "max-h-[500px] py-3" : "max-h-0"
-                  }`}
+                  key={i}
+                  className="border-b border-gray-200 rounded-lg overflow-hidden"
                 >
-                  <div className="text-sm text-gray-600">
-                    {parse(item.content)}
+                  <button
+                    onClick={() => setActiveIdx(isOpen ? null : i)}
+                    className="w-full px-5 py-4 flex justify-between items-center text-left font-medium text-gray-800 cursor-pointer"
+                  >
+                    {item.title}
+                    <FaChevronDown
+                      className={`w-5 h-5 transition-transform ${
+                        isOpen ? "rotate-180" : ""
+                      }`}
+                    />
+                  </button>
+                  <div
+                    className={`transition-all duration-300 px-5 overflow-hidden ${
+                      isOpen ? "max-h-[500px] py-3" : "max-h-0"
+                    }`}
+                  >
+                    <div className="text-sm text-gray-600">
+                      {parse(item.content)}
+                    </div>
                   </div>
                 </div>
-              </div>
-            );
-          })}
+              );
+            })}
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
     </div>
   );
 };

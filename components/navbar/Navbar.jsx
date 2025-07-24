@@ -7,6 +7,7 @@ import { usePathname, useRouter } from "@/i18n/navigation";
 import { useParams } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
+import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
 const modelTabs = ["all", "tank", "haval", "ora"];
 const dummyModels = [
@@ -101,7 +102,8 @@ const Navbar = () => {
   useEffect(() => {
     // Tutup MegaMenu setiap kali route/path berubah
     setMegaMenuOpen(null);
-    setMenuOpen(false)
+    setMenuOpen(false);
+    setMenuLevel("main");
   }, [pathname]);
 
   useEffect(() => {
@@ -244,7 +246,7 @@ const Navbar = () => {
                         <Link
                           key={i}
                           href={`/${locale}${sub.link}`}
-                          className="block px-4 py-2 text-sm hover:bg-gray-100 rounded"
+                          className="block px-4 py-2 text-sm hover:bg-gray-100 rounded font-bold"
                         >
                           {locale === "id" ? sub.name_id : sub.name}
                         </Link>
@@ -310,7 +312,9 @@ const Navbar = () => {
         {/* MOBILE MENU */}
         <button
           onClick={() => setMenuOpen(true)}
-          className={`lg:hidden ${color ? "text-dark" : "text-white"} text-2xl cursor-pointer`}
+          className={`lg:hidden ${
+            color ? "text-dark" : "text-white"
+          } text-2xl cursor-pointer`}
         >
           <FaBars />
         </button>
@@ -318,103 +322,119 @@ const Navbar = () => {
 
       {/* MOBILE PANEL */}
       <div
-        className={`lg:hidden overflow-auto fixed inset-0 z-[52] bg-[#fff] text-dark p-6 transition-transform duration-300 ease-in-out max-h-screen ${
+        className={`lg:hidden overflow-auto fixed inset-0 z-[52] bg-white text-dark p-6 transition-transform duration-300 ease-in-out max-h-screen ${
           menuOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
+        {/* Header */}
         <div className="flex justify-between items-center mb-6">
           <Link href={`/${locale}`}>
-          <Image src="/logo-gwm.svg" width={120} height={50} alt="Logo GWM" />
+            <Image src="/logo-gwm.svg" width={120} height={50} alt="Logo GWM" />
           </Link>
-          <button onClick={() => setMenuOpen(false)} className="text-xl cursor-pointer">
+          <button onClick={() => setMenuOpen(false)} className="text-xl">
             ✕
           </button>
         </div>
 
+        {/* MAIN MENU */}
         {menuLevel === "main" && (
-          <div className="space-y-4">
-            {navItems.map((item, index) => (
+          <div className="space-y-1 border-t border-gray-200 divide-y divide-gray-200 text-lg">
+            {navItems.map((item, index) => {
+              const label =
+                locale === "id" && item.label_id ? item.label_id : item.label;
+              const hasSubMenu = [
+                "models",
+                "discover gwm",
+                "tentang gwm",
+              ].includes(item.label.toLowerCase());
+
+              return (
+                <button
+                  key={index}
+                  onClick={() => {
+                    if (hasSubMenu) {
+                      setMenuLevel(
+                        item.label.toLowerCase() === "models"
+                          ? "models"
+                          : "discover"
+                      );
+                    } else {
+                      router.push(`/${locale}${item.link}`);
+                      setMenuOpen(false);
+                    }
+                  }}
+                  className="w-full flex items-center justify-between py-3 text-lg font-semibold text-gray-800 hover:text-primary"
+                >
+                  <span>{label}</span>
+                  {hasSubMenu && (
+                    <FaChevronRight className="text-sm text-gray-500" />
+                  )}
+                </button>
+              );
+            })}
+
+            {/* Language Switcher */}
+            <div className="relative px-1 py-3">
               <button
-                key={index}
-                className="block w-full text-left text-lg cursor-pointer hover:text-primary font-bold"
-                onClick={() => {
-                  if (item.label.toLowerCase() === "models") {
-                    setMenuLevel("models");
-                  } else if (
-                    item.label.toLowerCase() === "discover gwm" ||
-                    item.label.toLowerCase() === "tentang gwm"
-                  ) {
-                    setMenuLevel("discover");
-                  } else {
-                    router.push(`/${locale}${item.link}`);
-                    setMenuOpen(false);
-                  }
-                }}
+                onClick={() => setDropdownOpen(!dropdownOpen)}
+                className="flex items-center gap-2 text-lg font-semibold"
               >
-                {locale === "id" && item.label_id ? item.label_id : item.label}
+                {locale.toUpperCase()} <FaChevronDown className="text-xs" />
               </button>
-            ))}
-              <div className="relative">
-            <button
-              onClick={() => setDropdownOpen(!dropdownOpen)}
-              className="px-2 py-1 rounded  border-white cursor-pointer flex items-center gap-1 font-bold"
-            >
-              {locale.toUpperCase()} <FaChevronDown className="text-xs" />
-            </button>
-            {dropdownOpen && (
-              <div className="absolute  mt-2 bg-[#fff]  cursor-pointer rounded shadow-md z-50">
-                {["id", "en"].map((lng) => (
-                  <button
-                    key={lng}
-                    disabled={locale === lng}
-                    onClick={() => {
-                      switchLocale(lng);
-                      setDropdownOpen(false);
-                    }}
-                    className={`block w-full px-4 py-2 text-left text-sm transition cursor-pointer ${
-                      locale === lng
-                        ? "bg-primary text-white font-bold cursor-default"
-                        : "text-[#282828] hover:bg-[#ededed]"
-                    }`}
-                  >
-                    {lng.toUpperCase()}
-                  </button>
-                ))}
-              </div>
-            )}
-          </div>
-          <div className="flex w-full">
+              {dropdownOpen && (
+                <div className="absolute left-0 mt-2 bg-white  rounded shadow-md z-50">
+                  {["id", "en"].map((lng) => (
+                    <button
+                      key={lng}
+                      disabled={locale === lng}
+                      onClick={() => {
+                        switchLocale(lng);
+                        setDropdownOpen(false);
+                      }}
+                      className={`block w-full px-4 py-2 text-left text-sm ${
+                        locale === lng
+                          ? "bg-primary text-white font-bold"
+                          : "text-gray-700 hover:bg-gray-100"
+                      }`}
+                    >
+                      {lng.toUpperCase()}
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
 
-          <a
-            href={`/${locale}/testdrive`}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="button"
-            className="bg-primary text-white px-6 py-2 rounded-lg font-semibold text-base"
-          >
-            Test Drive
-
-          </a>
-          </div>
-
+            {/* CTA Test Drive */}
+            <div className="pt-4">
+              <a
+                href={`/${locale}/testdrive`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block w-full text-center bg-primary text-white font-semibold py-3 rounded-lg"
+              >
+                Test Drive
+              </a>
+            </div>
           </div>
         )}
 
+        {/* MODELS SUBMENU */}
         {menuLevel === "models" && (
           <div>
             <button
               onClick={() => setMenuLevel("main")}
-              className="mb-4 text-sky-400 cursor-pointer "
+              className="mb-4 hover:text-primary font-bold text-lg flex items-center gap-2"
             >
-              ← Back to menu
+              <FaChevronLeft /> MODELS
             </button>
-            <h3 className="text-lg font-semibold">GWM MODELS</h3>
+
+            {/* Tabs */}
             <div className="flex gap-4 border-b border-gray-500 pb-2 mt-2">
               {modelTabs.map((tab) => (
                 <button
                   key={tab}
                   onClick={() => setActiveTab(tab)}
-                  className={`pb-1 cursor-pointer hover:text-primary ${
+                  className={`pb-1 font-semibold ${
                     activeTab === tab
                       ? "border-b-2 border-primary text-primary"
                       : "text-dark"
@@ -424,12 +444,13 @@ const Navbar = () => {
                 </button>
               ))}
             </div>
-            <div className="grid gap-2 mt-4">
+
+            {/* List of Cars */}
+            <div className="grid gap-4 mt-4">
               {filteredModels.map((car) => (
                 <Link
                   key={car.id}
-                  href={`/${locale}${car.link}`} // Gunakan properti link dari data
-                  // Tambahkan group class agar hover pada elemen div bekerja
+                  href={`/${locale}${car.link}`}
                   className=" group p-4 rounded-lg block relative overflow-hidden 
                                          w-full /* Item mengambil lebar penuh di mobile */
                                          flex items-center gap-4 text-left /* Layout horizontal: gambar kiri, teks kanan */
@@ -467,23 +488,24 @@ const Navbar = () => {
           </div>
         )}
 
+        {/* DISCOVER SUBMENU */}
         {menuLevel === "discover" && (
           <div>
             <button
               onClick={() => setMenuLevel("main")}
-              className="mb-4  text-sky-400 "
+              className="mb-6 hover:text-primary font-bold text-lg flex items-center gap-2"
             >
-              ← Back to menu
+              <FaChevronLeft /> {locale === "id" ? "TENTANG GWM" : "DISCOVER"}
             </button>
-            <div className="space-y-2">
-              {subMenu.map((sub, i) => (
+            <div className="space-y-3 ">
+              {subMenu.map((item, i) => (
                 <Link
                   key={i}
-                  href={`/${locale}${sub.link}`}
+                  href={`/${locale}${item.link}`}
                   onClick={() => setMenuOpen(false)}
-                  className="block text-dark hover:text-sky-400"
+                  className="block font-semibold text-lg text-gray-800 hover:text-primary "
                 >
-                  {locale === "id" ? sub.name_id : sub.name}
+                  {locale === "id" ? item.name_id : item.name}
                 </Link>
               ))}
             </div>
