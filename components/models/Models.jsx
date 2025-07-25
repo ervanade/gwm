@@ -61,7 +61,7 @@ const Models = () => {
   return (
     <div>
       <div
-        className="max-w-7xl mx-auto w-full py-8 xl:py-16 bg-white text-dark p-8 scroll-mt-[120px]"
+        className="max-w-7xl mx-auto w-full py-8 xl:py-16 bg-white text-dark px-6 scroll-mt-[120px]"
         id="models"
       >
         <h2 className="text-3xl font-bold text-center mb-12">MODELS</h2>{" "}
@@ -142,7 +142,7 @@ const Models = () => {
                         "
             >
               {/* Kontainer Gambar */}
-              <div className="flex-shrink-0 w-1/3 sm:w-full overflow-hidden rounded-md">
+              <div className="flex-shrink-0 w-2/5 sm:w-full overflow-hidden rounded-md">
                 <Image
                   src={car.image}
                   alt={car.title}

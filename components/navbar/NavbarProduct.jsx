@@ -53,7 +53,7 @@ export default function ProductNavbar({ modelName = "TANK 500" }) {
               <button
                 key={s.id}
                 onClick={() => scrollToSection(s.id)}
-                className="text-sm lg:text-base cursor-pointer whitespace-nowrap px-3 py-1 border-b-2 border-transparent hover:border-primary hover:text-primary transition font-medium text-dark"
+                className="text-sm lg:text-sm xl:text-base cursor-pointer whitespace-nowrap px-3 py-1 border-b-2 border-transparent hover:border-primary hover:text-primary transition font-medium text-dark"
               >
                 {s.label}
               </button>

@@ -72,7 +72,7 @@ const Navbar = () => {
     // Menentukan apakah halaman saat ini adalah homepage atau halaman detail model
     // `pathname` dari `usePathname()` adalah path tanpa prefix locale, contoh: '/', '/about-gwm', '/models/tank-500'
     const isHomepageOrModelDetailPage =
-      pathname === "/" || pathname.startsWith("/models/");
+      pathname === "/" || pathname.startsWith("/models/") || pathname.startsWith("/test-drive") || pathname.startsWith("/dealer-locations");
 
     const handleScrollColor = () => {
       if (window.scrollY > 5) {
@@ -300,8 +300,6 @@ const Navbar = () => {
 
           <a
             href={`/${locale}/test-drive`}
-            target="_blank"
-            rel="noopener noreferrer"
             aria-label="button"
             className="bg-primary text-white px-6 py-2 rounded-lg font-semibold text-sm"
           >
@@ -408,8 +406,6 @@ const Navbar = () => {
             <div className="pt-4">
               <a
                 href={`/${locale}/test-drive`}
-                target="_blank"
-                rel="noopener noreferrer"
                 className="block w-full text-center bg-primary text-white font-semibold py-3 rounded-lg"
               >
                 Test Drive

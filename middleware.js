@@ -1,24 +1,38 @@
 import createMiddleware from 'next-intl/middleware';
-import { NextRequest } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 
-export default async function middleware(request) {
-    // Step 1: Use the incoming request (example)
-    const defaultLocale = request.headers.get('x-your-custom-locale') || 'id';
+const locales = ['en', 'id'];
+const defaultLocale = 'id';
 
-    // Step 2: Create and call the next-intl middleware (example)
-    const handleI18nRouting = createMiddleware({
-        locales: ['en', 'id'],
-        defaultLocale
-    });
-    const response = handleI18nRouting(request);
+const intlMiddleware = createMiddleware({
+  locales,
+  defaultLocale
+});
 
-    // Step 3: Alter the response (example)
-    response.headers.set('x-your-custom-locale', defaultLocale);
+export default function middleware(request) {
+  const pathname = request.nextUrl.pathname;
 
-    return response;
+  // Jika URL sudah mengandung locale prefix, langsung lanjutkan pakai next-intl
+  if (locales.some((locale) => pathname.startsWith(`/${locale}`))) {
+    return intlMiddleware(request);
+  }
+
+  // Jika URL adalah asset publik, api, dll, jangan redirect
+  if (
+    pathname.startsWith('/api') ||
+    pathname.startsWith('/_next') ||
+    pathname.startsWith('/favicon') ||
+    pathname.includes('.') // static file seperti .css, .js, .jpg
+  ) {
+    return NextResponse.next();
+  }
+
+  // Redirect ke default locale jika path tanpa prefix
+  const url = request.nextUrl.clone();
+  url.pathname = `/${defaultLocale}${pathname}`;
+  return NextResponse.redirect(url);
 }
 
 export const config = {
-    // Match only internationalized pathnames
-    matcher: ['/', '/(id|en)/:path*']
+  matcher: ['/((?!_next|favicon|api|assets|.*\\..*).*)'],
 };
