@@ -156,11 +156,11 @@ const Features = () => {
           </Swiper>
 
           {/* Custom Arrows */}
-          <button className="cursor-pointer feature-prev absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white p-2 rounded-full shadow group-hover:opacity-100 opacity-0 transition  text-primary">
-            <FaChevronLeft className="w-4 h-4" />
+          <button className="cursor-pointer feature-prev absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white p-2 rounded-full shadow opacity-100 transition  text-primary">
+            <FaChevronLeft className="w-5 h-5" />
           </button>
-          <button className="cursor-pointer feature-next absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white p-2 rounded-full shadow group-hover:opacity-100 opacity-0 transition  text-primary">
-            <FaChevronRight className="w-4 h-4" />
+          <button className="cursor-pointer feature-next absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white p-2 rounded-full shadow opacity-100 transition  text-primary">
+            <FaChevronRight className="w-5 h-5" />
           </button>
         </div>
       </div>
