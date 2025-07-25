@@ -7,8 +7,10 @@ import { getBaseMeta } from '@/lib/seo'
 import React from 'react'
 
 export async function generateMetadata({ params }) {
-    const locale = await params.locale || "id";
-    const slug = await params.modelSlug;
+    const useParams = await params
+    const locale = await useParams.locale || "id";
+    
+    const slug = useParams.modelSlug;
   
     // Fetch model name based on slug if needed
     const modelName = slug.toUpperCase();
