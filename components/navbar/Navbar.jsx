@@ -70,7 +70,7 @@ const Navbar = () => {
 
   useEffect(() => {
     // Menentukan apakah halaman saat ini adalah homepage atau halaman detail model
-    // `pathname` dari `usePathname()` adalah path tanpa prefix locale, contoh: '/', '/about', '/models/tank-500'
+    // `pathname` dari `usePathname()` adalah path tanpa prefix locale, contoh: '/', '/about-gwm', '/models/tank-500'
     const isHomepageOrModelDetailPage =
       pathname === "/" || pathname.startsWith("/models/");
 
@@ -120,7 +120,7 @@ const Navbar = () => {
 
   const navItems = t.raw("items");
   const subMenu = [
-    { name: "ABOUT US", name_id: "TENTANG KAMI", link: "/about" },
+    { name: "ABOUT US", name_id: "TENTANG KAMI", link: "/about-gwm" },
     { name: "ERA", name_id: "ERA", link: "/era" },
   ];
 
@@ -299,7 +299,7 @@ const Navbar = () => {
           </div>
 
           <a
-            href={`/${locale}/testdrive`}
+            href={`/${locale}/test-drive`}
             target="_blank"
             rel="noopener noreferrer"
             aria-label="button"
@@ -331,7 +331,7 @@ const Navbar = () => {
           <Link href={`/${locale}`}>
             <Image src="/logo-gwm.svg" width={120} height={50} alt="Logo GWM" />
           </Link>
-          <button onClick={() => setMenuOpen(false)} className="text-xl">
+          <button onClick={() => setMenuOpen(false)} className="text-xl cursor-pointer">
             ✕
           </button>
         </div>
@@ -363,7 +363,7 @@ const Navbar = () => {
                       setMenuOpen(false);
                     }
                   }}
-                  className="w-full flex items-center justify-between py-3 text-lg font-semibold text-gray-800 hover:text-primary"
+                  className="w-full flex items-center justify-between py-3 text-lg font-semibold text-gray-800 hover:text-primary cursor-pointer"
                 >
                   <span>{label}</span>
                   {hasSubMenu && (
@@ -377,7 +377,7 @@ const Navbar = () => {
             <div className="relative px-1 py-3">
               <button
                 onClick={() => setDropdownOpen(!dropdownOpen)}
-                className="flex items-center gap-2 text-lg font-semibold"
+                className="flex items-center gap-2 text-lg font-semibold cursor-pointer"
               >
                 {locale.toUpperCase()} <FaChevronDown className="text-xs" />
               </button>
@@ -407,7 +407,7 @@ const Navbar = () => {
             {/* CTA Test Drive */}
             <div className="pt-4">
               <a
-                href={`/${locale}/testdrive`}
+                href={`/${locale}/test-drive`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="block w-full text-center bg-primary text-white font-semibold py-3 rounded-lg"
@@ -423,7 +423,7 @@ const Navbar = () => {
           <div>
             <button
               onClick={() => setMenuLevel("main")}
-              className="mb-4 hover:text-primary font-bold text-lg flex items-center gap-2"
+              className="mb-4 hover:text-primary font-bold text-lg flex items-center gap-2 cursor-pointer"
             >
               <FaChevronLeft /> MODELS
             </button>
@@ -434,7 +434,7 @@ const Navbar = () => {
                 <button
                   key={tab}
                   onClick={() => setActiveTab(tab)}
-                  className={`pb-1 font-semibold ${
+                  className={`pb-1 font-semibold cursor-pointer ${
                     activeTab === tab
                       ? "border-b-2 border-primary text-primary"
                       : "text-dark"
@@ -493,7 +493,7 @@ const Navbar = () => {
           <div>
             <button
               onClick={() => setMenuLevel("main")}
-              className="mb-6 hover:text-primary font-bold text-lg flex items-center gap-2"
+              className="mb-6 hover:text-primary font-bold text-lg flex items-center gap-2 cursor-pointer"
             >
               <FaChevronLeft /> {locale === "id" ? "TENTANG GWM" : "DISCOVER"}
             </button>

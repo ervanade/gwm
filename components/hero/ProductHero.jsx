@@ -38,7 +38,7 @@ const ProductHero = ({ image, title, subtitle, price }) => {
             {/* Tombol Aksi */}
             <div className="flex flex-col sm:flex-row gap-4 mt-4">
               <Link
-                href={`/${locale}/testdrive`}
+                href={`/${locale}/test-drive`}
                 className="bg-primary text-center text-white px-5 py-3 rounded-lg font-semibold text-sm hover:bg-primary/90 transition"
               >
                 Book Test Drive

@@ -6,8 +6,8 @@ import { Link } from "@/i18n/navigation";
 
 const menuItems = [
   { label: "Brochure", icon: <IoDocumentOutline />, link: "/brochure" },
-  { label: "Dealer", icon: <FaMapMarkerAlt />, link: "/dealers" },
-  { label: "Test Drive", icon: <FaCar />, link: "/testdrive" },
+  { label: "Dealer", icon: <FaMapMarkerAlt />, link: "/dealer-locations" },
+  { label: "Test Drive", icon: <FaCar />, link: "/test-drive" },
   { label: "Contact", icon: <FaPhoneAlt />, link: "/contact" },
   { label: "WhatsApp", icon: <FaWhatsapp />, link: "https://wa.me/6281234567890" },
 ];

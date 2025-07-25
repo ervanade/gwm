@@ -102,7 +102,7 @@ const Hero = ({ dataHero }) => {
                           EXPLORE MODELS
                         </button>
                         <a
-                          href={`/${locale}/testdrive`}
+                          href={`/${locale}/test-drive`}
                           target="_blank"
                           rel="noopener noreferrer"
                           aria-label="button"
