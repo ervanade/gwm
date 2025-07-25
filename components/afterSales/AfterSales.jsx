@@ -126,7 +126,7 @@ const AfterSales = () => {
   return (
     <div className="bg-white text-dark">
       <div className="max-w-7xl mx-auto w-full px-6 lg:px-12 py-12 md:py-16">
-        <h2 className="text-3xl font-bold text-left mb-12">GWM AFTER SALES</h2>{" "}
+        <h2 className="text-3xl font-bold text-left mb-8 lg:mb-12">GWM AFTER SALES</h2>{" "}
         <div className="grid grid-cols-1 gap-4">
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
             {" "}
@@ -139,7 +139,7 @@ const AfterSales = () => {
       </div>
 
       <div className="max-w-7xl mx-auto w-full px-6 lg:px-12 py-12 md:py-16">
-        <h2 className="text-3xl font-bold text-center mb-12">
+        <h2 className="text-3xl font-bold text-center mb-8 lg:mb-12">
           WHY GWM INCHCAPE
         </h2>{" "}
         <div className="grid grid-cols-1 gap-4">

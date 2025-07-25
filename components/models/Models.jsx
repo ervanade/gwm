@@ -64,7 +64,7 @@ const Models = () => {
         className="max-w-7xl mx-auto w-full py-8 xl:py-16 bg-white text-dark px-6 scroll-mt-[120px]"
         id="models"
       >
-        <h2 className="text-3xl font-bold text-center mb-12">MODELS</h2>{" "}
+        <h2 className="text-3xl font-bold text-center mb-6 lg:mb-12">MODELS</h2>{" "}
         {/* Tambah mb untuk spasi */}
         <div
           className="flex justify-center  gap-2 md:gap-4 lg:gap-8 mb-6 overflow-x-auto pb-2 scrollbar-hide" // Tambah overflow-x-auto dan scrollbar-hide
