@@ -112,8 +112,8 @@ const Features = () => {
 
   return (
     <div className="bg-white text-dark">
-      <div className="max-w-7xl mx-auto w-full px-6 lg:px-12 py-12 md:py-16">
-        <h2 className="text-3xl font-bold mb-12">FEATURES</h2>
+      <div className="max-w-7xl mx-auto w-full px-6 lg:px-12 py-12 md:py-16" id="features">
+        <h2 className="text-3xl font-bold mb-8 lg:mb-12">FEATURES</h2>
 
         <div className="relative group">
           <Swiper
@@ -210,7 +210,7 @@ const Features = () => {
       </div>
 
       <section id="specs" className="max-w-7xl mx-auto px-6 lg:px-12 py-12">
-        <h2 className="text-3xl font-bold text-center mb-12">
+        <h2 className="text-3xl font-bold text-center mb-8 lg:mb-12">
           HAVAL H6 - SPECIFICATION
         </h2>{" "}
         <div className="flex flex-col lg:flex-row gap-8 justify-center items-center">
