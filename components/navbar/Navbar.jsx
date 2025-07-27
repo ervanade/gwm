@@ -72,7 +72,10 @@ const Navbar = () => {
     // Menentukan apakah halaman saat ini adalah homepage atau halaman detail model
     // `pathname` dari `usePathname()` adalah path tanpa prefix locale, contoh: '/', '/about-gwm', '/models/tank-500'
     const isHomepageOrModelDetailPage =
-      pathname === "/" || pathname.startsWith("/models/") || pathname.startsWith("/test-drive") || pathname.startsWith("/dealer-locations");
+      pathname === "/" ||
+      pathname.startsWith("/models/") ||
+      pathname.startsWith("/test-drive") ||
+      pathname.startsWith("/dealer-locations");
 
     const handleScrollColor = () => {
       if (window.scrollY > 5) {
@@ -135,14 +138,14 @@ const Navbar = () => {
         color ? "bg-[#fff] shadow text-[#282828] !sticky" : "text-white"
       }`}
     >
-      <div className="mx-auto max-w-7xl px-6 lg:px-12 py-4 flex items-center justify-between text-xs xl:text-sm font-bold">
+      <div className="mx-auto max-w-7xl px-6 lg:px-12 py-2 lg:py-4 flex items-center justify-between text-xs xl:text-sm font-bold">
         <Link href={`/${locale}/#hero`}>
           <Image
             src="/logo-gwm.svg"
             alt="Logo GWM"
             width={137}
             height={60}
-            className="w-[137px] h-[60px]"
+            className="w-[114px] h-[50px] lg:w-[137px] lg:h-[60px]"
           />
         </Link>
 
@@ -329,7 +332,10 @@ const Navbar = () => {
           <Link href={`/${locale}`}>
             <Image src="/logo-gwm.svg" width={120} height={50} alt="Logo GWM" />
           </Link>
-          <button onClick={() => setMenuOpen(false)} className="text-xl cursor-pointer">
+          <button
+            onClick={() => setMenuOpen(false)}
+            className="text-xl cursor-pointer"
+          >
             ✕
           </button>
         </div>

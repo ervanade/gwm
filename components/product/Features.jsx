@@ -112,7 +112,10 @@ const Features = () => {
 
   return (
     <div className="bg-white text-dark">
-      <div className="max-w-7xl mx-auto w-full px-6 lg:px-12 py-12 md:py-16" id="features">
+      <div
+        className="max-w-7xl mx-auto w-full px-6 lg:px-12 py-12 md:py-16"
+        id="features"
+      >
         <h2 className="text-3xl font-bold mb-8 lg:mb-12">FEATURES</h2>
 
         <div className="relative group">
@@ -156,10 +159,10 @@ const Features = () => {
           </Swiper>
 
           {/* Custom Arrows */}
-          <button className="cursor-pointer feature-prev absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white p-2 rounded-full shadow opacity-100 transition  text-primary">
+          <button className="cursor-pointer feature-prev absolute left-0 top-2/5 -translate-y-1/2 z-10 bg-white p-2 rounded-full shadow opacity-100 transition  text-primary">
             <FaChevronLeft className="w-5 h-5" />
           </button>
-          <button className="cursor-pointer feature-next absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white p-2 rounded-full shadow opacity-100 transition  text-primary">
+          <button className="cursor-pointer feature-next absolute right-0 top-2/5 -translate-y-1/2 z-10 bg-white p-2 rounded-full shadow opacity-100 transition  text-primary">
             <FaChevronRight className="w-5 h-5" />
           </button>
         </div>
