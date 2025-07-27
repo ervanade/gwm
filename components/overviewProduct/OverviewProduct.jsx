@@ -9,6 +9,7 @@ import { FaChevronRight } from "react-icons/fa"; // Import the chevron icon
 import "swiper/css";
 import "swiper/css/navigation";
 import { Link } from "@/i18n/navigation";
+import { useLocale } from "next-intl";
 // import "swiper/css/pagination"; // Uncomment if you use Pagination module
 const highlightProductsData = [
   {
@@ -59,7 +60,7 @@ const highlightProductsData = [
 ];
 const OverviewProduct = () => {
   const [isMobile, setIsMobile] = useState(false);
-
+  const locale = useLocale();
   useEffect(() => {
     const checkMobile = () => {
       setIsMobile(window.innerWidth < 768); // Tailwind's 'md' breakpoint is 768px
@@ -185,9 +186,9 @@ const OverviewProduct = () => {
                     HAVAL JOLION HEV
                   </p>
                   <p className="text-base sm:text-lg lg:text-xl text-white/85 leading-relaxed">
-                    Dilengkapi 20 fitur ADAS, terbanyak di kelasnya, dengan
-                    layar sentuh multimedia 12,3 inci dan panel instrumen LCD 7
-                    inci.
+                    {locale == "en"
+                      ? `Equipped with 20 ADAS features, the most in its class, with a 12.3-inch multimedia touchscreen and a 7-inch LCD instrument panel.`
+                      : `Dilengkapi 20 fitur ADAS, terbanyak di kelasnya, dengan layar sentuh multimedia 12,3 inci dan panel instrumen LCD 7 inci.`}
                   </p>
                   <div className="flex flex-col sm:flex-row gap-4">
                     <Link

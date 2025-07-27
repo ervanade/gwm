@@ -1,15 +1,25 @@
-'use client';
-import { FaDownload, FaMapMarkerAlt, FaCar, FaPhoneAlt, FaWhatsapp } from "react-icons/fa";
+"use client";
+import {
+  FaDownload,
+  FaMapMarkerAlt,
+  FaCar,
+  FaPhoneAlt,
+  FaWhatsapp,
+} from "react-icons/fa";
 import { useEffect, useState } from "react";
 import { IoDocumentOutline } from "react-icons/io5";
 import { Link } from "@/i18n/navigation";
 
 const menuItems = [
-  { label: "Brochure", icon: <IoDocumentOutline />, link: "/brochure" },
+  { label: "Brochure", icon: <IoDocumentOutline />, link: "/" },
   { label: "Dealer", icon: <FaMapMarkerAlt />, link: "/dealer-locations" },
   { label: "Test Drive", icon: <FaCar />, link: "/test-drive" },
   { label: "Contact", icon: <FaPhoneAlt />, link: "/contact" },
-  { label: "WhatsApp", icon: <FaWhatsapp />, link: "https://wa.me/6281234567890" },
+  {
+    label: "WhatsApp",
+    icon: <FaWhatsapp />,
+    link: "https://wa.me/6281234567890",
+  },
 ];
 
 export default function StickyMenu() {
@@ -56,7 +66,7 @@ export default function StickyMenu() {
             href={item.link}
             target={item.label === "WhatsApp" ? "_blank" : "_self"}
             className={`flex items-center gap-2 px-2 py-2 border-b border-primary transition-all duration-300 ${
-              isHovered ? 'w-40 pl-3' : 'w-12 justify-center'
+              isHovered ? "w-40 pl-3" : "w-12 justify-center"
             } hover:bg-primary`}
           >
             <span className="text-lg">{item.icon}</span>

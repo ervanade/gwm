@@ -1,3 +1,4 @@
+import { useLocale } from "next-intl";
 import Image from "next/image";
 import React from "react";
 import { FaChevronRight } from "react-icons/fa6";
@@ -5,18 +6,25 @@ const highlightProductsData = [
   {
     id: 1,
     type: "square",
-    mainTitle: "GWM After Sales",
-    subTitle: "WARRANTY",
+    mainTitle: "GWM AFTER SALES",
+    subTitle_en: "WARRANTY",
+    subTitle: "GARANSI",
     desc: "Cakupan garansi yang komprehensif sehingga memberikan ketenangan di setiap perjalanan.",
+    desc_en:
+      "Comprehensive warranty coverage for peace of mind on every journey.",
     image: "/assets/warranty.png", // Make sure this path exists
     link: "#", // Replace with actual link
   },
   {
     id: 2,
     type: "square",
-    mainTitle: "GWM After Sales",
-    subTitle: "ACCESSORIES",
+    mainTitle: "GWM AFTER SALES",
+    subTitle: "AKSESORIS",
+    subTitle_en: "ACCESSORIES",
     desc: "Tingkatkan pengalaman berkendara Anda dengan aksesori resmi GWM yang dirancang untuk setiap model.",
+    desc_en:
+      "Enhance your driving experience with official GWM accessories tailored for each model.",
+
     image: "/assets/accessories.png", // Make sure this path exists
     link: "#",
   },
@@ -26,6 +34,9 @@ const whyGWM = [
     id: 1,
     type: "square",
     mainTitle: "Perusahaan Global",
+    mainTitle_en: "A Global Company",
+    desc_en:
+      "Inchcape is a UK-based company with 175+ years of experience, operating in over 40 countries as global distributor, manufacturer and retailer of various automotive brands.",
     desc: "Inchcape adalah perusahaan yang berpusat di Inggris dengan pengalaman lebih dari 175 tahun, beroperasi di lebih dari 40 negara sebagai distributor, produsen, dan pengecer global berbagai merek otomotif.",
     image: "/assets/icons/logo-inchape.png", // Make sure this path exists
   },
@@ -34,6 +45,9 @@ const whyGWM = [
     type: "square",
     mainTitle: "Dipercaya oleh Merek Terkemuka",
     desc: "Mitra dari merek GWM, Jaguar, Land Rover, Mercedes-Benz, Harley-Davidson, dan banyak lagi – dikenal dengan layanan otomotif kelas dunia.",
+    mainTitle_en: "Trusted by Leading Brands",
+    desc_en:
+      "Partner of GWM, Jaguar, Land Rover, Mercedes-Benz, Harley- Davidson, and more – known for world-class automotive services.",
     image: "/assets/icons/hand.png", // Make sure this path exists
   },
   {
@@ -41,10 +55,14 @@ const whyGWM = [
     type: "square",
     mainTitle: "Fokus Pada Kepuasan Pelanggan",
     desc: "Inchcape memastikan pengalaman kepemilikan kendaraan yang premium dan nyaman – dari pembelian hingga purnajual.",
+    mainTitle_en: "Excellence in Service & Support",
+    desc_en:
+      "Inchcape ensures a premium and pleasant vehicle ownership experience – from purchase to aftersales.",
     image: "/assets/icons/car-icon.png", // Make sure this path exists
   },
 ];
 const AfterSales = () => {
+  const locale = useLocale();
   const renderProductCard = (product, index) => {
     const isSquare = product.type === "square";
     const imageComponent = (
@@ -74,13 +92,13 @@ const AfterSales = () => {
           <div className="absolute top-6 left-6 text-white">
             <p className="text-base font-light mb-2">{product.mainTitle}</p>
             <h4 className="text-2xl font-bold leading-tight">
-              {product.subTitle}
+              {locale == "en" ? product.subTitle_en : product.subTitle}
             </h4>
           </div>
         </div>
         <p className="text-dark text-sm lg:text-base md:min-h-18">
           {" "}
-          {product.desc}
+          {locale == "en" ? product.desc_en : product.desc}
         </p>
         <a
           href={product.link}
@@ -113,12 +131,12 @@ const AfterSales = () => {
 
         {/* --- Judul (Sekarang berada di bawah ikon) --- */}
         <h3 className="text-2xl font-bold leading-tight text-center">
-          {product.mainTitle}
+          {locale == "en" ? product.mainTitle_en : product.mainTitle}
         </h3>
         {/* --- Deskripsi --- */}
         <p className="text-dark text-sm lg:text-base md:min-h-18 text-center">
           {" "}
-          {product.desc}
+          {locale == "en" ? product.desc_en : product.desc}
         </p>
       </div>
     );
@@ -126,7 +144,9 @@ const AfterSales = () => {
   return (
     <div className="bg-white text-dark">
       <div className="max-w-7xl mx-auto w-full px-6 lg:px-12 py-12 md:py-16">
-        <h2 className="text-3xl font-bold text-left mb-8 lg:mb-12">GWM AFTER SALES</h2>{" "}
+        <h2 className="text-3xl font-bold text-left mb-8 lg:mb-12">
+          GWM AFTER SALES
+        </h2>{" "}
         <div className="grid grid-cols-1 gap-4">
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
             {" "}

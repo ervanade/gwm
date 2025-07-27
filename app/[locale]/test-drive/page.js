@@ -28,16 +28,16 @@ export async function generateMetadata({ params }) {
     ...meta[locale],
   });
 }
-const page = async ({params}) => {
+const page = async ({ params }) => {
   const { locale } = await params;
   return (
     <div>
       <PageHero
-                image="/assets/hero-testdrive.png"
-                title={locale == "en" ? "Test Drive": "Test Drive"}
-                subtitle={locale == "en" ? "Experience the toughness and advanced technology of GWM. Schedule your test drive now!": "Rasakan langsung ketangguhan serta teknologi canggih dari GWM. Jadwalkan test drive sekarang!"}
-            />
-            <TestDriveForm />
+        image="/assets/hero-testdrive.png"
+        title={locale == "en" ? "Test Drive" : "Test Drive"}
+        subtitle={locale == "en" ? "Experience the toughness and advanced technology of GWM. Schedule your test drive now!" : "Rasakan langsung ketangguhan serta teknologi canggih dari GWM. Jadwalkan test drive sekarang!"}
+      />
+      <TestDriveForm locale={locale} />
     </div>
   )
 }

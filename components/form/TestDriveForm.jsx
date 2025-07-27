@@ -7,7 +7,7 @@ import { FaCheckCircle } from "react-icons/fa";
 const gwmModels = ["H6", "JOLION", "TANK 500"];
 const dealerLocations = ["Jakarta", "Bandung", "Surabaya"];
 
-export default function TestDriveForm() {
+export default function TestDriveForm({ locale }) {
   const [formData, setFormData] = useState({
     fullName: "",
     whatsapp: "",
@@ -37,9 +37,18 @@ export default function TestDriveForm() {
   };
 
   return (
-    <section className="bg-white py-12 px-6 lg:px-12 max-w-3xl mx-auto text-dark" id="testdrive-form">
-      <h2 className="text-3xl lg:text-[40px] font-bold mb-3 text-center">Book a Test Drive</h2>
-    <p className="text-base font-regular text-dark/80 mb-6">Start your new journey with GWM. Please fill out the form below to book a test drive schedule.</p>
+    <section
+      className="bg-white py-12 px-6 lg:px-12 max-w-3xl mx-auto text-dark"
+      id="testdrive-form"
+    >
+      <h2 className="text-3xl lg:text-[40px] font-bold mb-3 text-center">
+        {locale == "en" ? "Book a Test Drive" : "Daftar Test Drive"}
+      </h2>
+      <p className="text-base text-center font-regular text-dark/80 mb-6">
+        {locale == "en"
+          ? "Start your new journey with GWM. Please fill out the form below to book a test drive schedule."
+          : "Mulai perjalanan baru anda bersama GWM. Silahkan isi form dibawah ini untuk menjadwalkan test drive GWM impian anda. "}
+      </p>
       {submitted ? (
         <div className="flex items-center gap-2 text-primary font-semibold">
           <FaCheckCircle className="text-2xl" />
@@ -170,15 +179,14 @@ export default function TestDriveForm() {
 
           {/* Submit */}
           <div className="flex justify-center">
-
-          <button
-            type="submit"
-            className="bg-primary text-white font-bold px-6 py-3 text-lg cursor-pointer rounded-lg hover:bg-primary/90 transition disabled:opacity-50"
-            disabled={!formData.agree || !captchaToken}
+            <button
+              type="submit"
+              className="bg-primary text-white font-bold px-6 py-3 text-lg cursor-pointer rounded-lg hover:bg-primary/90 transition disabled:opacity-50"
+              disabled={!formData.agree || !captchaToken}
             >
-            Submit
-          </button>
-              </div>
+              Submit
+            </button>
+          </div>
         </form>
       )}
     </section>
