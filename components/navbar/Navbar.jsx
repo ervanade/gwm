@@ -123,8 +123,8 @@ const Navbar = () => {
 
   const navItems = t.raw("items");
   const subMenu = [
-    { name: "ABOUT US", name_id: "TENTANG KAMI", link: "/about-gwm" },
-    { name: "ERA", name_id: "ERA", link: "/era" },
+    { name: "ABOUT US", name_id: "TENTANG KAMI", link: "/" },
+    { name: "ERA", name_id: "ERA", link: "/" },
   ];
 
   const filteredModels =
@@ -363,7 +363,7 @@ const Navbar = () => {
                           : "discover"
                       );
                     } else {
-                      router.push(`/${locale}${item.link}`);
+                      router.push(`/${item.link}`);
                       setMenuOpen(false);
                     }
                   }}
