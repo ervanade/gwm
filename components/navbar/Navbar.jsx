@@ -193,7 +193,7 @@ const Navbar = () => {
                           {filteredModels.map((car) => (
                             <Link
                               key={car.id}
-                              href={`/${locale}/${car.link}`} // Gunakan properti link dari data
+                              href={`/${locale}${car.link}`} // Gunakan properti link dari data
                               // Tambahkan group class agar hover pada elemen div bekerja
                               className=" group"
                             >
@@ -204,8 +204,8 @@ const Navbar = () => {
                                 <Image
                                   src={car.image}
                                   alt={car.title}
-                                  width={278}
-                                  height={172}
+                                  width={500}
+                                  height={280}
                                   className="w-full object-cover rounded-md group-hover:scale-105 transition-transform duration-300"
                                 />
                                 <h4 className="font-semibold text-lg">
@@ -279,7 +279,7 @@ const Navbar = () => {
               {locale.toUpperCase()} <FaChevronDown className="text-xs" />
             </button>
             {dropdownOpen && (
-              <div className="absolute right-0 mt-2 bg-[#fff]  cursor-pointer rounded shadow-md z-50">
+              <div className="absolute right-0 mt-2 bg-[#fff]  cursor-pointer rounded shadow-md z-[60]">
                 {["id", "en"].map((lng) => (
                   <button
                     key={lng}
@@ -448,7 +448,7 @@ const Navbar = () => {
             </div>
 
             {/* List of Cars */}
-            <div className="grid gap-4 mt-4">
+            <div className="grid gap-1 lg:gap-4 mt-4">
               {filteredModels.map((car) => (
                 <Link
                   key={car.id}
@@ -473,8 +473,8 @@ const Navbar = () => {
                     <Image
                       src={car.image}
                       alt={car.title}
-                      width={278}
-                      height={172}
+                      width={500}
+                      height={280}
                       // Tambahkan transisi dan efek scale saat hover pada gambar itu sendiri
                       className="w-full h-auto object-cover rounded-md transition-transform duration-300 group-hover:scale-105"
                     />

@@ -146,8 +146,8 @@ const Models = () => {
                 <Image
                   src={car.image}
                   alt={car.title}
-                  width={278}
-                  height={172}
+                  width={500}
+                  height={280}
                   // Tambahkan transisi dan efek scale saat hover pada gambar itu sendiri
                   className="w-full h-auto object-cover rounded-md transition-transform duration-300 group-hover:scale-105"
                 />
