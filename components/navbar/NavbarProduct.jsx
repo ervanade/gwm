@@ -5,6 +5,7 @@ const sections = [
   { id: "exterior", label: "Exterior Color" },
   { id: "features", label: "Car Features" },
   { id: "specs", label: "Specification" },
+  { id: "gallery", label: "Gallery" },
 ];
 
 export default function ProductNavbar({ modelName = "TANK 500" }) {

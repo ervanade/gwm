@@ -95,6 +95,23 @@ export async function generateMetadata({ params }) {
   };
 }
 
+async function getData() {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_KEY}/api/v1/settings`, {
+    // cache: 'no-store',
+    next: { revalidate: 3600 * 24 },
+    method: 'GET',
+    headers: {
+      'X-Api-Key': process.env.NEXT_PUBLIC_APP_X_API_KEY,
+    },
+  })
+  if (!res.ok) {
+    // This will activate the closest `error.js` Error Boundary
+    throw new Error('Failed to fetch data')
+  }
+
+  return res.json()
+}
+
 
 export default async function LocaleLayout({
   children,
@@ -102,6 +119,8 @@ export default async function LocaleLayout({
 }) {
   // Ensure that the incoming `locale` is valid
   const { locale } = await params;
+  const { data } = await getData()
+console.log(data)
   if (!hasLocale(routing.locales, locale)) {
     notFound();
   }

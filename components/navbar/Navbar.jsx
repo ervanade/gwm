@@ -19,25 +19,18 @@ const dummyModels = [
     link: "/models/tank-500", // Tambahkan properti link
   },
   {
-    id: 2,
-    image: "/assets/haval-h6.png",
-    title: "HAVAL H6",
-    subtitle: "SUV Hybrid",
-    link: "/models/haval-h6", // Tambahkan properti link
-  },
-  {
-    id: 3,
-    image: "/assets/ora.png",
-    title: "ORA O3 BEV",
-    subtitle: "Electric Hatchback",
-    link: "/models/ora-o3-bev", // Tambahkan properti link
-  },
-  {
     id: 4,
     image: "/assets/tank-300.png",
     title: "TANK 300",
     subtitle: "Premium SUV",
     link: "/models/tank-300", // Tambahkan properti link
+  },
+  {
+    id: 2,
+    image: "/assets/haval-h6.png",
+    title: "HAVAL H6",
+    subtitle: "SUV Hybrid",
+    link: "/models/haval-h6", // Tambahkan properti link
   },
   {
     id: 5,
@@ -46,6 +39,15 @@ const dummyModels = [
     subtitle: "Smart SUV",
     link: "/models/haval-jolion", // Tambahkan properti link
   },
+  {
+    id: 3,
+    image: "/assets/ora.png",
+    title: "ORA O3 BEV",
+    subtitle: "Electric Hatchback",
+    link: "/models/ora-o3-bev", // Tambahkan properti link
+  },
+  
+ 
 ];
 
 const Navbar = () => {
