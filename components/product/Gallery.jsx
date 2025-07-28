@@ -110,29 +110,32 @@ export function Gallery() {
       </div>
 
       {/* Thumbnails */}
-      <div className="flex gap-4 overflow-x-auto">
-        {filteredImages.map((img, idx) => (
-          <button
-            key={idx}
-            onClick={() => {
-              setActiveIndex(idx);
-              if (swiperInstance) swiperInstance.slideTo(idx);
-            }}
-            className={`w-20 h-12 lg:w-28 lg:h-16 border rounded-md overflow-hidden cursor-pointer ${
-              activeIndex === idx
-                ? "border-primary opacity-100"
-                : "border-gray-300 opacity-70"
-            }`}
-          >
-            <Image
-              src={img.src}
-              alt={`Thumbnail ${idx}`}
-              width={160}
-              height={100}
-              className="w-full h-full object-cover"
-            />
-          </button>
-        ))}
+      {/* Thumbnails */}
+      <div className="w-full overflow-x-auto">
+        <div className="flex gap-4 w-max px-1">
+          {filteredImages.map((img, idx) => (
+            <button
+              key={idx}
+              onClick={() => {
+                setActiveIndex(idx);
+                if (swiperInstance) swiperInstance.slideTo(idx);
+              }}
+              className={`w-20 h-12 lg:w-28 lg:h-16 border rounded-md overflow-hidden cursor-pointer flex-shrink-0 ${
+                activeIndex === idx
+                  ? "border-primary opacity-100"
+                  : "border-gray-300 opacity-70"
+              }`}
+            >
+              <Image
+                src={img.src}
+                alt={`Thumbnail ${idx}`}
+                width={160}
+                height={100}
+                className="w-full h-full object-cover"
+              />
+            </button>
+          ))}
+        </div>
       </div>
     </section>
   );
