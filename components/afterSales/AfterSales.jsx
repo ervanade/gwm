@@ -77,9 +77,8 @@ const AfterSales = () => {
     );
 
     return (
-      <div className="flex flex-col gap-4"   key={product.id}>
+      <div className="flex flex-col gap-4" key={product.id}>
         <div
-        
           className={`relative overflow-hidden rounded-lg group ${
             isSquare
               ? "aspect-[1/1] md:aspect-[1/1]"
@@ -115,7 +114,7 @@ const AfterSales = () => {
     const iconSize = 124;
 
     return (
-      <div className="flex flex-col gap-4 items-center">
+      <div className="flex flex-col gap-4 items-center" key={index}>
         <div className="w-[124px] h-[124px] relative overflow-hidden flex items-center justify-center">
           <Image
             src={product.image}
