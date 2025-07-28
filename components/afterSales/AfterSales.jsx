@@ -77,9 +77,9 @@ const AfterSales = () => {
     );
 
     return (
-      <div className="flex flex-col gap-4">
+      <div className="flex flex-col gap-4"   key={product.id}>
         <div
-          key={product.id}
+        
           className={`relative overflow-hidden rounded-lg group ${
             isSquare
               ? "aspect-[1/1] md:aspect-[1/1]"

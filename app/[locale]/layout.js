@@ -120,7 +120,6 @@ export default async function LocaleLayout({
   // Ensure that the incoming `locale` is valid
   const { locale } = await params;
   const { data } = await getData()
-console.log(data)
   if (!hasLocale(routing.locales, locale)) {
     notFound();
   }
