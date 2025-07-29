@@ -36,18 +36,18 @@ const ProductHero = ({ image, title, subtitle, price }) => {
             )}
 
             {/* Tombol Aksi */}
-            <div className="flex flex-col sm:flex-row gap-4 mt-4">
+            <div className="flex flex-wrap flex-row gap-4 mt-4">
               <Link
                 href={`/${locale}/test-drive`}
-                className="bg-primary text-center text-white px-5 py-3 rounded-lg font-semibold text-sm hover:bg-primary/90 transition"
+                className="w-max bg-primary text-center text-white px-5 py-3 rounded-lg font-semibold text-sm hover:bg-primary/90 transition"
               >
-                Book Test Drive
+                BOOK TEST DRIVE
               </Link>
               <a
                 href={`/${locale}/contact`}
-                className="border border-white text-center text-white px-5 py-3 rounded-lg font-semibold text-sm hover:bg-white hover:text-primary transition"
+                className="w-max border border-white text-center text-white px-5 py-3 rounded-lg font-semibold text-sm hover:bg-white hover:text-primary transition"
               >
-                Download Brochure
+                DOWNLOAD BROCHURE
               </a>
             </div>
           </div>
