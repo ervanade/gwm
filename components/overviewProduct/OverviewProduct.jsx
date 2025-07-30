@@ -93,7 +93,7 @@ const OverviewProduct = () => {
         }`}
       >
         {imageComponent}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>{" "}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>{" "}
         {/* Overlay for text readability */}
         <div className="absolute top-6 left-6 text-white">
           <p className="text-base font-light mb-2">{product.mainTitle}</p>
