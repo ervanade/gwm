@@ -33,11 +33,18 @@ const dummyModels = [
     link: "/models/haval-h6", // Tambahkan properti link
   },
   {
+    id: 6,
+    image: "/assets/haval-jolion-hev.png",
+    title: "HAVAL JOLION",
+    subtitle: "JOLION HEV",
+    link: "/models/haval-jolion-hev", // Tambahkan properti link
+  },
+  {
     id: 5,
     image: "/assets/haval-jolion.png",
     title: "HAVAL JOLION",
-    subtitle: "Smart SUV",
-    link: "/models/haval-jolion", // Tambahkan properti link
+    subtitle: "JOLION ULTRA HEV",
+    link: "/models/haval-jolion-ultra-hev", // Tambahkan properti link
   },
   {
     id: 3,
@@ -472,14 +479,16 @@ const Navbar = () => {
                 >
                   {/* Kontainer Gambar */}
                   <div className="flex-shrink-0 w-2/5 lg:w-full overflow-hidden rounded-md">
-                    <Image
-                      src={car.image}
-                      alt={car.title}
-                      width={500}
-                      height={280}
-                      // Tambahkan transisi dan efek scale saat hover pada gambar itu sendiri
-                      className="w-full h-auto object-cover rounded-md transition-transform duration-300 group-hover:scale-105"
-                    />
+                  <div className="aspect-[500/280] relative w-full rounded-md overflow-hidden">
+                  <Image
+                    src={car.image}
+                    alt={car.title}
+                    fill
+                    sizes="100vw"
+                    className="object-cover transition-transform duration-300 group-hover:scale-105"
+                  />
+                </div>
+
                   </div>
                   {/* Kontainer Teks */}
                   <div className="flex-grow sm:flex-none">

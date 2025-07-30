@@ -65,7 +65,7 @@ const Hero = ({ dataHero }) => {
                   <div className="w-full relative h-screen cursor-pointer">
                     <Image
                       src={item.image_url}
-                      alt={item.alt_text || "Hero Mobil GWM"}
+                      alt={"Banner Mobil GWM"}
                       layout="fill" // Membuat gambar memenuhi kontainer
                       objectFit="cover" // Menjaga rasio aspek dan memotong bagian luar
                       objectPosition="center" // Memusatkan gambar
@@ -73,7 +73,7 @@ const Hero = ({ dataHero }) => {
                     />
                     {/* <div className="absolute inset-0 bg-gradient-to-r from-black/30 to-black/50" /> */}
 
-                    <div className="absolute top-[42%] md:top-[35%] left-0 right-0">
+                    <div className="absolute top-1/2 md:top-[35%] left-0 right-0">
                       <div className="max-w-7xl mx-auto px-6 lg:px-12">
                         <div className="flex flex-col gap-2 justify-start text-white space-y-4 lg:space-y-8 max-w-[600px] md:items-start md:text-left">
                           <p className="font-bold text-2xl md:text-3xl lg:text-[32px] leading-tight">
@@ -84,28 +84,19 @@ const Hero = ({ dataHero }) => {
                               ? item.description_en
                               : item.description}
                           </p>
-                          <div className="flex flex-col sm:flex-row gap-4 w-1/2 text-sm md:text-base">
-                            <button
-                              onClick={() => {
-                                const el = document.getElementById("models");
-                                if (el) {
-                                  el.scrollIntoView({ behavior: "smooth" });
-                                }
-                              }}
-                              aria-label="button"
-                              className="w-max cursor-pointer bg-primary text-white px-4 py-2 lg:px-6 rounded-lg font-semibold"
+                          <div className="flex flex-col sm:flex-row gap-4 text-sm md:text-base">
+                            <Link
+                               href={item.url ? `${item.url}` : `/${locale}/models/tank-500`}
+                              className="w-max md:w-auto cursor-pointer bg-primary text-white px-4 py-2 lg:px-6 rounded-lg font-semibold uppercase"
                             >
-                              EXPLORE MODELS
-                            </button>
-                            <a
+                              {item?.alt_text}
+                            </Link>
+                            <Link
                               href={`/${locale}/test-drive`}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              aria-label="button"
-                              className=" w-max text-center hover:bg-primary hover:border-transparent bg-transparent text-white px-4 py-2 lg:px-6  rounded-lg font-semibold border border-white"
+                              className=" w-max md:w-auto text-center hover:bg-primary hover:border-transparent bg-transparent text-white px-4 py-2 lg:px-6  rounded-lg font-semibold border border-white uppercase"
                             >
                               TEST DRIVE
-                            </a>
+                            </Link>
                           </div>
                         </div>
                       </div>
@@ -128,7 +119,7 @@ const Hero = ({ dataHero }) => {
                     />
                     {/* <div className="absolute inset-0 bg-gradient-to-r from-black/30 to-black/50" /> */}
 
-                    <div className="absolute top-[42%] md:top-[35%] left-0 right-0">
+                    <div className="absolute top-1/2 md:top-[35%] left-0 right-0">
                       <div className="max-w-7xl mx-auto px-6 lg:px-12">
                         <div className="flex flex-col gap-2 items-center justify-start text-white space-y-4 lg:space-y-8 max-w-[600px] text-center md:items-start md:text-left">
                           <p className="font-bold text-2xl md:text-3xl lg:text-[32px] leading-tight">

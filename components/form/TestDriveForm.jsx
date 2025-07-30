@@ -160,7 +160,7 @@ export default function TestDriveForm({ locale }) {
               className="mt-1"
               id="agree"
             />
-            <label for="agree" className="text-sm text-gray-700">
+            <label htmlFor="agree" className="text-sm text-gray-700">
               I agree to the use of my personal data by your company and/or
               provision of my personal data to your affiliates, subsidiaries,
               and/or associated companies in direct marketing. I agree to

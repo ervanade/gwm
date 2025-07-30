@@ -32,7 +32,7 @@ export default async function HomePage() {
     return (
         <>
             <Hero dataHero={data?.banners || null} />
-            <Models />
+            <Models dataModels={data?.products || null} dataCategories={data?.categories} />
             <OverviewProduct />
             <AfterSales />
         </>

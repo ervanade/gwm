@@ -12,7 +12,7 @@
       { "label": "MODELS", "link": "/models" },
       { "label": "TENTANG GWM", "link": "/about-gwm" },
       { "label": "AFTER SALES", "link": "/" },
-      { "label": "NEWS & PROMO", "link": "/" },
+      { "label": "NEWS & PROMO", "link": "/news" },
       { "label": "LOKASI DEALER", "link": "/dealer-locations" }
     ]
   }

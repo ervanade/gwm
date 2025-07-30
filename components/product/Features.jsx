@@ -219,13 +219,15 @@ const Features = () => {
         <div className="flex flex-col lg:flex-row gap-8 justify-center items-center">
           {/* Left: Image */}
           <div className="lg:w-1/2 w-full">
-            <Image
-              src="/assets/cars/h6/h6-grey-side.png"
-              alt="Spec Illustration"
-              width={800}
-              height={600}
-              className="rounded-lg w-full object-cover"
-            />
+          <div className="aspect-[16/9] w-full overflow-hidden rounded-lg relative">
+                          <Image
+                            src="/assets/cars/h6/h6-grey-side.png"
+                            alt="Spec Illustration"
+                            className="rounded-lg w-full object-cover"
+                            sizes="100vw"
+                            fill
+                          />
+                        </div>
           </div>
 
           {/* Right: Accordion */}
