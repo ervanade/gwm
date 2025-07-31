@@ -4,7 +4,8 @@ import React, { useState, useEffect } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination } from "swiper/modules"; // Import Pagination if you want dots
 import { FaChevronRight } from "react-icons/fa"; // Import the chevron icon
-
+import parse from "html-react-parser";
+const HTMLDecoderEncoder = require("html-encoder-decoder");
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/navigation";
@@ -58,7 +59,7 @@ const highlightProductsData = [
     link: "/models/tank-500",
   },
 ];
-const OverviewProduct = () => {
+const OverviewProduct = ({ overviewHtml }) => {
   const [isMobile, setIsMobile] = useState(false);
   const locale = useLocale();
   useEffect(() => {
@@ -113,6 +114,11 @@ const OverviewProduct = () => {
 
   return (
     <div className="w-full bg-white  text-dark">
+      {/* {parse(HTMLDecoderEncoder.decode(overviewHtml?.html))}
+      <style dangerouslySetInnerHTML={{ __html: overviewHtml?.css }} />
+      <div dangerouslySetInnerHTML={{ __html: overviewHtml?.html }} />
+      <GrapesjsRenderer projectJson={JSON.parse(overviewHtml?.content)} /> */}
+
       <div className="max-w-7xl mx-auto w-full px-6 lg:px-12 pb-12 md:pb-16">
         {/* Mobile Slider (Swiper) */}
         {isMobile ? (
