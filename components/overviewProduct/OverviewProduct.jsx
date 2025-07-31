@@ -12,6 +12,7 @@ import "swiper/css/navigation";
 import { Link } from "@/i18n/navigation";
 import { useLocale } from "next-intl";
 // import "swiper/css/pagination"; // Uncomment if you use Pagination module
+
 const highlightProductsData = [
   {
     id: 1,
@@ -19,8 +20,8 @@ const highlightProductsData = [
     mainTitle: "HAVAL",
     subTitle: "JOLION",
     buttonText: "JOLION",
-    image: "/assets/h-jolion.png", // Make sure this path exists
-    link: "/models/haval-jolion", // Replace with actual link
+    image: "/assets/h-jolion.png",
+    link: "/models/haval-jolion",
   },
   {
     id: 2,
@@ -28,7 +29,7 @@ const highlightProductsData = [
     mainTitle: "HAVAL",
     subTitle: "H6 HEV",
     buttonText: "H6 HEV",
-    image: "/assets/h-havalh6.png", // Make sure this path exists
+    image: "/assets/h-havalh6.png",
     link: "/models/haval-h6-hev",
   },
   {
@@ -37,7 +38,7 @@ const highlightProductsData = [
     mainTitle: "ORA",
     subTitle: "O3 BEV",
     buttonText: "ORA O3 BEV",
-    image: "/assets/h-ora.png", // Make sure this path exists
+    image: "/assets/h-ora.png",
     link: "/models/ora-bev",
   },
   {
@@ -46,7 +47,7 @@ const highlightProductsData = [
     mainTitle: "TANK",
     subTitle: "TANK 300",
     buttonText: "TANK 300",
-    image: "/assets/h-tank300.png", // Make sure this path exists
+    image: "/assets/h-tank300.png",
     link: "/models/tank-300",
   },
   {
@@ -55,21 +56,40 @@ const highlightProductsData = [
     mainTitle: "TANK",
     subTitle: "TANK 500",
     buttonText: "TANK 500",
-    image: "/assets/h-tank500.png", // Make sure this path exists
+    image: "/assets/h-tank500.png",
     link: "/models/tank-500",
   },
 ];
-const OverviewProduct = ({ overviewHtml }) => {
+
+const OverviewProduct = ({ overviewHtml, dataModels }) => {
   const [isMobile, setIsMobile] = useState(false);
   const locale = useLocale();
+
   useEffect(() => {
     const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768); // Tailwind's 'md' breakpoint is 768px
+      setIsMobile(window.innerWidth < 768);
     };
     checkMobile();
     window.addEventListener("resize", checkMobile);
     return () => window.removeEventListener("resize", checkMobile);
   }, []);
+
+  const displayData =
+    dataModels && dataModels.length > 0
+      ? dataModels
+          .slice() // Buat salinan untuk menghindari mutasi array asli
+          .sort((a, b) => (a.model || "").localeCompare(b.model || ""))
+          .slice(0, 5)
+          .map((model, idx) => ({
+            id: model.id,
+            type: idx < 3 ? "square" : "wide",
+            mainTitle: model.category?.category || model.name || "-",
+            subTitle: model.model || model.tipe || "-",
+            buttonText: `${model.model || ""} `,
+            image: model.overview_image_url,
+            link: `/models/${model.slug}`,
+          }))
+      : highlightProductsData;
 
   const renderProductCard = (product, index) => {
     const isSquare = product.type === "square";
@@ -80,7 +100,7 @@ const OverviewProduct = ({ overviewHtml }) => {
         fill
         sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
         className="object-cover"
-        priority={index < 3} // Preload first 3 images
+        priority={index < 3}
       />
     );
 
@@ -94,8 +114,7 @@ const OverviewProduct = ({ overviewHtml }) => {
         }`}
       >
         {imageComponent}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>{" "}
-        {/* Overlay for text readability */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
         <div className="absolute top-6 left-6 text-white">
           <p className="text-base font-light mb-2">{product.mainTitle}</p>
           <h4 className="text-2xl font-bold leading-tight">
@@ -120,17 +139,14 @@ const OverviewProduct = ({ overviewHtml }) => {
       <GrapesjsRenderer projectJson={JSON.parse(overviewHtml?.content)} /> */}
 
       <div className="max-w-7xl mx-auto w-full px-6 lg:px-12 pb-12 md:pb-16">
-        {/* Mobile Slider (Swiper) */}
         {isMobile ? (
           <Swiper
             className="h-auto overflow-hidden relative cursor-grab"
-            slidesPerView={1.2} // Show 1.2 slides on mobile
-            spaceBetween={16} // Gap 16px
-            modules={[Navigation, Pagination]} // Add Pagination for dots if desired
-            navigation={true} // Enable navigation arrows
-            // pagination={{ clickable: true }} // Enable pagination dots
+            slidesPerView={1.2}
+            spaceBetween={16}
+            modules={[Navigation, Pagination]}
+            navigation={true}
             breakpoints={{
-              // Adjust for smaller mobile screens if needed
               320: {
                 slidesPerView: 1.2,
                 spaceBetween: 16,
@@ -141,50 +157,39 @@ const OverviewProduct = ({ overviewHtml }) => {
               },
             }}
           >
-            {highlightProductsData.map((product, index) => (
+            {displayData.map((product, index) => (
               <SwiperSlide key={product.id}>
                 {renderProductCard(product, index)}
               </SwiperSlide>
             ))}
           </Swiper>
         ) : (
-          // Desktop Grid Layout
           <div className="grid grid-cols-1 gap-4">
-            {" "}
-            {/* Main grid for rows */}
-            {/* First Row: 3 Images (Square Ratio) */}
             <div className="grid grid-cols-3 gap-4">
-              {" "}
-              {/* Grid for 3 items */}
-              {highlightProductsData
+              {displayData
                 .slice(0, 3)
                 .map((product, index) => renderProductCard(product, index))}
             </div>
-            {/* Second Row: 2 Images (Non-Square, Fixed Height) */}
             <div className="grid grid-cols-2 gap-4">
-              {" "}
-              {/* Grid for 2 items, mt-4 for gap between rows */}
-              {highlightProductsData.slice(3, 5).map(
-                (product, index) => renderProductCard(product, index + 3) // Adjust index for priority if needed
-              )}
+              {displayData
+                .slice(3, 5)
+                .map((product, index) => renderProductCard(product, index + 3))}
             </div>
           </div>
         )}
       </div>
+
       <div className="mx-auto w-full text-black" id="hero">
-        {/* Hero Desktop */}
         <div className="">
-          {/* <Link href={item?.link}> */}
           <div className="w-full relative h-[70vh] cursor-pointer">
-            <div className="absolute inset-0 bg-gradient-to-b lg:bg-gradient-to-r from-black/50 to-transparent z-10"></div>{" "}
+            <div className="absolute inset-0 bg-gradient-to-b lg:bg-gradient-to-r from-black/50 to-transparent z-10"></div>
             <Image
               src={`/assets/highlight1.png`}
               alt={"T-Space Hero"}
-              layout="fill" // Membuat gambar memenuhi kontainer
-              objectFit="cover" // Menjaga rasio aspek dan memotong bagian luar
-              objectPosition="center" // Memusatkan gambar
+              layout="fill"
+              objectFit="cover"
+              objectPosition="center"
             />
-            {/* <div className="absolute inset-0 bg-gradient-to-r from-black/30 to-black/50" /> */}
             <div className="absolute top-[35%] left-0 right-0 z-20">
               <div className="max-w-7xl mx-auto px-6 lg:px-12">
                 <div className="flex flex-col gap-2 items-center justify-start text-white space-y-4 lg:space-y-8 max-w-[600px] text-center md:items-start md:text-left">
