@@ -112,6 +112,23 @@ async function getData() {
   return res.json()
 }
 
+async function getDataProducts() {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_KEY}/api/v1/products`, {
+    // cache: 'no-store',
+    next: { revalidate: 3600 },
+    method: 'GET',
+    headers: {
+      'X-Api-Key': process.env.NEXT_PUBLIC_APP_X_API_KEY,
+    },
+  })
+  if (!res.ok) {
+    // This will activate the closest `error.js` Error Boundary
+    throw new Error('Failed to fetch data')
+  }
+
+  return res.json()
+}
+
 
 export default async function LocaleLayout({
   children,
@@ -119,7 +136,8 @@ export default async function LocaleLayout({
 }) {
   // Ensure that the incoming `locale` is valid
   const { locale } = await params;
-  const { data } = await getData()
+  // const { data } = await getData()
+  const { data } = await getDataProducts()
   if (!hasLocale(routing.locales, locale)) {
     notFound();
   }
@@ -129,7 +147,7 @@ export default async function LocaleLayout({
     <html lang={locale} className={helvetica.className}>
       <body className='!font-helvetica'>
         <NextIntlClientProvider messages={messages}>
-          <Navbar />
+          <Navbar dataModels={data || []} />
           {children}
           <StickyMenu />
           <Footer />

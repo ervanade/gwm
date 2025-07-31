@@ -59,23 +59,24 @@ const Models = ({ dataModels = [], dataCategories = [] }) => {
   const [activeTab, setActiveTab] = useState("haval");
 
   const getFilteredModels = () => {
-    const models = dataModels.length > 0
-      ? dataModels.map((m) => ({
-          id: m.id,
-          title: m.name + " " + (m.model || ""),
-          subtitle: m.tipe,
-          image: m.image_url,
-          link: `/models/${m.slug}`,
-          categorySlug: m.category?.slug || "",
-        }))
-      : dummyModels.map((m) => ({
-          ...m,
-          categorySlug: m.title.toLowerCase().includes("haval")
-            ? "haval"
-            : m.title.toLowerCase().includes("tank")
-            ? "tank"
-            : "ora",
-        }));
+    const models =
+      dataModels.length > 0
+        ? dataModels.map((m) => ({
+            id: m.id,
+            title: m.model,
+            subtitle: m.tipe,
+            image: m.main_image_url,
+            link: `/models/${m.slug}`,
+            categorySlug: m.category?.slug || "",
+          }))
+        : dummyModels.map((m) => ({
+            ...m,
+            categorySlug: m.title.toLowerCase().includes("haval")
+              ? "haval"
+              : m.title.toLowerCase().includes("tank")
+              ? "tank"
+              : "ora",
+          }));
 
     return models.filter((m) => m.categorySlug === activeTab);
   };
@@ -95,7 +96,9 @@ const Models = ({ dataModels = [], dataCategories = [] }) => {
           className="flex justify-center gap-2 md:gap-4 lg:gap-8 mb-6 overflow-x-auto pb-2 scrollbar-hide"
           style={{
             scrollbarWidth: "thin",
-            scrollbarColor: activeTab ? "rgb(59, 130, 246) transparent" : "transparent",
+            scrollbarColor: activeTab
+              ? "rgb(59, 130, 246) transparent"
+              : "transparent",
             WebkitOverflowScrolling: "touch",
           }}
         >
@@ -127,7 +130,11 @@ const Models = ({ dataModels = [], dataCategories = [] }) => {
                   )}
                   <span
                     className={`absolute bottom-0 left-0 w-full h-[3px] bg-sky-500 transition-transform duration-300 ease-in-out
-                      ${activeTab === tab.slug ? "scale-x-100" : "scale-x-0 group-hover:scale-x-50"}`}
+                      ${
+                        activeTab === tab.slug
+                          ? "scale-x-100"
+                          : "scale-x-0 group-hover:scale-x-50"
+                      }`}
                   ></span>
                 </button>
               ))
@@ -146,7 +153,11 @@ const Models = ({ dataModels = [], dataCategories = [] }) => {
                   />
                   <span
                     className={`absolute bottom-0 left-0 w-full h-[3px] bg-sky-500 transition-transform duration-300 ease-in-out
-                      ${activeTab === tab.name ? "scale-x-100" : "scale-x-0 group-hover:scale-x-50"}`}
+                      ${
+                        activeTab === tab.name
+                          ? "scale-x-100"
+                          : "scale-x-0 group-hover:scale-x-50"
+                      }`}
                   ></span>
                 </button>
               ))}

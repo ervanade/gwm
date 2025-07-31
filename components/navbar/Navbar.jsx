@@ -9,6 +9,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
+// Data dummy (fallback)
 const modelTabs = ["all", "tank", "haval", "ora"];
 const dummyModels = [
   {
@@ -16,48 +17,47 @@ const dummyModels = [
     image: "/assets/tank-500.png",
     title: "TANK 500",
     subtitle: "Luxury Offroad",
-    link: "/models/tank-500", // Tambahkan properti link
+    link: "/models/tank-500",
   },
   {
     id: 4,
     image: "/assets/tank-300.png",
     title: "TANK 300",
     subtitle: "Premium SUV",
-    link: "/models/tank-300", // Tambahkan properti link
+    link: "/models/tank-300-hev",
   },
   {
     id: 2,
     image: "/assets/haval-h6.png",
     title: "HAVAL H6",
     subtitle: "SUV Hybrid",
-    link: "/models/haval-h6", // Tambahkan properti link
+    link: "/models/haval-h6",
   },
   {
     id: 6,
     image: "/assets/haval-jolion-hev.png",
     title: "HAVAL JOLION",
     subtitle: "JOLION HEV",
-    link: "/models/haval-jolion-hev", // Tambahkan properti link
+    link: "/models/haval-jolion-hev",
   },
   {
     id: 5,
     image: "/assets/haval-jolion.png",
     title: "HAVAL JOLION",
     subtitle: "JOLION ULTRA HEV",
-    link: "/models/haval-jolion-ultra-hev", // Tambahkan properti link
+    link: "/models/haval-jolion-ultra-hev",
   },
   {
     id: 3,
     image: "/assets/ora.png",
     title: "ORA O3 BEV",
     subtitle: "Electric Hatchback",
-    link: "/models/ora-o3-bev", // Tambahkan properti link
+    link: "/models/ora-o3-bev",
   },
-  
- 
 ];
 
-const Navbar = () => {
+// Perubahan: Navbar sekarang menerima `dataModels` sebagai prop
+const Navbar = ({ dataModels }) => {
   const [color, setColor] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -78,8 +78,6 @@ const Navbar = () => {
   };
 
   useEffect(() => {
-    // Menentukan apakah halaman saat ini adalah homepage atau halaman detail model
-    // `pathname` dari `usePathname()` adalah path tanpa prefix locale, contoh: '/', '/about-gwm', '/models/tank-500'
     const isHomepageOrModelDetailPage =
       pathname === "/" ||
       pathname.startsWith("/models/") ||
@@ -88,31 +86,21 @@ const Navbar = () => {
 
     const handleScrollColor = () => {
       if (window.scrollY > 5) {
-        // Jika di-scroll ke bawah, navbar selalu solid (color: true)
         setColor(true);
       } else {
-        // Jika di paling atas halaman (scrollY <= 5)
-        // Navbar solid jika BUKAN homepage/models detail page (color: true)
-        // Navbar transparan jika homepage/models detail page (color: false)
         setColor(!isHomepageOrModelDetailPage);
       }
     };
 
-    // Set warna awal navbar saat komponen di-mount atau pathname berubah
-    // Ini adalah kondisi default saat scrollY = 0
     setColor(!isHomepageOrModelDetailPage);
 
-    // Tambahkan event listener untuk scroll
     window.addEventListener("scroll", handleScrollColor);
-
-    // Cleanup event listener saat komponen di-unmount
     return () => {
       window.removeEventListener("scroll", handleScrollColor);
     };
   }, [pathname]);
 
   useEffect(() => {
-    // Tutup MegaMenu setiap kali route/path berubah
     setMegaMenuOpen(null);
     setMenuOpen(false);
     setMenuLevel("main");
@@ -124,7 +112,6 @@ const Navbar = () => {
         setMegaMenuOpen(null);
       }
     };
-    // Gunakan event 'click' dan capture: true agar tetap menangkap event dari Swiper
     document.addEventListener("click", handleClickOutside, true);
     return () =>
       document.removeEventListener("click", handleClickOutside, true);
@@ -132,14 +119,40 @@ const Navbar = () => {
 
   const navItems = t.raw("items");
   const subMenu = [
-    { name: "ABOUT US", name_id: "TENTANG KAMI", link: "/" },
-    { name: "ERA", name_id: "ERA", link: "/" },
+    { name: "ABOUT US", name_id: "TENTANG KAMI", link: "/about" },
+    { name: "ERA", name_id: "ERA", link: "/era" },
   ];
+
+  // Perubahan: Logika untuk memilih data model dari API atau dummy
+  // Logika mapping disesuaikan dengan contoh `Models` component Anda
+  const getModelsWithCategories = () => {
+    const models =
+      dataModels && dataModels.length > 0
+        ? dataModels.map((m) => ({
+            id: m.id,
+            image: m.main_image_url,
+            title: m.model,
+            subtitle: m.tipe,
+            link: `/models/${m.slug}`,
+            category: m.model?.toLowerCase() || "",
+          }))
+        : dummyModels.map((m) => ({
+            ...m,
+            category: m.title.toLowerCase().includes("haval")
+              ? "haval"
+              : m.title.toLowerCase().includes("tank")
+              ? "tank"
+              : "ora",
+          }));
+    return models;
+  };
+
+  const modelsWithCategories = getModelsWithCategories();
 
   const filteredModels =
     activeTab === "all"
-      ? dummyModels
-      : dummyModels.filter((m) => m.title.toLowerCase().includes(activeTab));
+      ? modelsWithCategories
+      : modelsWithCategories.filter((m) => m.category.includes(activeTab));
 
   return (
     <div
@@ -174,12 +187,8 @@ const Navbar = () => {
                     {item.label} <FaChevronDown className="text-xs" />
                   </button>
                   {megaMenuOpen === "models" && (
-                    <div
-                      // Style dan class untuk positioning (top, height, fixed, full width)
-                      className="fixed left-0 right-0 w-full overflow-y-auto bg-white text-dark shadow-xl px-8 lg:px-16 py-8 z-[53] transition-all duration-300 h-[80vh] top-[72px]"
-                    >
+                    <div className="fixed left-0 right-0 w-full overflow-y-auto bg-white text-dark shadow-xl px-8 lg:px-16 py-8 z-[53] transition-all duration-300 h-[80vh] top-[72px]">
                       <div className="max-w-7xl mx-auto ">
-                        {" "}
                         <h3 className="text-xl font-semibold mb-4">
                           GWM MODELS
                         </h3>
@@ -202,14 +211,10 @@ const Navbar = () => {
                           {filteredModels.map((car) => (
                             <Link
                               key={car.id}
-                              href={`/${locale}${car.link}`} // Gunakan properti link dari data
-                              // Tambahkan group class agar hover pada elemen div bekerja
+                              href={`/${locale}${car.link}`}
                               className=" group"
                             >
-                              <div
-                                key={car.id}
-                                className="space-y-2 text-center"
-                              >
+                              <div className="space-y-2 text-center">
                                 <Image
                                   src={car.image}
                                   alt={car.title}
@@ -319,7 +324,6 @@ const Navbar = () => {
           </a>
         </div>
 
-        {/* MOBILE MENU */}
         <button
           onClick={() => setMenuOpen(true)}
           className={`lg:hidden ${
@@ -330,13 +334,11 @@ const Navbar = () => {
         </button>
       </div>
 
-      {/* MOBILE PANEL */}
       <div
         className={`lg:hidden overflow-auto fixed inset-0 z-[52] bg-white text-dark p-6 transition-transform duration-300 ease-in-out max-h-screen ${
           menuOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
-        {/* Header */}
         <div className="flex justify-between items-center mb-6">
           <Link href={`/${locale}`}>
             <Image src="/logo-gwm.svg" width={120} height={50} alt="Logo GWM" />
@@ -349,7 +351,6 @@ const Navbar = () => {
           </button>
         </div>
 
-        {/* MAIN MENU */}
         {menuLevel === "main" && (
           <div className="space-y-1 border-t border-gray-200 divide-y divide-gray-200 text-lg">
             {navItems.map((item, index) => {
@@ -386,7 +387,6 @@ const Navbar = () => {
               );
             })}
 
-            {/* Language Switcher */}
             <div className="relative px-1 py-3">
               <button
                 onClick={() => setDropdownOpen(!dropdownOpen)}
@@ -417,7 +417,6 @@ const Navbar = () => {
               )}
             </div>
 
-            {/* CTA Test Drive */}
             <div className="pt-4">
               <a
                 href={`/${locale}/test-drive`}
@@ -431,7 +430,7 @@ const Navbar = () => {
 
         {/* MODELS SUBMENU */}
         {menuLevel === "models" && (
-          <div>
+          <div className="flex flex-col h-full">
             <button
               onClick={() => setMenuLevel("main")}
               className="mb-4 hover:text-primary font-bold text-lg flex items-center gap-2 cursor-pointer"
@@ -439,7 +438,6 @@ const Navbar = () => {
               <FaChevronLeft /> MODELS
             </button>
 
-            {/* Tabs */}
             <div className="flex gap-4 border-b border-gray-500 pb-2 mt-2">
               {modelTabs.map((tab) => (
                 <button
@@ -456,7 +454,6 @@ const Navbar = () => {
               ))}
             </div>
 
-            {/* List of Cars */}
             <div className="grid gap-1 lg:gap-4 mt-4">
               {filteredModels.map((car) => (
                 <Link
@@ -479,16 +476,15 @@ const Navbar = () => {
                 >
                   {/* Kontainer Gambar */}
                   <div className="flex-shrink-0 w-2/5 lg:w-full overflow-hidden rounded-md">
-                  <div className="aspect-[500/280] relative w-full rounded-md overflow-hidden">
-                  <Image
-                    src={car.image}
-                    alt={car.title}
-                    fill
-                    sizes="100vw"
-                    className="object-cover transition-transform duration-300 group-hover:scale-105"
-                  />
-                </div>
-
+                    <div className="aspect-[500/280] relative w-full rounded-md overflow-hidden">
+                      <Image
+                        src={car.image}
+                        alt={car.title}
+                        fill
+                        sizes="100vw"
+                        className="object-cover transition-transform duration-300 group-hover:scale-105"
+                      />
+                    </div>
                   </div>
                   {/* Kontainer Teks */}
                   <div className="flex-grow sm:flex-none">
