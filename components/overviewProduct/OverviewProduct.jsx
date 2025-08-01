@@ -61,7 +61,7 @@ const highlightProductsData = [
   },
 ];
 
-const OverviewProduct = ({ overviewHtml, dataModels }) => {
+const OverviewProduct = ({ overviewHtml, dataModels, dataAfterSales }) => {
   const [isMobile, setIsMobile] = useState(false);
   const locale = useLocale();
 
@@ -133,10 +133,9 @@ const OverviewProduct = ({ overviewHtml, dataModels }) => {
 
   return (
     <div className="w-full bg-white  text-dark">
-      {/* {parse(HTMLDecoderEncoder.decode(overviewHtml?.html))}
-      <style dangerouslySetInnerHTML={{ __html: overviewHtml?.css }} />
-      <div dangerouslySetInnerHTML={{ __html: overviewHtml?.html }} />
-      <GrapesjsRenderer projectJson={JSON.parse(overviewHtml?.content)} /> */}
+      {/* {parse(HTMLDecoderEncoder.decode(overviewHtml?.html))} */}
+      
+      {/* <GrapesjsRenderer projectJson={JSON.parse(overviewHtml?.content)} /> */}
 
       <div className="max-w-7xl mx-auto w-full px-6 lg:px-12 pb-12 md:pb-16">
         {isMobile ? (
@@ -185,7 +184,7 @@ const OverviewProduct = ({ overviewHtml, dataModels }) => {
             <div className="absolute inset-0 bg-gradient-to-b lg:bg-gradient-to-r from-black/50 to-transparent z-10"></div>
             <Image
               src={`/assets/highlight1.png`}
-              alt={"T-Space Hero"}
+              alt={"GWM Hero"}
               layout="fill"
               objectFit="cover"
               objectPosition="center"
@@ -217,6 +216,13 @@ const OverviewProduct = ({ overviewHtml, dataModels }) => {
           </div>
         </div>
       </div>
+
+      {/* <style dangerouslySetInnerHTML={{ __html: JSON.parse(overviewHtml?.css) }} /> */}
+      <div dangerouslySetInnerHTML={{ __html: JSON.parse(overviewHtml?.html) }} />
+
+
+      {/* <style dangerouslySetInnerHTML={{ __html: JSON.parse(dataAfterSales?.css) }} /> */}
+      <div dangerouslySetInnerHTML={{ __html: JSON.parse(dataAfterSales?.html) }} />
     </div>
   );
 };

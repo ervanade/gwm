@@ -111,7 +111,7 @@ const Hero = ({ dataHero }) => {
                   <div className="w-full relative h-screen cursor-pointer">
                     <Image
                       src={item.image_default}
-                      alt={item.title || "T-Space Hero"}
+                      alt={item.title || "GWM Hero"}
                       layout="fill" // Membuat gambar memenuhi kontainer
                       objectFit="cover" // Menjaga rasio aspek dan memotong bagian luar
                       objectPosition="center" // Memusatkan gambar

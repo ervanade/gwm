@@ -77,11 +77,17 @@ const page = async ({ params }) => {
       />
       <NavbarProduct modelName="H6 HEV" />
 
-      <ExteriorColorSection />
+      <ExteriorColorSection dataColors={data?.colors || []}/>
 
-      <Features />
+      <Features dataFeature={data?.features || []} dataSpec={data?.spec || []} dataHl={data ? {title: data?.title,
+        title_en: data?.title_en,
+        description: data?.description,
+        description_en: data?.description_en,
+        image_hl_url: data?.image_hl_url,
+        spec_image_url: data?.spec_image_url
+        } : null}/>
 
-      <Gallery />
+      <Gallery dataGallery={data?.gallery || []}/>
 
     </div>
   )

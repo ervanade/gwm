@@ -31,7 +31,7 @@ const Footer = ({ dataSettings }) => {
               <ul className="space-y-3">
                 <li>
                   <Link href={`/`} className="">
-                    {/* <p className="font-bebas text-[40px] text-white">T-SPACE</p> */}
+                    {/* <p className="font-bebas text-[40px] text-white">GWM</p> */}
                     <Image
                       src="/logo-gwm.svg"
                       width={120}

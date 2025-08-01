@@ -1,13 +1,17 @@
+
 "use client";
 import Image from "next/image";
 import React, { useState, useRef } from "react";
-import { FaChevronRight, FaChevronLeft } from "react-icons/fa6";
+import { FaChevronRight, FaChevronLeft, FaChevronDown } from "react-icons/fa6";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import parse from "html-react-parser";
-import { FaChevronDown } from "react-icons/fa";
+import { useLocale } from "next-intl";
+import { Link } from "@/i18n/navigation";
+
+
 const highlightFeaturesData = [
   {
     id: 1,
@@ -71,19 +75,19 @@ const dummySpecs = [
       `,
   },
 ];
-const Features = () => {
+
+const Features = ({ dataFeature, dataSpec, dataHl }) => {
   const [activeIdx, setActiveIdx] = useState(null);
 
   const renderProductCard = (product, index) => {
-    const isSquare = product.type === "square";
     const imageComponent = (
       <Image
-        src={product.image}
-        alt={product.mainTitle + " " + product.subTitle}
+        src={product.image_url}
+        alt={product.title}
         fill
         sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
         className="object-cover"
-        priority={index < 3} // Preload first 3 images
+        priority={index < 3}
       />
     );
 
@@ -91,24 +95,22 @@ const Features = () => {
       <div className="flex flex-col gap-4">
         <div
           key={product.id}
-          className={`relative overflow-hidden rounded-lg group ${
-            isSquare
-              ? "aspect-[1/1] md:aspect-[1/1]"
-              : "aspect-[1/1] md:h-[384px] w-full"
-          }`}
+          className="relative overflow-hidden rounded-lg group aspect-[1/1] md:aspect-[1/1]"
         >
           {imageComponent}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>{" "}
-          {/* Overlay for text readability */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
         </div>
-        <h4 className="text-base font-bold">{product.mainTitle}</h4>
+        <h4 className="text-base font-bold">{product.title}</h4>
         <p className="text-dark text-sm lg:text-base md:min-h-18">
-          {" "}
-          {product.desc}
+          {product.description}
         </p>
       </div>
     );
   };
+
+  const hasFeature = Array.isArray(dataFeature) && dataFeature.length > 0;
+  const hasSpec = Array.isArray(dataSpec) && dataSpec.length > 0;
+  const locale = useLocale();
 
   return (
     <div className="bg-white text-dark">
@@ -119,91 +121,89 @@ const Features = () => {
         <h2 className="text-3xl font-bold mb-8 lg:mb-12">FEATURES</h2>
 
         <div className="relative group">
-          <Swiper
-            modules={[Navigation]}
-            spaceBetween={16}
-            slidesPerView={1.2}
-            navigation={{
-              nextEl: ".feature-next",
-              prevEl: ".feature-prev",
-            }}
-            breakpoints={{
-              640: { slidesPerView: 1.5 },
-              768: { slidesPerView: 2 },
-              1024: { slidesPerView: 3 },
-            }}
-            className="w-full"
-          >
-            {highlightFeaturesData.map((feature) => (
-              <SwiperSlide key={feature.id}>
-                <div className="flex flex-col gap-3 cursor-pointer">
-                  <div className="relative aspect-square overflow-hidden rounded-lg">
-                    <Image
-                      src={feature.image}
-                      alt={feature.mainTitle}
-                      fill
-                      sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
-                      className="object-cover"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
-                  </div>
-                  <h4 className="font-bold text-base lg:text-lg text-dark">
-                    {feature.mainTitle}
-                  </h4>
-                  <p className="text-sm lg:text-base text-gray-700">
-                    {feature.desc}
-                  </p>
-                </div>
-              </SwiperSlide>
-            ))}
-          </Swiper>
+          {hasFeature ? (
+            <Swiper
+              modules={[Navigation]}
+              spaceBetween={16}
+              slidesPerView={1.2}
+              navigation={{
+                nextEl: ".feature-next",
+                prevEl: ".feature-prev",
+              }}
+              breakpoints={{
+                640: { slidesPerView: 1.5 },
+                768: { slidesPerView: 2 },
+                1024: { slidesPerView: 3 },
+              }}
+              className="w-full"
+            >
+              {dataFeature.map((feature, index) => (
+                <SwiperSlide key={feature.id}>
+                  {renderProductCard(feature, index)}
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          ) : (
+            <div className="text-center py-16 w-full border border-dashed border-gray-300 rounded-lg flex items-center justify-center flex-col">
 
-          {/* Custom Arrows */}
-          <button className="cursor-pointer feature-prev absolute left-0 top-2/5 -translate-y-1/2 z-10 bg-white p-2 rounded-full shadow opacity-100 transition  text-primary">
-            <FaChevronLeft className="w-5 h-5" />
-          </button>
-          <button className="cursor-pointer feature-next absolute right-0 top-2/5 -translate-y-1/2 z-10 bg-white p-2 rounded-full shadow opacity-100 transition  text-primary">
-            <FaChevronRight className="w-5 h-5" />
-          </button>
+              <p className="text-lg font-semibold text-gray-600 mb-2">
+                Feature belum tersedia.
+              </p>
+                <p className="text-sm font-base text-gray-500">
+                 Kami sedang menyiapkan feature untuk kendaraan ini. Silahkan cek kembali nanti.
+                </p>
+            </div>
+          )}
+
+          {hasFeature && (
+            <>
+              <button className="cursor-pointer feature-prev absolute left-0 top-2/5 -translate-y-1/2 z-10 bg-white p-2 rounded-full shadow opacity-100 transition text-primary">
+                <FaChevronLeft className="w-5 h-5" />
+              </button>
+              <button className="cursor-pointer feature-next absolute right-0 top-2/5 -translate-y-1/2 z-10 bg-white p-2 rounded-full shadow opacity-100 transition text-primary">
+                <FaChevronRight className="w-5 h-5" />
+              </button>
+            </>
+          )}
         </div>
       </div>
 
-      <div className="mx-auto w-full text-black" id="hero">
-        {/* Hero Desktop */}
+      {/* HERO */}
+      {
+        dataHl ? 
+        <div className="mx-auto w-full text-black" id="hero">
         <div className="">
-          {/* <Link href={item?.link}> */}
           <div className="w-full relative h-[70vh] cursor-pointer">
-            <div className="absolute inset-0 bg-gradient-to-b lg:bg-gradient-to-r from-black/50 to-transparent z-10"></div>{" "}
+            <div className="absolute inset-0 bg-gradient-to-b lg:bg-gradient-to-r from-black/50 to-transparent z-10"></div>
             <Image
-              src={`/assets/highlight1.png`}
-              alt={"T-Space Hero"}
-              layout="fill" // Membuat gambar memenuhi kontainer
-              objectFit="cover" // Menjaga rasio aspek dan memotong bagian luar
-              objectPosition="center" // Memusatkan gambar
+              src={dataHl?.image_hl_url || `/assets/highlight1.png`}
+              alt={dataHl?.title || "GWM Hero"}
+              layout="fill"
+              objectFit="cover"
+              objectPosition="center"
             />
-            {/* <div className="absolute inset-0 bg-gradient-to-r from-black/30 to-black/50" /> */}
             <div className="absolute top-[35%] left-0 right-0 z-20">
               <div className="max-w-7xl mx-auto px-6 lg:px-12">
                 <div className="flex flex-col gap-2 items-center justify-start text-white space-y-4 lg:space-y-8 max-w-[600px] text-center md:items-start md:text-left">
                   <p className="font-bold text-2xl md:text-3xl lg:text-[32px] leading-tight">
-                    HAVAL JOLION HEV
+                  {locale === "en" ? dataHl.title_en : dataHl.title}
                   </p>
                   <p className="text-base sm:text-lg lg:text-xl text-white/85 leading-relaxed">
-                    Dilengkapi 20 fitur ADAS, terbanyak di kelasnya, dengan
-                    layar sentuh multimedia 12,3 inci dan panel instrumen LCD 7
-                    inci.
+                  {locale === "en"
+                              ? dataHl.description_en
+                              : dataHl.description}
                   </p>
                   <div className="flex flex-col sm:flex-row gap-4">
-                    <a
-                      href="https://wa.me/+6281181110556"
+                    <Link
+                      href="/test-drive"
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label="button"
                       className="bg-transparent hover:bg-primary hover:border-transparent text-white px-4 py-2 lg:px-6  rounded-lg font-semibold border border-white flex items-center gap-2"
                     >
-                      Discover More
+                      Test Drive
                       <FaChevronRight />
-                    </a>
+                    </Link>
                   </div>
                 </div>
               </div>
@@ -211,57 +211,71 @@ const Features = () => {
           </div>
         </div>
       </div>
+      : ""
+      }
+    
 
+      {/* SPECS */}
       <section id="specs" className="max-w-7xl mx-auto px-6 lg:px-12 py-12">
         <h2 className="text-3xl font-bold text-center mb-8 lg:mb-12">
           HAVAL H6 - SPECIFICATION
-        </h2>{" "}
+        </h2>
         <div className="flex flex-col lg:flex-row gap-8 justify-center items-center">
-          {/* Left: Image */}
           <div className="lg:w-1/2 w-full">
-          <div className="aspect-[16/9] w-full overflow-hidden rounded-lg relative">
-                          <Image
-                            src="/assets/cars/h6/h6-grey-side.png"
-                            alt="Spec Illustration"
-                            className="rounded-lg w-full object-cover"
-                            sizes="100vw"
-                            fill
-                          />
-                        </div>
+            <div className="aspect-[16/9] w-full overflow-hidden rounded-lg relative">
+              <Image
+                src={dataHl?.spec_image_url || "/assets/cars/h6/h6-grey-side.png"}
+                alt="Spec Illustration"
+                className="rounded-lg w-full object-cover"
+                sizes="100vw"
+                fill
+              />
+            </div>
           </div>
 
-          {/* Right: Accordion */}
           <div className="lg:w-1/2 w-full space-y-4">
-            {dummySpecs.map((item, i) => {
-              const isOpen = activeIdx === i;
-              return (
-                <div
-                  key={i}
-                  className="border-b border-gray-200 rounded-lg overflow-hidden"
-                >
-                  <button
-                    onClick={() => setActiveIdx(isOpen ? null : i)}
-                    className="w-full px-5 py-4 flex justify-between items-center text-left font-medium text-gray-800 cursor-pointer"
-                  >
-                    {item.title}
-                    <FaChevronDown
-                      className={`w-5 h-5 transition-transform ${
-                        isOpen ? "rotate-180" : ""
-                      }`}
-                    />
-                  </button>
+            {hasSpec ? (
+              dataSpec.map((item, i) => {
+                const isOpen = activeIdx === i;
+                return (
                   <div
-                    className={`transition-all duration-300 px-5 overflow-hidden ${
-                      isOpen ? "max-h-[500px] py-3" : "max-h-0"
-                    }`}
+                    key={i}
+                    className="border-b border-gray-200 rounded-lg overflow-hidden"
                   >
-                    <div className="text-sm text-gray-600">
-                      {parse(item.content)}
+                    <button
+                      onClick={() => setActiveIdx(isOpen ? null : i)}
+                      className="w-full px-5 py-4 flex justify-between items-center text-left font-medium text-gray-800 cursor-pointer"
+                    >
+                      {item.title}
+                      <FaChevronDown
+                        className={`w-5 h-5 transition-transform ${
+                          isOpen ? "rotate-180" : ""
+                        }`}
+                      />
+                    </button>
+                    <div
+                      className={`transition-all duration-300 px-5 overflow-hidden ${
+                        isOpen ? "max-h-[500px] py-3" : "max-h-0"
+                      }`}
+                    >
+                      <div className="text-sm text-gray-600">
+                        {parse(item.description || "")}
+                      </div>
                     </div>
                   </div>
-                </div>
-              );
-            })}
+                );
+              })
+            ) : (
+              <div className="text-center py-12 w-full border border-dashed border-gray-300 rounded-lg flex flex-col items-center justify-center">
+
+                <p className="text-lg font-semibold text-gray-600 mb-2">
+                  Spesifikasi belum tersedia.
+                </p>
+                <p className="text-sm font-base text-gray-500">
+                 Kami sedang menyiapkan spesifikasi untuk kendaraan ini. Silahkan cek kembali nanti.
+                </p>
+              </div>
+            )}
           </div>
         </div>
       </section>
@@ -270,3 +284,4 @@ const Features = () => {
 };
 
 export default Features;
+
