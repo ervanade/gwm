@@ -178,7 +178,7 @@ const OverviewProduct = ({ overviewHtml, dataModels, dataAfterSales }) => {
         )}
       </div>
 
-      <div className="mx-auto w-full text-black" id="hero">
+      {/* <div className="mx-auto w-full text-black" id="hero">
         <div className="">
           <div className="w-full relative h-[70vh] cursor-pointer">
             <div className="absolute inset-0 bg-gradient-to-b lg:bg-gradient-to-r from-black/50 to-transparent z-10"></div>
@@ -215,14 +215,17 @@ const OverviewProduct = ({ overviewHtml, dataModels, dataAfterSales }) => {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
 
       {/* <style dangerouslySetInnerHTML={{ __html: JSON.parse(overviewHtml?.css) }} /> */}
-      <div dangerouslySetInnerHTML={{ __html: JSON.parse(overviewHtml?.html) }} />
+      {
+        overviewHtml ?   <div dangerouslySetInnerHTML={{ __html: JSON.parse(overviewHtml?.html) }} /> : ""
+      }
+    
 
 
       {/* <style dangerouslySetInnerHTML={{ __html: JSON.parse(dataAfterSales?.css) }} /> */}
-      <div dangerouslySetInnerHTML={{ __html: JSON.parse(dataAfterSales?.html) }} />
+      {dataAfterSales ? <div dangerouslySetInnerHTML={{ __html: JSON.parse(dataAfterSales?.html) }} /> : ""}
     </div>
   );
 };
