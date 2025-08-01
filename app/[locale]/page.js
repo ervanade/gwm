@@ -34,7 +34,7 @@ export default async function HomePage() {
       <Hero dataHero={data?.banners || null} />
       <Models dataModels={data?.products || []} dataCategories={data?.categories || []} />
       <OverviewProduct overviewHtml={data?.pages[0]} dataModels={data?.products_overview || []} dataAfterSales={data?.pages[1]}/>
-      {/* <AfterSales /> */}
+      <AfterSales />
     </>
   );
 }

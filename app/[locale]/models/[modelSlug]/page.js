@@ -66,7 +66,6 @@ const page = async ({ params }) => {
   const { modelSlug } = await params;
   const { data } = await fetchModels(modelSlug);
 
-
   return (
     <div className='bg-white text-dark'>
       <ProductHero
@@ -74,6 +73,7 @@ const page = async ({ params }) => {
         title={data?.name || "HAVAL H6 HEV"}
         subtitle={data?.tipe || "Luxury Offroad SUV"}
         price={data?.price || "850.000.000"}
+        brochure={data?.brochure[0]?.file_url || null}
       />
       <NavbarProduct modelName="H6 HEV" />
 

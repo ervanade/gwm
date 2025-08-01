@@ -4,9 +4,8 @@ import Link from "next/link";
 import Image from "next/image";
 import { useLocale } from "next-intl";
 
-const ProductHero = ({ image, title, subtitle, price }) => {
+const ProductHero = ({ image, title, subtitle, price, brochure }) => {
   const locale = useLocale();
-
   return (
     <div className="relative w-full h-[80vh]" id="hero">
       {/* Background Image */}
@@ -44,7 +43,8 @@ const ProductHero = ({ image, title, subtitle, price }) => {
                 BOOK TEST DRIVE
               </Link>
               <a
-                href={`/${locale}/contact`}
+                href={brochure ? brochure : `/${locale}/test-drive`}
+                target="_blank" rel="noopener noreferrer"
                 className="w-max border border-white text-center text-white px-5 py-3 rounded-lg font-semibold text-sm hover:bg-white hover:text-primary transition"
               >
                 DOWNLOAD BROCHURE

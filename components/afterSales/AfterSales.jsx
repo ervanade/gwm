@@ -142,20 +142,19 @@ const AfterSales = () => {
   };
   return (
     <div className="bg-white text-dark">
-      <div className="max-w-7xl mx-auto w-full px-6 lg:px-12 py-12 md:py-16">
+      {/* <div className="max-w-7xl mx-auto w-full px-6 lg:px-12 py-12 md:py-16">
         <h2 className="text-3xl font-bold text-left mb-8 lg:mb-12">
           GWM AFTER SALES
         </h2>{" "}
         <div className="grid grid-cols-1 gap-4">
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
             {" "}
-            {/* Grid for 3 items */}
             {highlightProductsData
               .slice(0, 3)
               .map((product, index) => renderProductCard(product, index))}
           </div>
         </div>
-      </div>
+      </div> */}
 
       <div className="max-w-7xl mx-auto w-full px-6 lg:px-12 py-12 md:py-16">
         <h2 className="text-3xl font-bold text-center mb-8 lg:mb-12">
@@ -164,7 +163,6 @@ const AfterSales = () => {
         <div className="grid grid-cols-1 gap-4">
           <div className="grid lg:grid-cols-3 gap-4">
             {" "}
-            {/* Grid for 3 items */}
             {whyGWM
               .slice(0, 3)
               .map((product, index) => renderWhyCard(product, index))}
