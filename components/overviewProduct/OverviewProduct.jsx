@@ -61,6 +61,18 @@ const highlightProductsData = [
   },
 ];
 
+function scopeGrapeJSCSS(css, scopeClass = ".grapejs-wrapper") {
+  return css.replace(/(^|\})\s*([^{\}]+)\s*\{/g, (match, p1, selector) => {
+    // Tambahkan prefix hanya pada selector, bukan pada @keyframes dll
+    if (selector.startsWith("@")) return match;
+    const scopedSelectors = selector
+      .split(",")
+      .map((sel) => `${scopeClass} ${sel.trim()}`)
+      .join(", ");
+    return `${p1} ${scopedSelectors} {`;
+  });
+}
+
 const OverviewProduct = ({ overviewHtml, dataModels, dataAfterSales }) => {
   const [isMobile, setIsMobile] = useState(false);
   const locale = useLocale();
@@ -134,7 +146,7 @@ const OverviewProduct = ({ overviewHtml, dataModels, dataAfterSales }) => {
   return (
     <div className="w-full bg-white  text-dark">
       {/* {parse(HTMLDecoderEncoder.decode(overviewHtml?.html))} */}
-      
+
       {/* <GrapesjsRenderer projectJson={JSON.parse(overviewHtml?.content)} /> */}
 
       <div className="max-w-7xl mx-auto w-full px-6 lg:px-12 pb-12 md:pb-16">
@@ -217,15 +229,29 @@ const OverviewProduct = ({ overviewHtml, dataModels, dataAfterSales }) => {
         </div>
       </div> */}
 
-      {/* <style dangerouslySetInnerHTML={{ __html: JSON.parse(overviewHtml?.css) }} /> */}
-      {
-        overviewHtml ?   <div dangerouslySetInnerHTML={{ __html: JSON.parse(overviewHtml?.html) }} /> : ""
-      }
-    
-
+      {overviewHtml ? (
+        <div className="grapejs-wrapper">
+          <div
+            dangerouslySetInnerHTML={{ __html: JSON.parse(overviewHtml?.html) }}
+          />
+          <style
+            dangerouslySetInnerHTML={{
+              __html: scopeGrapeJSCSS(JSON.parse(overviewHtml?.css)),
+            }}
+          />
+        </div>
+      ) : (
+        ""
+      )}
 
       {/* <style dangerouslySetInnerHTML={{ __html: JSON.parse(dataAfterSales?.css) }} /> */}
-      {dataAfterSales ? <div dangerouslySetInnerHTML={{ __html: JSON.parse(dataAfterSales?.html) }} /> : ""}
+      {dataAfterSales ? (
+        <div
+          dangerouslySetInnerHTML={{ __html: JSON.parse(dataAfterSales?.html) }}
+        />
+      ) : (
+        ""
+      )}
     </div>
   );
 };
