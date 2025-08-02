@@ -75,19 +75,21 @@ const page = async ({ params }) => {
         price={data?.price || "850.000.000"}
         brochure={data?.brochure[0]?.file_url || null}
       />
-      <NavbarProduct modelName="H6 HEV" />
+      <NavbarProduct modelName={data?.model || "H6 HEV"} />
 
-      <ExteriorColorSection dataColors={data?.colors || []}/>
+      <ExteriorColorSection dataColors={data?.colors || []} />
 
-      <Features dataFeature={data?.features || []} dataSpec={data?.spec || []} dataHl={data ? {title: data?.title,
+      <Features dataFeature={data?.features || []} dataSpec={data?.spec || []} dataHl={data ? {
+        title: data?.title,
         title_en: data?.title_en,
         description: data?.description,
         description_en: data?.description_en,
         image_hl_url: data?.image_hl_url,
-        spec_image_url: data?.spec_image_url
-        } : null}/>
+        spec_image_url: data?.spec_image_url,
+        name: data?.name
+      } : null} />
 
-      <Gallery dataGallery={data?.gallery || []}/>
+      <Gallery dataGallery={data?.gallery || []} />
 
     </div>
   )

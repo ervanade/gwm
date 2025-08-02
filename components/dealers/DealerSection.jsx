@@ -1,10 +1,12 @@
 "use client";
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { FaMapMarkerAlt, FaPhoneAlt } from "react-icons/fa";
 import { useLocale } from "next-intl";
 
-const allDealers = [
+// Dummy fallback jika API gagal
+const fallbackDealers = [
   {
     name: "GWM PONDOK INDAH MALL – 1S",
     area: "Jakarta Selatan",
@@ -13,6 +15,7 @@ const allDealers = [
     phone: "+62 21 12345678",
     image: "/assets/dealers/pondokindah.png",
     gmaps: "https://maps.app.goo.gl/nzvHYWa8Uw6vrU9v5",
+    slug: "gwm-pondok-indah-mall-1s",
   },
   {
     name: "GWM TOMANG – 3S",
@@ -22,6 +25,7 @@ const allDealers = [
     phone: "+62 21 23456789",
     image: "/assets/dealers/tomang.png",
     gmaps: "https://maps.app.goo.gl/pSf16TLgpxmqg2877",
+    slug: "gwm-tomang-3s",
   },
   {
     name: "GWM Tank Studio",
@@ -31,58 +35,61 @@ const allDealers = [
     phone: "+62 21 34567890",
     image: "/assets/dealers/tankstudio.png",
     gmaps: "https://maps.app.goo.gl/9hVyvUmCWpHPr3aW9",
+    slug: "gwm-tank-studio",
   },
-  // Tambah 3 data dummy lagi
-//   {
-//     name: "GWM KELAPA GADING – 3S",
-//     area: "Jakarta Utara",
-//     address: "Jl. Boulevard Raya, Kelapa Gading, Jakarta Utara",
-//     phone: "+62 21 11112222",
-//     image: "/assets/dealers/gading.jpg",
-//     gmaps: "https://maps.google.com/?q=Kelapa+Gading",
-//   },
-//   {
-//     name: "GWM BEKASI – 3S",
-//     area: "Bekasi",
-//     address: "Jl. Ahmad Yani, Bekasi Selatan",
-//     phone: "+62 21 22223333",
-//     image: "/assets/dealers/bekasi.jpg",
-//     gmaps: "https://maps.google.com/?q=GWM+Bekasi",
-//   },
-//   {
-//     name: "GWM BSD – 1S",
-//     area: "Tangerang Selatan",
-//     address: "The Breeze BSD City, Jl. BSD Grand Boulevard, Tangsel",
-//     phone: "+62 21 33334444",
-//     image: "/assets/dealers/bsd.jpg",
-//     gmaps: "https://maps.google.com/?q=BSD+The+Breeze",
-//   },
 ];
 
-const allAreas = ["All Area", "Jakarta Barat", "Jakarta Selatan", "Jakarta Pusat", "Jakarta Utara", "Bekasi", "Tangerang Selatan"];
-
-export default function DealerSection() {
-  const [visible, setVisible] = useState(3);
+export default function DealerSection({ dataDealers }) {
+  const [visible, setVisible] = useState(6);
   const [areaFilter, setAreaFilter] = useState("All Area");
-  const locale = useLocale()
+  const locale = useLocale();
 
-  const filtered = areaFilter === "All Area"
-    ? allDealers
-    : allDealers.filter((d) => d.area === areaFilter);
+  // Normalize data: dari API jika ada, fallback ke dummy
+  const dealers = useMemo(() => {
+    if (!dataDealers?.length) return fallbackDealers;
+
+    return dataDealers.map((d) => ({
+      name: d.name || d.title,
+      area: d.area || "JAKARTA",
+      address: d.location,
+      phone: d.phone,
+      image: d.image,
+      gmaps: d.maps,
+      slug: d.slug,
+    }));
+  }, [dataDealers]);
+
+  // Buat daftar area unik dari data
+  const areaList = useMemo(() => {
+    const areas = dealers.map((d) => d.area?.toUpperCase() || "LAINNYA");
+    const unique = [...new Set(areas)];
+    return ["All Area", ...unique];
+  }, [dealers]);
+
+  const filtered =
+    areaFilter === "All Area"
+      ? dealers
+      : dealers.filter((d) => d.area?.toUpperCase() === areaFilter);
 
   return (
     <section className="max-w-7xl mx-auto px-6 lg:px-12 xl:px-16 py-12 bg-white text-dark">
       <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-4 mb-8">
         <div>
-          <h2 className="text-3xl font-bold mb-1">{locale ==  "en" ? "DEALER LOCATIONS": "LOKASI DEALER"}</h2>
-          <p className="text-gray-600">{locale ==  "en" ? "Find Official Dealer GWM in Indonesia": "Temukan lokasi dealer resmi GWM di seluruh Indonesia"}</p>
+          <h2 className="text-3xl font-bold mb-1">
+            {locale === "en" ? "DEALER LOCATIONS" : "LOKASI DEALER"}
+          </h2>
+          <p className="text-gray-600">
+            {locale === "en"
+              ? "Find Official Dealer GWM in Indonesia"
+              : "Temukan lokasi dealer resmi GWM di seluruh Indonesia"}
+          </p>
         </div>
         <select
           value={areaFilter}
           onChange={(e) => setAreaFilter(e.target.value)}
           className="border border-gray-300 rounded px-4 py-2 text-sm"
         >
-          {allAreas.map((area) => (
+          {areaList.map((area) => (
             <option key={area} value={area}>
               {area}
             </option>
@@ -104,15 +111,19 @@ export default function DealerSection() {
             <div className="p-4 space-y-2">
               <h3 className="font-bold text-lg">{dealer.name}</h3>
               <p className="text-sm text-gray-600 flex items-start gap-2">
-                <FaMapMarkerAlt className="text-primary mt-1 text-base" /> {dealer.address}
+                <FaMapMarkerAlt className="text-primary mt-1 text-base" />
+                {dealer.address}
               </p>
               <p className="text-sm text-gray-600 flex items-center gap-2">
                 <FaPhoneAlt className="text-primary" /> {dealer.phone}
               </p>
-              <div className="flex gap-2 pt-2 ">
-                <button className="text-sm px-4 py-1.5 border border-primary text-primary rounded">
+              <div className="flex gap-2 pt-2">
+                <Link
+                  href={`/dealer-locations/${dealer.slug}`}
+                  className="text-sm px-4 py-1.5 border border-primary text-primary rounded"
+                >
                   Detail
-                </button>
+                </Link>
                 <a
                   href={dealer.gmaps}
                   target="_blank"
@@ -128,8 +139,11 @@ export default function DealerSection() {
       </div>
 
       {visible < filtered.length && (
-        <div className="flex justify-center mt-8 ">
-          <button onClick={() => setVisible(visible + 3)} className="px-6 py-3 rounded-md cursor-pointer hover:bg-primary hover:text-white border border-primary text-primary">
+        <div className="flex justify-center mt-8">
+          <button
+            onClick={() => setVisible(visible + 3)}
+            className="px-6 py-3 rounded-md cursor-pointer hover:bg-primary hover:text-white border border-primary text-primary"
+          >
             Load More
           </button>
         </div>

@@ -1,4 +1,3 @@
-
 "use client";
 import Image from "next/image";
 import React, { useState, useRef } from "react";
@@ -10,7 +9,6 @@ import "swiper/css/navigation";
 import parse from "html-react-parser";
 import { useLocale } from "next-intl";
 import { Link } from "@/i18n/navigation";
-
 
 const highlightFeaturesData = [
   {
@@ -145,13 +143,13 @@ const Features = ({ dataFeature, dataSpec, dataHl }) => {
             </Swiper>
           ) : (
             <div className="text-center py-16 w-full border border-dashed border-gray-300 rounded-lg flex items-center justify-center flex-col">
-
               <p className="text-lg font-semibold text-gray-600 mb-2">
                 Feature belum tersedia.
               </p>
-                <p className="text-sm font-base text-gray-500">
-                 Kami sedang menyiapkan feature untuk kendaraan ini. Silahkan cek kembali nanti.
-                </p>
+              <p className="text-sm font-base text-gray-500">
+                Kami sedang menyiapkan feature untuk kendaraan ini. Silahkan cek
+                kembali nanti.
+              </p>
             </div>
           )}
 
@@ -169,62 +167,63 @@ const Features = ({ dataFeature, dataSpec, dataHl }) => {
       </div>
 
       {/* HERO */}
-      {
-        dataHl ? 
+      {dataHl ? (
         <div className="mx-auto w-full text-black" id="hero">
-        <div className="">
-          <div className="w-full relative h-[70vh] cursor-pointer">
-            <div className="absolute inset-0 bg-gradient-to-b lg:bg-gradient-to-r from-black/50 to-transparent z-10"></div>
-            <Image
-              src={dataHl?.image_hl_url || `/assets/highlight1.png`}
-              alt={dataHl?.title || "GWM Hero"}
-              layout="fill"
-              objectFit="cover"
-              objectPosition="center"
-            />
-            <div className="absolute top-[35%] left-0 right-0 z-20">
-              <div className="max-w-7xl mx-auto px-6 lg:px-12">
-                <div className="flex flex-col gap-2 items-center justify-start text-white space-y-4 lg:space-y-8 max-w-[600px] text-center md:items-start md:text-left">
-                  <p className="font-bold text-2xl md:text-3xl lg:text-[32px] leading-tight">
-                  {locale === "en" ? dataHl.title_en : dataHl.title}
-                  </p>
-                  <p className="text-base sm:text-lg lg:text-xl text-white/85 leading-relaxed">
-                  {locale === "en"
-                              ? dataHl.description_en
-                              : dataHl.description}
-                  </p>
-                  <div className="flex flex-col sm:flex-row gap-4">
-                    <Link
-                      href="/test-drive"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      aria-label="button"
-                      className="bg-transparent hover:bg-primary hover:border-transparent text-white px-4 py-2 lg:px-6  rounded-lg font-semibold border border-white flex items-center gap-2"
-                    >
-                      Test Drive
-                      <FaChevronRight />
-                    </Link>
+          <div className="">
+            <div className="w-full relative h-[70vh] cursor-pointer">
+              <div className="absolute inset-0 bg-gradient-to-b lg:bg-gradient-to-r from-black/50 to-transparent z-10"></div>
+              <Image
+                src={dataHl?.image_hl_url || `/assets/highlight1.png`}
+                alt={dataHl?.title || "GWM Hero"}
+                layout="fill"
+                objectFit="cover"
+                objectPosition="center"
+              />
+              <div className="absolute top-[35%] left-0 right-0 z-20">
+                <div className="max-w-7xl mx-auto px-6 lg:px-12">
+                  <div className="flex flex-col gap-2 items-center justify-start text-white space-y-4 lg:space-y-8 max-w-[600px] text-center md:items-start md:text-left">
+                    <p className="font-bold text-2xl md:text-3xl lg:text-[32px] leading-tight">
+                      {locale === "en" ? dataHl.title_en : dataHl.title}
+                    </p>
+                    <p className="text-base sm:text-lg lg:text-xl text-white/85 leading-relaxed">
+                      {locale === "en"
+                        ? dataHl.description_en
+                        : dataHl.description}
+                    </p>
+                    <div className="flex flex-col sm:flex-row gap-4">
+                      <Link
+                        href="/test-drive"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label="button"
+                        className="bg-transparent hover:bg-primary hover:border-transparent text-white px-4 py-2 lg:px-6  rounded-lg font-semibold border border-white flex items-center gap-2"
+                      >
+                        Test Drive
+                        <FaChevronRight />
+                      </Link>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-      : ""
-      }
-    
+      ) : (
+        ""
+      )}
 
       {/* SPECS */}
       <section id="specs" className="max-w-7xl mx-auto px-6 lg:px-12 py-12">
         <h2 className="text-3xl font-bold text-center mb-8 lg:mb-12">
-          HAVAL H6 - SPECIFICATION
+          {dataHl?.name || "HAVAL H6"} - SPECIFICATION
         </h2>
         <div className="flex flex-col lg:flex-row gap-8 justify-center items-center">
           <div className="lg:w-1/2 w-full">
             <div className="aspect-[16/9] w-full overflow-hidden rounded-lg relative">
               <Image
-                src={dataHl?.spec_image_url || "/assets/cars/h6/h6-grey-side.png"}
+                src={
+                  dataHl?.spec_image_url || "/assets/cars/h6/h6-grey-side.png"
+                }
                 alt="Spec Illustration"
                 className="rounded-lg w-full object-cover"
                 sizes="100vw"
@@ -267,12 +266,12 @@ const Features = ({ dataFeature, dataSpec, dataHl }) => {
               })
             ) : (
               <div className="text-center py-12 w-full border border-dashed border-gray-300 rounded-lg flex flex-col items-center justify-center">
-
                 <p className="text-lg font-semibold text-gray-600 mb-2">
                   Spesifikasi belum tersedia.
                 </p>
                 <p className="text-sm font-base text-gray-500">
-                 Kami sedang menyiapkan spesifikasi untuk kendaraan ini. Silahkan cek kembali nanti.
+                  Kami sedang menyiapkan spesifikasi untuk kendaraan ini.
+                  Silahkan cek kembali nanti.
                 </p>
               </div>
             )}
@@ -284,4 +283,3 @@ const Features = ({ dataFeature, dataSpec, dataHl }) => {
 };
 
 export default Features;
-
