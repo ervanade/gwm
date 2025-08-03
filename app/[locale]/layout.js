@@ -48,8 +48,8 @@ export async function generateMetadata({ params }) {
 
   return {
     title: isEnglish
-      ? 'GWM Inchcape | Official GWM Car Dealership in Indonesia'
-      : 'GWM Inchcape | Dealer Resmi Mobil GWM di Indonesia',
+      ? 'GWM Inchcape Indonesia | Official GWM Car Dealership in Indonesia'
+      : 'GWM Inchcape Indonesia | Dealer Resmi Mobil GWM di Indonesia',
     description: isEnglish
       ? 'Visit GWM Inchcape, your official GWM car dealership in Indonesia. Explore the latest GWM models, attractive offers, and professional after-sales services.'
       : 'Kunjungi GWM Inchcape, dealer resmi mobil GWM di Indonesia. Temukan berbagai model GWM terbaru, penawaran menarik, dan layanan purna jual profesional.',
@@ -70,11 +70,11 @@ export async function generateMetadata({ params }) {
     // },
     openGraph: {
       title: isEnglish
-        ? 'GWM Inchcape | Official GWM Car Dealership in Indonesia'
-        : 'GWM Inchcape | Dealer Resmi Mobil GWM di Indonesia',
+        ? 'GWM Inchcape Indonesia | Official GWM Car Dealership in Indonesia'
+        : 'GWM Inchcape Indonesia | Dealer Resmi Mobil GWM di Indonesia',
       description: isEnglish
-        ? 'Visit GWM Inchcape, your official GWM car dealership in [Your City/Region]. Explore the latest GWM models, attractive offers, and professional after-sales services.'
-        : 'Kunjungi GWM Inchcape, dealer resmi mobil GWM di [Kota/Wilayah Anda]. Temukan berbagai model GWM terbaru, penawaran menarik, dan layanan purna jual profesional.',
+        ? 'Visit GWM Inchcape, your official GWM car dealership in Indonesia. Explore the latest GWM models, attractive offers, and professional after-sales services.'
+        : 'Kunjungi GWM Inchcape, dealer resmi mobil GWM di Indonesia. Temukan berbagai model GWM terbaru, penawaran menarik, dan layanan purna jual profesional.',
       url: 'https://gwminchcape.co.id',
       siteName: 'GWM Inchcape',
       images: [

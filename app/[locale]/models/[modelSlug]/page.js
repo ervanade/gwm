@@ -12,20 +12,22 @@ export async function generateMetadata({ params }) {
   const locale = await useParams.locale || "id";
 
   const slug = useParams.modelSlug;
+  const { data } = await fetchModels(slug);
+
 
   // Fetch model name based on slug if needed
-  const modelName = slug.toUpperCase();
+  const modelName = data?.model.toUpperCase();
 
   const meta = {
     id: {
       title: `GWM ${modelName} - Spesifikasi & Fitur Mobil GWM`,
-      description: `"Temukan GWM  ${modelName}, SUV premium dengan performa tangguh dan desain elegan. Cek fitur lengkap, harga, lokasi dealer, dan booking test drive di GWM Inchcape Indonesia.
+      description: `"Temukan GWM  ${modelName}, ${data?.tipe}. Cek fitur lengkap, harga, lokasi dealer, dan booking test drive di GWM Inchcape Indonesia.
 `,
       keywords: [modelName, "SUV GWM", "Mobil Hybrid", "Spesifikasi"],
     },
     en: {
       title: `${modelName} Model - GWM Car Specifications & Features`,
-      description: `Discover the GWM ${modelName}, a powerful and premium SUV designed for adventure and comfort. View full specs, price, dealer locations, and schedule a test drive with GWM Inchcape Indonesia.`,
+      description: `Discover the GWM ${modelName}, ${data?.tipe}. View full specs, price, dealer locations, and schedule a test drive with GWM Inchcape Indonesia.`,
       keywords: [modelName, "GWM SUV", "Hybrid car", "Car specs"],
     },
   };

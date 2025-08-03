@@ -8,6 +8,34 @@ import Hero from '@/components/hero/Hero';
 import Models from '@/components/models/Models';
 import OverviewProduct from '@/components/overviewProduct/OverviewProduct';
 import AfterSales from '@/components/afterSales/AfterSales';
+import { getBaseMeta } from '@/lib/seo';
+
+
+export async function generateMetadata({ params }) {
+  const useParams = await params
+  const locale = await useParams.locale || "id";
+
+  const meta = {
+    id: {
+      title: `GWM Inchcape Indonesia | Dealer Resmi GWM di Indonesia`,
+      description: `"GWM Inchcape Indonesia menghadirkan dealer resmi GWM di Indonesia – model lengkap, layanan purnajual, test drive, dan lokasi dealer terpercaya.
+`,
+      keywords: ['GWM Inchcape', 'dealer GWM', 'mobil GWM', 'harga GWM', 'GWM terbaru', 'beli GWM', 'Servis GWM'],
+    },
+    en: {
+      title: `GWM Inchcape Indonesia | Official GWM Dealer in Indonesia`,
+      description: `Discover GWM Inchcape Indonesia, Indonesia’s official GWM dealer with full model range, aftersales support, test drive booking & trusted dealership locations.`,
+      keywords:
+        ['GWM Inchcape', 'GWM dealer', 'GWM car', 'GWM price', 'latest GWM', 'buy GWM', 'GWM service'],
+    },
+  };
+
+  return getBaseMeta({
+    locale,
+    path: `/`,
+    ...meta[locale],
+  });
+}
 
 
 async function getData() {
@@ -33,7 +61,7 @@ export default async function HomePage() {
     <>
       <Hero dataHero={data?.banners || null} />
       <Models dataModels={data?.products || []} dataCategories={data?.categories || []} />
-      <OverviewProduct overviewHtml={data?.pages[0]} dataModels={data?.products_overview || []} dataAfterSales={data?.pages[1]}/>
+      <OverviewProduct overviewHtml={data?.pages[0]} dataModels={data?.products_overview || []} dataAfterSales={data?.pages[1]} />
       <AfterSales />
     </>
   );

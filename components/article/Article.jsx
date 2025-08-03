@@ -1,120 +1,193 @@
 "use client";
-import { useState } from "react";
-import Image from "next/image";
-import { FaMapMarkerAlt, FaPhoneAlt } from "react-icons/fa";
+
 import { useLocale } from "next-intl";
+import Image from "next/image";
+import Link from "next/link";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
-const allDealers = [
-  {
-    name: "GWM NEV ROADSHOW IN FEBRUARY 2025",
-    area: "Jakarta Selatan",
-    address:
-      "Pondok Indah Mall 1, GF – Lobby 3A Jl. Metro Pondok Indah No.1, Pd. Pinang, Kec. Kby.Lama, Jakarta Selatan, DKI Jakarta 12310",
-    phone: "+62 21 12345678",
-    image: "/assets/dealers/pondokindah.png",
-    gmaps: "https://maps.app.goo.gl/nzvHYWa8Uw6vrU9v5",
-  },
-  {
-    name: "GWM NEV ROADSHOW IN FEBRUARY 2025",
-    area: "Jakarta Barat",
-    address:
-      "Jl. Arjuna Utara No.188 kav.89, RT.1/RW.1, Tj. Duren Sel., Kec. Grogol petamburan, Jakarta Barat, DKI Jakarta 11470",
-    phone: "+62 21 23456789",
-    image: "/assets/dealers/tomang.png",
-    gmaps: "https://maps.app.goo.gl/pSf16TLgpxmqg2877",
-  },
-  {
-    name: "GWM NEV ROADSHOW IN FEBRUARY 2025",
-    area: "Jakarta Pusat",
-    address:
-      "Agora Mall, L2 Floor, Jl. M.H. Thamrin No.10, Kb. Melati, Kecamatan Tanah Abang, Jakarta Pusat, DKI Jakarta 10230",
-    phone: "+62 21 34567890",
-    image: "/assets/dealers/tankstudio.png",
-    gmaps: "https://maps.app.goo.gl/9hVyvUmCWpHPr3aW9",
-  },
-  // Tambah 3 data dummy lagi
-//   {
-//     name: "GWM KELAPA GADING – 3S",
-//     area: "Jakarta Utara",
-//     address: "Jl. Boulevard Raya, Kelapa Gading, Jakarta Utara",
-//     phone: "+62 21 11112222",
-//     image: "/assets/dealers/gading.jpg",
-//     gmaps: "https://maps.google.com/?q=Kelapa+Gading",
-//   },
-//   {
-//     name: "GWM BEKASI – 3S",
-//     area: "Bekasi",
-//     address: "Jl. Ahmad Yani, Bekasi Selatan",
-//     phone: "+62 21 22223333",
-//     image: "/assets/dealers/bekasi.jpg",
-//     gmaps: "https://maps.google.com/?q=GWM+Bekasi",
-//   },
-//   {
-//     name: "GWM BSD – 1S",
-//     area: "Tangerang Selatan",
-//     address: "The Breeze BSD City, Jl. BSD Grand Boulevard, Tangsel",
-//     phone: "+62 21 33334444",
-//     image: "/assets/dealers/bsd.jpg",
-//     gmaps: "https://maps.google.com/?q=BSD+The+Breeze",
-//   },
-];
+export default function GwmArticles() {
+  const locale = useLocale();
+  const [articles, setArticles] = useState([]);
+  const [tags, setTags] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [page, setPage] = useState(1);
+  const [pagination, setPagination] = useState(null);
 
-const allAreas = ["All Area", "Jakarta Barat", "Jakarta Selatan", "Jakarta Pusat", "Jakarta Utara", "Bekasi", "Tangerang Selatan"];
+  const fetchArticles = async (pageNum = 1) => {
+    try {
+      const res = await axios.get(
+        `${process.env.NEXT_PUBLIC_API_KEY}/api/v1/article?page=${pageNum}`,
+        {
+          headers: {
+            "X-Api-Key": process.env.NEXT_PUBLIC_APP_X_API_KEY,
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      if (pageNum === 1) {
+        setArticles(res.data.data);
+      } else {
+        setArticles((prev) => [...prev, ...res.data.data]);
+      }
+      setPagination(res.data);
+      setLoading(false);
 
-export default function Article() {
-  const [visible, setVisible] = useState(3);
-  const [areaFilter, setAreaFilter] = useState("All Area");
-  const locale = useLocale()
+      // Ambil semua tag unik dari artikel
+      const allTags = new Set();
+      res.data.data.forEach((item) => {
+        if (item.tags && Array.isArray(item.tags)) {
+          item.tags.forEach((tag) => allTags.add(tag.name));
+        }
+      });
+      setTags(Array.from(allTags));
+    } catch (err) {
+      setLoading(false);
+    }
+  };
 
-  const filtered = areaFilter === "All Area"
-    ? allDealers
-    : allDealers.filter((d) => d.area === areaFilter);
+  useEffect(() => {
+    fetchArticles();
+  }, []);
+
+  const handleLoadMore = () => {
+    const nextPage = page + 1;
+    setPage(nextPage);
+    fetchArticles(nextPage);
+  };
 
   return (
     <section className="max-w-7xl mx-auto px-6 lg:px-12 xl:px-16 py-12 bg-white text-dark">
-      <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-4 mb-8">
-        <div>
-          <h2 className="text-3xl font-bold mb-1">{locale ==  "en" ? "NEWS & PROMO": "NEWS & PROMO"}</h2>
-          <p className="text-gray-600">{locale ==  "en" ? "Find Official Dealer GWM in Indonesia": "Temukan lokasi dealer resmi GWM di seluruh Indonesia"}</p>
-        </div>
-
+      <div className="mb-8">
+        <h2 className="text-3xl font-bold mb-1">
+          {locale === "en" ? "NEWS & PROMO" : "NEWS & PROMO"}
+        </h2>
+        <p className="text-gray-600">
+          {locale === "en"
+            ? "Find the latest news and promotions from GWM Indonesia"
+            : "Temukan berita dan promo terbaru dari GWM Indonesia"}
+        </p>
       </div>
 
+      {/* Tag filter */}
+      {tags.length > 0 && (
+        <div className="mb-6 overflow-x-auto whitespace-nowrap no-scrollbar">
+          <Link
+            href={`/${locale}/news`}
+            className="inline-block mr-4 bg-primary text-white px-4 py-2 rounded-full font-sm md:font-base font-semibold"
+          >
+            All Tags
+          </Link>
+          {tags.map((tag, index) => (
+            <Link
+              key={index}
+              href={`/${locale}/news/tag/${tag}`}
+              className="inline-block mr-4 border border-black/80 text-black/80 px-4 py-2 rounded-full font-sm md:font-base"
+            >
+              {tag}
+            </Link>
+          ))}
+        </div>
+      )}
+
+      {/* Content */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {filtered.slice(0, visible).map((dealer, idx) => (
-          <div key={idx} className="rounded-lg  shadow-sm overflow-hidden">
-                      <div className="relative h-56 -mt-6 overflow-hidden text-white shadow-lg bg-clip-border rounded-t-lg bg-blue-gray-500 shadow-blue-gray-500/40">
-                      <Image
-                src={dealer.image}
-                alt={dealer.name}
-                fill
-                className="object-cover w-full h-full"
-              />
-            </div>
-            <div className="p-4 space-y-2">
-              <h3 className="font-bold text-lg">{dealer.name}</h3>
-              <p className="text-sm text-gray-600 flex items-start gap-2">
-{dealer.address}
-              </p>
-              <div className="flex gap-2 pt-2 ">
-                <a
-                  href={dealer.gmaps}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-sm px-4 py-1.5 bg-primary text-white rounded hover:bg-primary/90 transition"
+        {loading ? (
+          <>
+            {[...Array(3)].map((_, index) => (
+              <div
+                key={index}
+                className="animate-pulse flex flex-col space-y-4 rounded-xl shadow-md p-6 bg-gray-200"
+              >
+                <div className="h-56 bg-gray-300 rounded-t-lg"></div>
+                <div className="h-6 w-3/4 bg-gray-300 rounded"></div>
+                <div className="h-4 w-full bg-gray-300 rounded"></div>
+                <div className="h-4 w-5/6 bg-gray-300 rounded"></div>
+              </div>
+            ))}
+          </>
+        ) : articles.length > 0 ? (
+          articles.map((item, index) => (
+            <div
+              key={index}
+              className="relative flex flex-col mt-6 text-dark bg-white shadow-md bg-clip-border rounded-xl"
+            >
+              <div className="relative h-56 -mt-6 overflow-hidden text-white shadow-lg bg-clip-border rounded-t-lg bg-blue-gray-500 shadow-blue-gray-500/40">
+                <Image
+                  src={
+                    item.cover_large?.startsWith("http")
+                      ? item.cover_large
+                      : `${process.env.NEXT_PUBLIC_API_KEY}${item.cover_large}`
+                  }
+                  alt={item.meta_title}
+                  fill
+                  className="object-cover"
+                  priority={index === 0}
+                />
+                {item.tags && item.tags.length > 0 && (
+                  <div className="absolute bottom-4 left-2 flex flex-wrap gap-1">
+                    {item.tags.map((tag, i) => (
+                      <Link
+                        key={i}
+                        href={`/${locale}/news/tag/${tag.name}`}
+                        className="bg-primary text-white px-3 py-1 text-xs rounded-full"
+                      >
+                        {tag.name}
+                      </Link>
+                    ))}
+                  </div>
+                )}
+              </div>
+              <div className="p-6">
+                <h5 className="block text-lg md:text-xl mb-2 font-semibold leading-snug text-blue-gray-900 line-clamp-3">
+                  {locale === "en" ? item.title_en : item.title}
+                </h5>
+                <p className="line-clamp-3 text-sm md:text-base font-light text-inherit min-h-[76px]">
+                  {locale === "en" ? item.excerpt_en : item.excerpt}
+                </p>
+                {/* {item.tags?.length > 0 && (
+                  <div className="text-sm text-primary font-medium mt-2">
+                    {item.tags.map((tag, i) => (
+                      <span key={i}>
+                        <Link
+                          href={`/news/tag/${tag.name}`}
+                          className="hover:underline"
+                        >
+                          #{tag.name}
+                        </Link>
+                        {i < item.tags.length - 1 && ", "}
+                      </span>
+                    ))}
+                  </div>
+                )} */}
+              </div>
+              <div className="p-6 pt-0">
+                <Link
+                  href={`/${locale}/news/${item.slug}`}
+                  className="text-sm py-3 px-6 rounded-md bg-primary text-white shadow-md hover:shadow-lg transition"
                 >
-                  Read More
-                </a>
+                  {locale === "en" ? "Read More" : "Selengkapnya"}
+                </Link>
               </div>
             </div>
-          </div>
-        ))}
+          ))
+        ) : (
+          <p className="text-center col-span-3 text-gray-500">
+            {locale === "en"
+              ? "No articles available at the moment."
+              : "Belum ada artikel saat ini."}
+          </p>
+        )}
       </div>
 
-      {visible < filtered.length && (
-        <div className="flex justify-center mt-8 ">
-          <button onClick={() => setVisible(visible + 3)} className="px-6 py-3 rounded-md cursor-pointer hover:bg-primary hover:text-white border border-primary text-primary">
-            Load More
+      {/* Load More */}
+      {pagination?.total > articles.length && (
+        <div className="flex justify-center items-center mt-12 lg:mt-16">
+          <button
+            onClick={handleLoadMore}
+            className="bg-[#000] text-white py-3 text-xl lg:text-[24px] font-semibold mt-4 px-8"
+          >
+            {locale === "en" ? "Load More" : "Tampilkan Lebih Banyak"}
           </button>
         </div>
       )}

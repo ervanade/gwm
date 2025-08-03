@@ -2,6 +2,7 @@
 import { useState, useEffect, useMemo } from "react";
 import Image from "next/image";
 import classNames from "classnames";
+import { useLocale } from "next-intl";
 
 const dummyColorOptions = [
   {
@@ -18,7 +19,10 @@ const dummyColorOptions = [
     name: "HB Blue",
     colorCode: "#002B69",
     image: "/assets/cars/h6/h6-blue-side.png",
-    thumbnails: ["/assets/cars/h6/h6-blue-side.png", "/assets/cars/h6/h6-blue-rear.png"],
+    thumbnails: [
+      "/assets/cars/h6/h6-blue-side.png",
+      "/assets/cars/h6/h6-blue-rear.png",
+    ],
   },
   {
     name: "Ayers Grey",
@@ -30,7 +34,10 @@ const dummyColorOptions = [
     name: "Hamilton White",
     colorCode: "#DCDDE0",
     image: "/assets/cars/h6/h6-white-side.png",
-    thumbnails: ["/assets/cars/h6/h6-white-side.png", "/assets/cars/h6/h6-white-side2.png"],
+    thumbnails: [
+      "/assets/cars/h6/h6-white-side.png",
+      "/assets/cars/h6/h6-white-side2.png",
+    ],
   },
   {
     name: "Sun Black",
@@ -41,6 +48,7 @@ const dummyColorOptions = [
 ];
 
 export default function ExteriorColorSection({ dataColors }) {
+  const locale = useLocale();
   const parsedApiColors = useMemo(() => {
     if (!dataColors) return null;
 
@@ -63,7 +71,9 @@ export default function ExteriorColorSection({ dataColors }) {
       : [];
 
   const [selectedColorIndex, setSelectedColorIndex] = useState(0);
-  const [selectedThumbnail, setSelectedThumbnail] = useState(colorsToUse[0]?.image || "");
+  const [selectedThumbnail, setSelectedThumbnail] = useState(
+    colorsToUse[0]?.image || ""
+  );
 
   const selectedColor = colorsToUse[selectedColorIndex];
 
@@ -79,9 +89,11 @@ export default function ExteriorColorSection({ dataColors }) {
     <section id="exterior" className="max-w-7xl mx-auto px-6 lg:px-12 py-12">
       <div className="lg:px-8 xl:px-12 flex flex-col lg:flex-row gap-8">
         {/* Sidebar: Color options */}
-        <div className="w-full lg:w-1/5 flex flex-col items-center lg:items-start gap-4">
-          <h2 className="text-2xl font-semibold mb-4">Color Options</h2>
-          <p className="text-lg font-semibold text-gray-800">
+        <div className="w-full lg:w-1/4 flex flex-col items-center lg:items-start gap-4">
+          <h2 className="text-2xl font-semibold mb-4">
+            {locale == "en" ? "Color Options" : "Color Options"}
+          </h2>
+          <p className="text-base font-semibold text-gray-800">
             {isEmpty ? "-" : selectedColor?.name}
           </p>
 
@@ -115,14 +127,13 @@ export default function ExteriorColorSection({ dataColors }) {
         <div className="flex-1">
           {isEmpty ? (
             <div className="w-full flex flex-col items-center justify-center py-12 text-center border border-dashed border-gray-300 rounded-lg">
-              
-          
               <p className="text-lg font-semibold text-gray-600 mb-2">
-              Warna belum tersedia untuk model ini.
+                Warna belum tersedia untuk model ini.
               </p>
-                <p className="text-sm font-base text-gray-500">
-                 Kami sedang menyiapkan warna untuk kendaraan ini. Silahkan cek kembali nanti.
-                </p>
+              <p className="text-sm font-base text-gray-500">
+                Kami sedang menyiapkan warna untuk kendaraan ini. Silahkan cek
+                kembali nanti.
+              </p>
             </div>
           ) : (
             <>

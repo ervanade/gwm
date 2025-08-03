@@ -8,15 +8,15 @@ export async function generateMetadata({ params }) {
 
   const meta = {
     id: {
-      title: "Lokasi Dealer Resmi GWM Indonesia",
+      title: "Lokasi Dealer GWM Inchcape Terdekat | GWM Inchcape Indonesia",
       description:
-        "Temukan lokasi dealer resmi GWM di kota Anda. Dapatkan layanan penjualan, test drive, dan purna jual terbaik.",
+        "Temukan lokasi dealer resmi GWM Inchcape terdekat di Indonesia. Dapatkan petunjuk arah, jam operasional, dan informasi kontak untuk kunjungan Anda.",
       keywords: ["dealer GWM", "lokasi dealer", "dealer mobil Indonesia"],
     },
     en: {
-      title: "Official GWM Dealer Locations in Indonesia",
+      title: "Nearest GWM Inchcape Official Dealers Location | GWM Inchcape Indonesia",
       description:
-        "Find GWM authorized dealers near your location. Sales, test drives, and aftersales service available nationwide.",
+        "Find your nearest official GWM Inchcape dealers in Indonesia. Get directions, opening hours, and contact information for your visit.",
       keywords: ["GWM dealers", "Indonesia dealer locations", "GWM service"],
     },
   };
