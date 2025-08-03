@@ -82,7 +82,9 @@ const Navbar = ({ dataModels }) => {
       pathname === "/" ||
       pathname.startsWith("/models/") ||
       pathname.startsWith("/test-drive") ||
-      pathname.startsWith("/dealer-locations");
+      pathname === "/dealer-locations" ||
+      pathname === "/news" ||
+      pathname === "/after-sales";
 
     const handleScrollColor = () => {
       if (window.scrollY > 5) {

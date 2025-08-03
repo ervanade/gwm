@@ -11,7 +11,7 @@
     "items": [
     { "label": "MODELS", "link": "/models" },
       { "label": "DISCOVER GWM", "link": "/about-gwm" },
-      { "label": "AFTER SALES", "link": "/" },
+      { "label": "AFTER SALES", "link": "/after-sales" },
       { "label": "NEWS & PROMO", "link": "/news" },
       { "label": "DEALER LOCATIONS", "link": "/dealer-locations" }
     ]

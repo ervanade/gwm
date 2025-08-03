@@ -27,7 +27,7 @@ const ArticlesDetails = ({ article, related }) => {
           <div className="flex flex-col items-center justify-center gap-2 sm:flex-row sm:gap-4 text-sm mb-4 text-gray-700">
             <Link
               className="px-4 py-1.5 bg-primary text-white font-semibold rounded-full text-sm"
-              href={`/articles/category/${article.category_id}-${article.meta_keywords}?lang=${locale}`}
+              href={`/articles/tags`}
             >
               {article.meta_keywords}
             </Link>
@@ -54,18 +54,19 @@ const ArticlesDetails = ({ article, related }) => {
 
           <div className="flex flex-col lg:flex-row w-full mt-5 gap-8">
             <div className="flex-[3_3_0%]">
-              {article.cover_large && (
-                <div className="aspect-[16/8] lg:aspect-[16/6] w-full overflow-hidden rounded-lg relative">
-                  <Image
-                    src={article.cover_large}
-                    alt={article.alt_text || "Article GWM"}
-                    sizes="100vw"
-                    fill
-                    className="object-cover"
-                    priority
-                  />
-                </div>
-              )}
+              {article.cover_large ||
+                (article.image && (
+                  <div className="aspect-[16/8] lg:aspect-[16/6] w-full overflow-hidden rounded-lg relative">
+                    <Image
+                      src={article.cover_large || article.image}
+                      alt={article.alt_text || "Article GWM"}
+                      sizes="100vw"
+                      fill
+                      className="object-cover"
+                      priority
+                    />
+                  </div>
+                ))}
 
               <div className="news-text mt-5 prose max-w-none prose-img:rounded-md prose-headings:scroll-mt-24">
                 {content ? (
