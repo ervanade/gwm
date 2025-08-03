@@ -33,13 +33,13 @@ export async function generateMetadata({ params }) {
         locale,
         path: `/dealer-locations/${dealer.slug}`,
         title: HTMLDecoderEncoder.decode(
-            isEnglish ? dealer?.meta_title_en : dealer?.meta_title || dealer?.title
+            isEnglish ? dealer?.meta_title : dealer?.meta_title || dealer?.title
         ),
         description: HTMLDecoderEncoder.decode(
-            isEnglish ? dealer?.meta_desc_en : dealer?.meta_desc || ""
+            isEnglish ? dealer?.meta_description : dealer?.meta_description || ""
         ),
         keywords: HTMLDecoderEncoder.decode(
-            isEnglish ? dealer?.meta_keywords_en : dealer?.meta_keywords || ""
+            isEnglish ? dealer?.meta_keywords : dealer?.meta_keywords || ""
         ),
         image: dealer?.cover_large || dealer?.cover || "/og-default.jpg",
     });

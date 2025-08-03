@@ -119,7 +119,7 @@ export default function DealerSection({ dataDealers }) {
               </p>
               <div className="flex gap-2 pt-2">
                 <Link
-                  href={`/dealer-locations/${dealer.slug}`}
+                  href={`/${locale}/dealer-locations/${dealer.slug}`}
                   className="text-sm px-4 py-1.5 border border-primary text-primary rounded"
                 >
                   Detail
