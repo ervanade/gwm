@@ -43,8 +43,8 @@ const Footer = ({ dataSettings }) => {
                 <li className="flex items-center gap-2">
                   <FaBuilding size={24} className="!text-2xl" />
                   <span className="text-sm">
-                    {dataSettings?.contact2_address
-                      ? dataSettings?.contact2_address
+                    {dataSettings?.address
+                      ? dataSettings?.address
                       : ` Jl. Arjuna Utara No.188 kav.89, RT.1/RW.1, Tj. Duren Sel., Kec. Grogol petamburan, Kota Jakarta Bara`}
                   </span>
                 </li>
@@ -53,16 +53,16 @@ const Footer = ({ dataSettings }) => {
                     <li className="flex items-center gap-2">
                       <FaPhoneAlt />
                       <span className="text-sm">
-                        {dataSettings?.contact_phone
-                          ? dataSettings?.contact_phone
+                        {dataSettings?.phone_number
+                          ? dataSettings?.phone_number
                           : `+62 811-1234-5678`}
                       </span>
                     </li>
                     <li className="flex items-center gap-2">
                       <FaMessage />
                       <span className="text-sm">
-                        {dataSettings?.contact_email
-                          ? dataSettings?.contact_email
+                        {dataSettings?.email
+                          ? dataSettings?.email
                           : `gwmigri@gwminchcape.co.id`}
                       </span>
                     </li>
@@ -189,8 +189,8 @@ const Footer = ({ dataSettings }) => {
                   target="_blank"
                   rel="noopener noreferrer"
                   href={
-                    dataSettings?.facebook
-                      ? dataSettings?.facebook
+                    dataSettings?.link_fb
+                      ? dataSettings?.link_fb
                       : data.facebook
                   }
                 >
@@ -205,8 +205,8 @@ const Footer = ({ dataSettings }) => {
                   target="_blank"
                   rel="noopener noreferrer"
                   href={
-                    dataSettings?.instagram
-                      ? dataSettings?.instagram
+                    dataSettings?.link_ig
+                      ? dataSettings?.link_ig
                       : data.instagram
                   }
                 >
@@ -223,7 +223,7 @@ const Footer = ({ dataSettings }) => {
                   target="_blank"
                   rel="noopener noreferrer"
                   href={
-                    dataSettings?.tiktok ? dataSettings?.tiktok : data.tiktok
+                    dataSettings?.link_tiktok ? dataSettings?.link_tiktok : data.tiktok
                   }
                 >
                   <Image

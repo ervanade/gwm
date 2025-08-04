@@ -137,7 +137,7 @@ export default async function LocaleLayout({
 }) {
   // Ensure that the incoming `locale` is valid
   const { locale } = await params;
-  // const { data } = await getData()
+  const { data : dataSettings } = await getData()
   const { data } = await getDataProducts()
   if (!hasLocale(routing.locales, locale)) {
     notFound();
@@ -152,8 +152,8 @@ export default async function LocaleLayout({
 
           <Navbar dataModels={data || []} />
           {children}
-          <StickyMenu />
-          <Footer />
+          <StickyMenu data={dataSettings || []}/>
+          <Footer dataSettings={dataSettings || []}/>
         </ReCaptchaProviderWrapper>
         </NextIntlClientProvider>
       </body>
