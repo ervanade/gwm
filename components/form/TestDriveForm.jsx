@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import ReCAPTCHA from "react-google-recaptcha";
+import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
 import Swal from "sweetalert2"; // Pastikan sudah diinstal
 import axios from "axios"; // Pastikan sudah diinstal
 import { FaCheckCircle } from "react-icons/fa";
@@ -27,7 +27,7 @@ export default function TestDriveForm({ locale }) {
   const [submitted, setSubmitted] = useState(false);
 
   const formRef = useRef(null);
-  const recaptchaRef = useRef(null);
+  const { executeRecaptcha } = useGoogleReCaptcha();
 
   useEffect(() => {
     const fetchModels = async () => {
@@ -145,8 +145,17 @@ export default function TestDriveForm({ locale }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!validateForm()) return;
+    if (!executeRecaptcha) {
+      Swal.fire("Error", "reCAPTCHA belum siap", "error");
+      return;
+    }
 
+    if (!validateForm()) return;
+    const token = await executeRecaptcha("test_drive_form");
+    if (!token) {
+      Swal.fire("Error", "Token reCAPTCHA tidak tersedia", "error");
+      return;
+    }
     setLoading(true);
     Swal.fire({
       title: "Mengirim Permintaan...",
@@ -193,9 +202,6 @@ export default function TestDriveForm({ locale }) {
           agree: false,
         });
         setCaptchaToken(null);
-        if (recaptchaRef.current) {
-          recaptchaRef.current.reset();
-        }
       } else {
         throw new Error(response.data?.message || "Gagal mengirim permintaan.");
       }
@@ -347,15 +353,6 @@ export default function TestDriveForm({ locale }) {
             news and information from PT. Inchcape Indomobil Energi Baru
             Distribusi by WhatsApp, Phone call, and/or Email.
           </label>
-        </div>
-
-        {/* reCAPTCHA */}
-        <div>
-          <ReCAPTCHA
-            sitekey="YOUR_RECAPTCHA_SITE_KEY"
-            onChange={(token) => setCaptchaToken(token)}
-            ref={recaptchaRef}
-          />
         </div>
 
         {/* Submit */}

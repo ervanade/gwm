@@ -8,6 +8,7 @@ import { useLocale } from 'next-intl/server';
 import "./globals.css";
 import StickyMenu from '@/components/StickyMenu';
 import Footer from '@/components/footer/Footer';
+import ReCaptchaProviderWrapper from '@/components/ReCaptchaProviderWrapper';
 
 const helvetica = localFont({
   src: [
@@ -147,10 +148,13 @@ export default async function LocaleLayout({
     <html lang={locale} className={helvetica.className}>
       <body className='!font-helvetica'>
         <NextIntlClientProvider messages={messages}>
+        <ReCaptchaProviderWrapper>
+
           <Navbar dataModels={data || []} />
           {children}
           <StickyMenu />
           <Footer />
+        </ReCaptchaProviderWrapper>
         </NextIntlClientProvider>
       </body>
     </html>

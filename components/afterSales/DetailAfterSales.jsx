@@ -39,8 +39,7 @@ const DetailAfterSales = () => {
 
   return (
     <section
-      className="w-full px-6 lg:px-12 py-12 md:py-16 relative scroll-mt-12 max-w-7xl mx-auto text-dark"
-      id="our-tenant"
+      className="max-w-7xl mx-auto w-full px-6 lg:px-12 py-12 md:py-16relative scroll-mt-12 text-dark"
     >
       <div className="w-full max-w-6xl px-4 md:px-5 lg:px-5 mx-auto">
         {/* <div className="mb-16">
@@ -62,7 +61,7 @@ const DetailAfterSales = () => {
             }`}
           >
             <div
-              className={`relative mx-auto w-2/3 lg:w-full rounded-md lg:px-4 overflow-hidden aspect-[16/9] ${
+              className={`relative mx-auto w-full sm:w-2/3 lg:w-full rounded-md lg:px-4 overflow-hidden aspect-[16/10] ${
                 (index + 1) % 2 === 0
                   ? "order-first lg:order-last lg:mr-0"
                   : "lg:ml-0"
@@ -79,9 +78,9 @@ const DetailAfterSales = () => {
             </div>
 
             {/* Konten */}
-            <div className="w-full flex-col justify-start lg:items-start items-center gap-10 inline-flex">
+            <div className="w-full flex-col justify-start lg:items-start items-center  inline-flex">
               <div className="w-full flex-col justify-start lg:items-start items-center flex">
-                <h2 className="text-dark text-3xl font-bold text-center mb-8 lg:mb-12">
+                <h2 className="text-dark text-3xl font-bold text-center mb-6 lg:mb-8">
                   {item.title}
                 </h2>
                 <p className="text-dark/80 text-base font-normal leading-relaxed lg:text-start text-center">

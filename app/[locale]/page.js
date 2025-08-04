@@ -38,8 +38,8 @@ export async function generateMetadata({ params }) {
 }
 
 
-async function getData() {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_API_KEY}/api/v1/homepage`, {
+async function getData(locale) {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_KEY}/api/v1/homepage?language=${locale}`, {
     // cache: 'no-store',
     next: { revalidate: 300 },
     method: 'GET',
@@ -55,8 +55,10 @@ async function getData() {
   return res.json()
 }
 
-export default async function HomePage() {
-  const { data } = await getData()
+export default async function HomePage({params}) {
+  const useParams = await params
+  const locale = await useParams.locale || "id";
+  const { data } = await getData(locale === "en" ? "EN" : "ID")
   return (
     <>
       <Hero dataHero={data?.banners || null} />

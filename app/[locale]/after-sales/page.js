@@ -36,7 +36,7 @@ const page = async ({ params }) => {
       <PageHero
         image="/assets/hero-warranty.jpg"
         title={locale == "en" ? "After Sales" : "After Sales"}
-        subtitle={locale == "en" ? "Visit GWM convenient & premium dealers. Enjoy freshly-brewed free coffee from our barista everyday and book your test drive today." : "Kunjungi dealer GWM yang nyaman dan premium. Nikmati kopi hangat langsung dari barista terbaik, gratis untuk anda setiap hari dan jadwalkan test drive Anda hari ini."}
+        subtitle={locale == "en" ? "Complete after-sales service for your comfort and peace of mind after owning a GWM vehicle." : "Layanan purna jual lengkap untuk kenyamanan dan ketenangan Anda setelah memiliki kendaraan GWM."}
       />
       <DetailAfterSales />
     </div>
