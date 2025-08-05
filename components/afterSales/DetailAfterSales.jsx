@@ -38,10 +38,8 @@ const DetailAfterSales = () => {
   ];
 
   return (
-    <section
-      className="max-w-7xl mx-auto w-full px-6 lg:px-12 py-12 md:py-16relative scroll-mt-12 text-dark"
-    >
-      <div className="w-full max-w-6xl px-4 md:px-5 lg:px-5 mx-auto">
+    <section className="max-w-7xl mx-auto w-full px-6 lg:px-12 py-12 md:py-16relative scroll-mt-12 text-dark">
+      <div className="w-full">
         {/* <div className="mb-16">
           <h1 className="text-3xl font-bold mb-6">
             {locale === "en" ? "GWM After Sales" : "GWM After Sales"}
@@ -61,7 +59,7 @@ const DetailAfterSales = () => {
             }`}
           >
             <div
-              className={`relative mx-auto w-full sm:w-2/3 lg:w-full rounded-md lg:px-4 overflow-hidden aspect-[16/10] ${
+              className={`relative mx-auto w-full sm:w-2/3 lg:w-full rounded-md lg:px-4 overflow-hidden aspect-[3/2] ${
                 (index + 1) % 2 === 0
                   ? "order-first lg:order-last lg:mr-0"
                   : "lg:ml-0"
