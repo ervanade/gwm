@@ -81,10 +81,10 @@ export default function GwmArticles() {
           {tags.map((tag, index) => (
             <Link
               key={index}
-              href={`/${locale}/news/tag/${tag}`}
+              href={`/${locale}/news/tag/${tag?.slug}`}
               className="inline-block mr-4 border border-black/80 text-black/80 px-4 py-2 rounded-full font-sm md:font-base"
             >
-              {tag}
+              {locale === "en" ? tag?.tag_name : tag?.tag_name}
             </Link>
           ))}
         </div>
@@ -129,10 +129,12 @@ export default function GwmArticles() {
                     {item.tags.map((tag, i) => (
                       <Link
                         key={i}
-                        href={`/${locale}/news/tag/${tag.name}`}
-                        className="bg-primary text-white px-3 py-1 text-xs rounded-full"
+                        href={`/${locale}/news/tag/${tag?.slug}`}
+                        className="bg-primary text-white px-3 py-1 text-[10px] rounded-full"
                       >
-                        {tag.name}
+                        {locale === "en"
+                          ? "#" + tag?.tag_name
+                          : "#" + tag?.tag_name}
                       </Link>
                     ))}
                   </div>
@@ -145,21 +147,23 @@ export default function GwmArticles() {
                 <p className="line-clamp-3 text-sm md:text-base font-light text-inherit min-h-[76px]">
                   {locale === "en" ? item.excerpt_en : item.excerpt}
                 </p>
-                {/* {item.tags?.length > 0 && (
-                  <div className="text-sm text-primary font-medium mt-2">
+                {item.tags?.length > 0 && (
+                  <div className="text-sm text-dark font-medium mt-2">
                     {item.tags.map((tag, i) => (
                       <span key={i}>
                         <Link
-                          href={`/news/tag/${tag.name}`}
+                          href={`/news/tag/${tag.slug}`}
                           className="hover:underline"
                         >
-                          #{tag.name}
+                          {locale === "en"
+                            ? "#" + tag?.tag_name
+                            : "#" + tag?.tag_name}
                         </Link>
                         {i < item.tags.length - 1 && ", "}
                       </span>
                     ))}
                   </div>
-                )} */}
+                )}
               </div>
               <div className="p-6 pt-0">
                 <Link

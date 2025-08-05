@@ -55,15 +55,26 @@ async function getData(locale) {
   return res.json()
 }
 
-export default async function HomePage({params}) {
+export default async function HomePage({ params }) {
   const useParams = await params
   const locale = await useParams.locale || "id";
   const { data } = await getData(locale === "en" ? "EN" : "ID")
+  const productHighlight = locale === "en"
+    ? data?.pages_en?.["product-highlight-en"]?.[0] || {}
+    : data?.pages?.["product-highlight"]?.[0] || {};
+
+  const dataAfterSales = locale === "en"
+    ? data?.pages_en?.["gwm-after-sales-en"]?.[0]
+    : data?.pages?.["gwm-after-sales"]?.[0] || {};
   return (
     <>
       <Hero dataHero={data?.banners || null} />
       <Models dataModels={data?.products || []} dataCategories={data?.categories || []} />
-      <OverviewProduct overviewHtml={data?.pages[0]} dataModels={data?.products_overview || []} dataAfterSales={data?.pages[1]} />
+      <OverviewProduct
+        overviewHtml={productHighlight}
+        dataModels={data?.products_overview || []}
+        dataAfterSales={dataAfterSales}
+      />
       <AfterSales />
     </>
   );
