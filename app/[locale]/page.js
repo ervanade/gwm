@@ -41,7 +41,7 @@ export async function generateMetadata({ params }) {
 async function getData(locale) {
   const res = await fetch(`${process.env.NEXT_PUBLIC_API_KEY}/api/v1/homepage?language=${locale}`, {
     // cache: 'no-store',
-    next: { revalidate: 300 },
+    // next: { revalidate: 300 },
     method: 'GET',
     headers: {
       'X-Api-Key': process.env.NEXT_PUBLIC_APP_X_API_KEY,
@@ -60,12 +60,12 @@ export default async function HomePage({ params }) {
   const locale = await useParams.locale || "id";
   const { data } = await getData(locale === "en" ? "EN" : "ID")
   const productHighlight = locale === "en"
-    ? data?.pages_en?.["product-highlight-en"]?.[0] || {}
-    : data?.pages?.["product-highlight"]?.[0] || {};
+    ? data?.pages?.["product-highlight-en"] || {}
+    : data?.pages?.["product-highlight"] || {};
 
   const dataAfterSales = locale === "en"
-    ? data?.pages_en?.["gwm-after-sales-en"]?.[0]
-    : data?.pages?.["gwm-after-sales"]?.[0] || {};
+    ? data?.pages?.["gwm-after-sales-en"]
+    : data?.pages?.["gwm-after-sales"] || {};
   return (
     <>
       <Hero dataHero={data?.banners || null} />

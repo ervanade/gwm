@@ -17,7 +17,7 @@ const ArticlesDetails = ({ article, related }) => {
   const excerpt = locale === "en" ? article?.excerpt_en : article?.excerpt;
 
   return (
-    <div className="w-full bg-gray-50 py-12 px-6 text-textDark">
+    <div className="w-full bg-gray-50 py-12 px-6 lg:px-12 text-textDark">
       <div className="max-w-[1200px] mx-auto w-full overflow-hidden">
         <div className="news-content">
           <h1 className="text-2xl xl:text-[32px] leading-tight font-bold mb-4 text-center">
@@ -25,40 +25,35 @@ const ArticlesDetails = ({ article, related }) => {
           </h1>
 
           <div className="flex flex-col items-center justify-center gap-2 sm:flex-row sm:gap-4 text-sm mb-4 text-gray-700">
-            <Link
+          {article.tags?.length > 0 && (
+            <div className="text-center text-primary font-medium text-sm">
+              {article.tags.map((tag, i) => (
+                <span key={i}>
+                   <Link
               className="px-4 py-1.5 bg-primary text-white font-semibold rounded-full text-sm"
-              href={`/articles/tags`}
+              href={`/articles/tag/${tag.tag_name}`}
             >
-              {article.meta_keywords}
+               #{tag.tag_name}
             </Link>
+                  {/* {i < article.tags.length - 1 && ", "} */}
+                </span>
+              ))}
+            </div>
+          )}
             {article.published_at && (
               <p>{format(parseISO(article.published_at), "yyyy MMM dd")}</p>
             )}
           </div>
 
-          {article.tags?.length > 0 && (
-            <div className="text-center text-primary font-medium text-sm mb-6">
-              {article.tags.map((tag, i) => (
-                <span key={i}>
-                  <Link
-                    href={`/articles/tag/${tag.name}`}
-                    className="hover:underline"
-                  >
-                    #{tag.name}
-                  </Link>
-                  {i < article.tags.length - 1 && ", "}
-                </span>
-              ))}
-            </div>
-          )}
+        
 
           <div className="flex flex-col lg:flex-row w-full mt-5 gap-8">
             <div className="flex-[3_3_0%]">
-              {article.cover_large ||
-                (article.image && (
+              {
+                (article.cover_url && (
                   <div className="aspect-[16/8] lg:aspect-[16/6] w-full overflow-hidden rounded-lg relative">
                     <Image
-                      src={article.cover_large || article.image}
+                      src={article.cover_url || article.image}
                       alt={article.alt_text || "Article GWM"}
                       sizes="100vw"
                       fill

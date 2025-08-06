@@ -1,6 +1,7 @@
 import DetailAfterSales from '@/components/afterSales/DetailAfterSales';
 import DealerSection from '@/components/dealers/DealerSection';
 import AboutUs from '@/components/discover/About';
+import EraDetail from '@/components/discover/EraDetail';
 import PageHero from '@/components/hero/PageHero'
 import { getBaseMeta } from '@/lib/seo';
 import React from 'react'
@@ -10,13 +11,13 @@ export async function generateMetadata({ params }) {
 
   const meta = {
     id: {
-      title: "Tentang Kami | GWM Inchcape Indonesia",
+      title: "Emergency Roadside Assistance | GWM Inchcape Indonesia",
       description:
         "Temukan lokasi dealer resmi GWM Inchcape terdekat di Indonesia. Dapatkan petunjuk arah, jam operasional, dan informasi kontak untuk kunjungan Anda.",
       keywords: ["dealer GWM", "lokasi dealer", "dealer mobil Indonesia"],
     },
     en: {
-      title: "About Us | GWM Inchcape Indonesia",
+      title: "Emergency Roadside Assistance | GWM Inchcape Indonesia",
       description:
         "Find your nearest official GWM Inchcape dealers in Indonesia. Get directions, opening hours, and contact information for your visit.",
       keywords: ["GWM dealers", "Indonesia dealer locations", "GWM service"],
@@ -36,10 +37,10 @@ const page = async ({ params }) => {
     <div>
       <PageHero
         image="/assets/hero-warranty.jpg"
-        title={locale == "en" ? "About Us" : "Tentang Kami"}
-        subtitle={locale == "en" ? "Complete after-sales service for your comfort and peace of mind after owning a GWM vehicle." : "Layanan purna jual lengkap untuk kenyamanan dan ketenangan Anda setelah memiliki kendaraan GWM."}
+        title={locale == "en" ? "ERA" : "ERA"}
+        subtitle={locale == "en" ? "EMERGENCY ROADSIDE ASSISTANCE" : "EMERGENCY ROADSIDE ASSISTANCE"}
       />
-      <AboutUs />
+      <EraDetail />
     </div>
   )
 }

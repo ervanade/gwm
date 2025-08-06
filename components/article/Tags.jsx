@@ -6,7 +6,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-export default function GwmArticles() {
+export default function GwmArticlesByTag({ slugTag }) {
   const locale = useLocale();
   const [articles, setArticles] = useState([]);
   const [tags, setTags] = useState([]);
@@ -17,7 +17,7 @@ export default function GwmArticles() {
   const fetchArticles = async (pageNum = 1) => {
     try {
       const res = await axios.get(
-        `${process.env.NEXT_PUBLIC_API_KEY}/api/v1/article?page=${pageNum}`,
+        `${process.env.NEXT_PUBLIC_API_KEY}/api/v1/article/tag/${slugTag}?page=${pageNum}`,
         {
           headers: {
             "X-Api-Key": process.env.NEXT_PUBLIC_APP_X_API_KEY,
@@ -50,14 +50,16 @@ export default function GwmArticles() {
       });
       setTags(Array.from(tagMap.values()));
     } catch (err) {
-      console.error("Error fetching articles", err);
+      console.error("Error fetching articles by tag", err);
       setLoading(false);
     }
   };
 
   useEffect(() => {
+    setArticles([]); // reset ketika slugTag berubah
+    setPage(1);
     fetchArticles(1);
-  }, []);
+  }, [slugTag]);
 
   const handleLoadMore = () => {
     const nextPage = page + 1;
@@ -83,19 +85,32 @@ export default function GwmArticles() {
         <div className="mb-6 overflow-x-auto whitespace-nowrap no-scrollbar">
           <Link
             href={`/${locale}/news`}
-            className="inline-block mr-4 bg-primary text-white px-4 py-2 rounded-full font-sm md:font-base font-semibold"
+            className={`inline-block mr-4 px-4 py-2 rounded-full font-sm md:font-base font-semibold ${
+              !slugTag
+                ? "bg-primary text-white"
+                : "border border-black/80 text-black/80"
+            }`}
           >
             All Tags
           </Link>
-          {tags.map((tag) => (
-            <Link
-              key={tag?.slug}
-              href={`/${locale}/news/tag/${tag?.slug}`}
-              className="inline-block mr-4 border border-black/80 text-black/80 px-4 py-2 rounded-full font-sm md:font-base"
-            >
-              {locale === "en" ? tag?.tag_name || tag?.tag_name : tag?.tag_name}
-            </Link>
-          ))}
+          {tags.map((tag) => {
+            const isActive = tag.slug === slugTag;
+            return (
+              <Link
+                key={tag?.slug}
+                href={`/${locale}/news/tag/${tag?.slug}`}
+                className={`inline-block mr-4 px-4 py-2 rounded-full font-sm md:font-base ${
+                  isActive
+                    ? "bg-primary text-white"
+                    : "border border-black/80 text-black/80"
+                }`}
+              >
+                {locale === "en"
+                  ? tag?.tag_name_en || tag?.tag_name
+                  : tag?.tag_name}
+              </Link>
+            );
+          })}
         </div>
       )}
 
