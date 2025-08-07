@@ -75,7 +75,7 @@ const Footer = ({ dataSettings }) => {
               <ul className="space-y-3 lg:pt-4">
                 <li>
                   <Link
-                    href={`/`}
+                    href={`/models/haval-h6-hev`}
                     className="text-sm font-normal hover:text-primary"
                   >
                     HAVAL
@@ -83,7 +83,7 @@ const Footer = ({ dataSettings }) => {
                 </li>
                 <li>
                   <Link
-                    href={`/`}
+                    href={`/models/tank-500`}
                     className="text-sm font-normal hover:text-primary"
                   >
                     TANK
@@ -91,7 +91,7 @@ const Footer = ({ dataSettings }) => {
                 </li>
                 <li>
                   <Link
-                    href={`/`}
+                    href={`/models/ora-o3-bev`}
                     className="text-sm font-normal hover:text-primary"
                   >
                     ORA
@@ -105,7 +105,7 @@ const Footer = ({ dataSettings }) => {
               <ul className="space-y-3 lg:pt-4">
                 <li>
                   <Link
-                    href={`/`}
+                    href={`/about-us`}
                     className="text-sm font-normal hover:text-primary"
                   >
                     ABOUT GWM
@@ -113,7 +113,7 @@ const Footer = ({ dataSettings }) => {
                 </li>
                 <li>
                   <Link
-                    href={`/`}
+                    href={`/era`}
                     className="text-sm font-normal hover:text-primary"
                   >
                     ERA
@@ -121,7 +121,8 @@ const Footer = ({ dataSettings }) => {
                 </li>
                 <li>
                   <Link
-                    href={`/`}
+                    href={`/https://wa.me/+628187654321`}
+                    target="_blank"
                     className="text-sm font-normal hover:text-primary"
                   >
                     CONTACT US
@@ -135,7 +136,7 @@ const Footer = ({ dataSettings }) => {
               <ul className="space-y-3 lg:pt-4">
                 <li>
                   <Link
-                    href={`/`}
+                    href={`/after-sales`}
                     className="text-sm font-normal hover:text-primary"
                   >
                     WARRANTY
@@ -143,7 +144,7 @@ const Footer = ({ dataSettings }) => {
                 </li>
                 <li>
                   <Link
-                    href={`/`}
+                    href={`/after-sales`}
                     className="text-sm font-normal hover:text-primary"
                   >
                     ACCESSORIES
@@ -157,7 +158,7 @@ const Footer = ({ dataSettings }) => {
               <ul className="space-y-3 lg:pt-4">
                 <li>
                   <Link
-                    href={`/`}
+                    href={`/test-drive`}
                     className="text-sm font-normal hover:text-primary"
                   >
                     TEST DRIVE
@@ -165,7 +166,7 @@ const Footer = ({ dataSettings }) => {
                 </li>
                 <li>
                   <Link
-                    href={`/`}
+                    href={`/dealer-locations`}
                     className="text-sm font-normal hover:text-primary"
                   >
                     LOKASI DEALER
@@ -173,7 +174,7 @@ const Footer = ({ dataSettings }) => {
                 </li>
                 <li>
                   <Link
-                    href={`/`}
+                    href={`/news`}
                     className="text-sm font-normal hover:text-primary"
                   >
                     NEWS & PROMO
@@ -223,7 +224,9 @@ const Footer = ({ dataSettings }) => {
                   target="_blank"
                   rel="noopener noreferrer"
                   href={
-                    dataSettings?.link_tiktok ? dataSettings?.link_tiktok : data.tiktok
+                    dataSettings?.link_tiktok
+                      ? dataSettings?.link_tiktok
+                      : data.tiktok
                   }
                 >
                   <Image
