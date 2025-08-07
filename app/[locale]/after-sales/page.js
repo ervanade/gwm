@@ -9,25 +9,26 @@ export async function generateMetadata({ params }) {
 
   const meta = {
     id: {
-      title: "Lokasi Dealer GWM Inchcape Terdekat | GWM Inchcape Indonesia",
+      title: "Layanan Purna Jual GWM | GWM Inchcape Indonesia",
       description:
-        "Temukan lokasi dealer resmi GWM Inchcape terdekat di Indonesia. Dapatkan petunjuk arah, jam operasional, dan informasi kontak untuk kunjungan Anda.",
-      keywords: ["dealer GWM", "lokasi dealer", "dealer mobil Indonesia"],
+        "Nikmati layanan purna jual GWM terbaik di GWM Inchcape. Dapatkan perawatan kendaraan, suku cadang asli, dan dukungan teknis profesional.",
+      keywords: ["layanan purna jual gwm", "after sales gwm", "service gwm"],
     },
     en: {
-      title: "Nearest GWM Inchcape Official Dealers Location | GWM Inchcape Indonesia",
+      title: "GWM After-Sales Services | GWM Inchcape Indonesia",
       description:
-        "Find your nearest official GWM Inchcape dealers in Indonesia. Get directions, opening hours, and contact information for your visit.",
-      keywords: ["GWM dealers", "Indonesia dealer locations", "GWM service"],
+        "Enjoy premium after-sales service at GWM Inchcape. From vehicle maintenance to genuine parts and expert technical support, we have you covered.",
+      keywords: ["after sales gwm", "gwm service", "genuine parts gwm"],
     },
   };
 
   return getBaseMeta({
     locale,
-    path: `/dealer-locations`,
+    path: `/after-sales`,
     ...meta[locale],
   });
 }
+
 
 const page = async ({ params }) => {
   const { locale } = await params;

@@ -12,32 +12,33 @@ export async function generateMetadata({ params }) {
     id: {
       title: "Tentang Kami | GWM Inchcape Indonesia",
       description:
-        "Temukan lokasi dealer resmi GWM Inchcape terdekat di Indonesia. Dapatkan petunjuk arah, jam operasional, dan informasi kontak untuk kunjungan Anda.",
-      keywords: ["dealer GWM", "lokasi dealer", "dealer mobil Indonesia"],
+        "Kenali GWM Inchcape Indonesia lebih dekat. Pelajari visi, misi, dan komitmen kami dalam menghadirkan mobil berkualitas dan layanan terbaik di Indonesia.",
+      keywords: ["tentang gwm", "gwm indonesia", "dealer mobil resmi"],
     },
     en: {
       title: "About Us | GWM Inchcape Indonesia",
       description:
-        "Find your nearest official GWM Inchcape dealers in Indonesia. Get directions, opening hours, and contact information for your visit.",
-      keywords: ["GWM dealers", "Indonesia dealer locations", "GWM service"],
+        "Learn more about GWM Inchcape Indonesia. Discover our mission, vision, and commitment to delivering premium vehicles and top service in Indonesia.",
+      keywords: ["about gwm", "gwm indonesia", "official car dealer"],
     },
   };
 
   return getBaseMeta({
     locale,
-    path: `/about`,
+    path: `/about-us`,
     ...meta[locale],
   });
 }
+
 
 const page = async ({ params }) => {
   const { locale } = await params;
   return (
     <div>
       <PageHero
-        image="/assets/hero-warranty.jpg"
+        image="/assets/hero-about2.jpg"
         title={locale == "en" ? "About Us" : "Tentang Kami"}
-        subtitle={locale == "en" ? "Complete after-sales service for your comfort and peace of mind after owning a GWM vehicle." : "Layanan purna jual lengkap untuk kenyamanan dan ketenangan Anda setelah memiliki kendaraan GWM."}
+        subtitle={locale == "en" ? "Learn more about GWM Inchcape Indonesia. Discover our mission, vision, and commitment to delivering premium vehicles and top service in Indonesia." : "Kenali GWM Inchcape Indonesia lebih dekat. Pelajari visi, misi, dan komitmen kami dalam menghadirkan mobil berkualitas dan layanan terbaik di Indonesia."}
       />
       <AboutUs />
     </div>

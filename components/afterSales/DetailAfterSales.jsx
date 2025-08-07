@@ -9,7 +9,7 @@ const DetailAfterSales = () => {
 
   const dummyTenants = [
     {
-      id: "tank",
+      id: "warranty",
       title: "WARRANTY",
       image: "/assets/warranty.png",
       desc_id:
@@ -18,7 +18,7 @@ const DetailAfterSales = () => {
         "Experience the thrill of off-road adventure with GWM’s TANK vehicles. This zone is designed for those who want to feel the power and comfort firsthand.",
     },
     {
-      id: "ora",
+      id: "accessories",
       title: "ACCESSORIES",
       image: "/assets/accessories.png",
       desc_id:
@@ -28,7 +28,7 @@ const DetailAfterSales = () => {
     },
     {
       id: "afterservice",
-      title: "After-Sales Center",
+      title: "AFTER SALES CENTER",
       image: "/assets/dealers/pondokindah.png",
       desc_id:
         "Layanan purna jual lengkap untuk kenyamanan dan ketenangan Anda setelah memiliki kendaraan GWM.",

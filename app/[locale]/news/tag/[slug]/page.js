@@ -6,26 +6,26 @@ import { getBaseMeta } from '@/lib/seo';
 import React from 'react'
 
 export async function generateMetadata({ params }) {
-  const { locale, slug } = await params;
+  const { slug, locale } = params;
 
   const meta = {
     id: {
-      title: `${slug} | News dan Promo GWM Indonesia`,
+      title: `Berita GWM Berdasarkan Tag: ${slug} | GWM Inchcape`,
       description:
-        "Temukan News dan Promo GWM di kota Anda. Dapatkan layanan penjualan, test drive, dan purna jual terbaik.",
-      keywords: ["dealer GWM", "lokasi dealer", "dealer mobil Indonesia"],
+        `Jelajahi berita dan promo GWM Inchcape dengan tag ${slug}. Dapatkan informasi relevan seputar mobil dan layanan terbaru.`,
+      keywords: [`tag ${slug}`, "berita gwm", "promo gwm"],
     },
     en: {
-      title: `${slug} | News and Promo GWM Indonesia`,
+      title: `GWM News by Tag: ${slug} | GWM Inchcape`,
       description:
-        "Find GWM authorized dealers near your location. Sales, test drives, and aftersales service available nationwide.",
-      keywords: ["GWM dealers", "Indonesia dealer locations", "GWM service"],
+        `Explore GWM Inchcape’s news and promotions tagged with ${slug}. Get the latest updates on vehicles and services.`,
+      keywords: [`tag ${slug}`, "gwm news", "gwm promotions"],
     },
   };
 
   return getBaseMeta({
     locale,
-    path: `/news`,
+    path: `/news/tag/${slug}`,
     ...meta[locale],
   });
 }
@@ -40,7 +40,7 @@ const page = async ({ params }) => {
         title={locale == "en" ? "News & Promo" : "News & Promo"}
         subtitle={locale == "en" ? "Visit GWM convenient & premium dealers. Enjoy freshly-brewed free coffee from our barista everyday and book your test drive today." : "Kunjungi dealer GWM yang nyaman dan premium. Nikmati kopi hangat langsung dari barista terbaik, gratis untuk anda setiap hari dan jadwalkan test drive Anda hari ini."}
       />
-      <GwmArticlesByTag slugTag={slug}/>
+      <GwmArticlesByTag slugTag={slug} />
     </div>
   )
 }

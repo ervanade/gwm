@@ -14,9 +14,8 @@ const ProductHero = ({ image, title, subtitle, price, brochure }) => {
         alt={title}
         layout="fill"
         objectFit="cover"
-        objectPosition="center"
         priority
-        className="z-0"
+        className="z-0 object-[65%_50%] md:object-center"
       />
 
       {/* Overlay Text Content */}
@@ -44,7 +43,8 @@ const ProductHero = ({ image, title, subtitle, price, brochure }) => {
               </Link>
               <a
                 href={brochure ? brochure : `/${locale}/test-drive`}
-                target="_blank" rel="noopener noreferrer"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="w-max border border-white text-center text-white px-5 py-3 rounded-lg font-semibold text-sm hover:bg-white hover:text-primary transition"
               >
                 DOWNLOAD BROCHURE

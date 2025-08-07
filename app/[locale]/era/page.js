@@ -11,34 +11,35 @@ export async function generateMetadata({ params }) {
 
   const meta = {
     id: {
-      title: "Emergency Roadside Assistance | GWM Inchcape Indonesia",
+      title: "Bantuan Darurat GWM | Emergency Roadside Assistance",
       description:
-        "Temukan lokasi dealer resmi GWM Inchcape terdekat di Indonesia. Dapatkan petunjuk arah, jam operasional, dan informasi kontak untuk kunjungan Anda.",
-      keywords: ["dealer GWM", "lokasi dealer", "dealer mobil Indonesia"],
+        "Layanan Emergency Roadside Assistance dari GWM Inchcape siap membantu Anda kapan pun dibutuhkan. Aman berkendara bersama dukungan terpercaya kami.",
+      keywords: ["bantuan darurat gwm", "gwm ERA", "emergency roadside"],
     },
     en: {
-      title: "Emergency Roadside Assistance | GWM Inchcape Indonesia",
+      title: "GWM Emergency Roadside Assistance | ERA Service",
       description:
-        "Find your nearest official GWM Inchcape dealers in Indonesia. Get directions, opening hours, and contact information for your visit.",
-      keywords: ["GWM dealers", "Indonesia dealer locations", "GWM service"],
+        "GWM Inchcape’s Emergency Roadside Assistance ensures your peace of mind on every journey. Get support anytime, anywhere across Indonesia.",
+      keywords: ["gwm emergency", "roadside assistance", "ERA gwm"],
     },
   };
 
   return getBaseMeta({
     locale,
-    path: `/about`,
+    path: `/era`,
     ...meta[locale],
   });
 }
+
 
 const page = async ({ params }) => {
   const { locale } = await params;
   return (
     <div>
       <PageHero
-        image="/assets/hero-warranty.jpg"
+        image="/assets/hero-era.jpg"
         title={locale == "en" ? "ERA" : "ERA"}
-        subtitle={locale == "en" ? "EMERGENCY ROADSIDE ASSISTANCE" : "EMERGENCY ROADSIDE ASSISTANCE"}
+        subtitle={locale == "en" ? "GWM Inchcape’s Emergency Roadside Assistance ensures your peace of mind on every journey. Get support anytime, anywhere across Indonesia." : "Layanan Emergency Roadside Assistance dari GWM Inchcape siap membantu Anda kapan pun dibutuhkan. Aman berkendara bersama dukungan terpercaya kami."}
       />
       <EraDetail />
     </div>

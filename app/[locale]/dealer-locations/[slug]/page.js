@@ -2,6 +2,7 @@ import React from "react";
 import { notFound } from "next/navigation";
 import ArticlesDetails from "@/components/article/ArticleDetails";
 import { getBaseMeta } from "@/lib/seo";
+import DealerDetails from "@/components/dealers/DealerDetails";
 const HTMLDecoderEncoder = require("html-encoder-decoder");
 
 // ✅ Fetch artikel berdasarkan slug
@@ -33,10 +34,10 @@ export async function generateMetadata({ params }) {
         locale,
         path: `/dealer-locations/${dealer.slug}`,
         title: HTMLDecoderEncoder.decode(
-            isEnglish ? dealer?.meta_title : dealer?.meta_title || dealer?.title
+            isEnglish ? "Visit " + dealer?.meta_title : "Kunjungi " + dealer?.meta_title || dealer?.title
         ),
         description: HTMLDecoderEncoder.decode(
-            isEnglish ? dealer?.meta_description : dealer?.meta_description || ""
+            isEnglish ? "Find information about " + dealer?.meta_description : "Temukan informasi tentang " + dealer?.meta_description || ""
         ),
         keywords: HTMLDecoderEncoder.decode(
             isEnglish ? dealer?.meta_keywords : dealer?.meta_keywords || ""
@@ -55,7 +56,7 @@ const page = async ({ params }) => {
 
     const dealer = data;
 
-    return <ArticlesDetails article={dealer} related={[]} />;
+    return <DealerDetails article={dealer} related={[]} />;
 };
 
 export default page;

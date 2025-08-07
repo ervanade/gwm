@@ -9,16 +9,16 @@ export async function generateMetadata({ params }) {
 
   const meta = {
     id: {
-      title: "News dan Promo GWM Inchcape Indonesia",
+      title: "Berita & Promo Terbaru GWM | GWM Inchcape Indonesia",
       description:
-        "Temukan News dan Promo GWM di kota Anda. Dapatkan layanan penjualan, test drive, dan purna jual terbaik.",
-      keywords: ["dealer GWM", "lokasi dealer", "dealer mobil Indonesia"],
+        "Dapatkan update terbaru tentang GWM Inchcape: promo mobil, peluncuran model baru, dan berita industri otomotif di Indonesia.",
+      keywords: ["berita gwm", "promo gwm", "info mobil baru"],
     },
     en: {
-      title: "News and Promo GWM Inchcape Indonesia",
+      title: "Latest GWM News & Promotions | GWM Inchcape Indonesia",
       description:
-        "Find GWM authorized dealers near your location. Sales, test drives, and aftersales service available nationwide.",
-      keywords: ["GWM dealers", "Indonesia dealer locations", "GWM service"],
+        "Stay updated with the latest GWM Inchcape news: car promotions, model launches, and automotive industry insights in Indonesia.",
+      keywords: ["gwm news", "car promotion", "automotive indonesia"],
     },
   };
 
@@ -28,6 +28,7 @@ export async function generateMetadata({ params }) {
     ...meta[locale],
   });
 }
+
 
 // async function getDataCategory() {
 //   const res = await fetch(`${process.env.NEXT_PUBLIC_API_KEY}/api/tags`, {

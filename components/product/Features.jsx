@@ -98,9 +98,11 @@ const Features = ({ dataFeature, dataSpec, dataHl }) => {
           {imageComponent}
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
         </div>
-        <h4 className="text-base font-bold">{product.title}</h4>
+        <h4 className="text-base font-bold">
+          {locale === "en" ? product.title_en : product.title}
+        </h4>
         <p className="text-dark text-sm lg:text-base md:min-h-18">
-          {product.description}
+          {locale === "en" ? product.description_en : product.description}
         </p>
       </div>
     );

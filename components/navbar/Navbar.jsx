@@ -120,7 +120,7 @@ const Navbar = ({ dataModels }) => {
 
   const navItems = t.raw("items");
   const subMenu = [
-    { name: "ABOUT US", name_id: "TENTANG KAMI", link: "/about" },
+    { name: "ABOUT US", name_id: "TENTANG KAMI", link: "/about-us" },
     { name: "ERA", name_id: "ERA", link: "/era" },
   ];
 

@@ -8,7 +8,7 @@ const PageHero = ({ image, title, subtitle, price }) => {
   const locale = useLocale();
 
   return (
-    <div className="relative w-full h-[50vh]" id="hero">
+    <div className="relative w-full h-[30vh] lg:h-[45vh] " id="hero">
       {/* Background Image */}
       <Image
         src={image}
@@ -25,10 +25,11 @@ const PageHero = ({ image, title, subtitle, price }) => {
         <div className="max-w-7xl mx-auto px-6 lg:px-12 xl:px-16 text-white">
           <div className="max-w-[500px] lg:max-w-3/5 flex flex-col gap-3 text-left">
             <h1 className="text-3xl md:text-[40px] font-bold">{title}</h1>
-            <p className="text-base 2xl:text-lg font-regular text-white/90">{subtitle}</p>
+            <p className="text-sm lg:text-base 2xl:text-lg font-regular text-white/90">
+              {subtitle}
+            </p>
 
             {/* Tombol Aksi */}
-
           </div>
         </div>
       </div>

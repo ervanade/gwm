@@ -10,30 +10,20 @@ const EraDetail = () => {
   const dummyTenants = [
     {
       id: "tank",
-      title: "ERA",
-      image: "/assets/warranty.png",
+      title: "EMERGENCY ROADSIDE ASSISTANCE",
+      image: "/assets/about/era1.jpg",
       desc_id:
-        "Rasakan pengalaman menjelajahi dunia off-road dengan mobil TANK dari GWM. Zona ini dirancang untuk Anda yang ingin merasakan kekuatan dan kenyamanan secara langsung.",
+        "Layanan Bantuan Darurat di Jalan kami siap memberikan dukungan segera kapan pun Anda membutuhkannya. Baik itu ban kempes, kehabisan bensin, mogok, atau kunci tertinggal/hilang, tim ahli kami hanya satu panggilan saja untuk memastikan Anda kembali melaju dengan aman dan nyaman. Karena setiap perjalanan layak mendapatkan keamanan tanpa hambatan. Kami mencakup lebih dari 200 kota dengan 600 mitra layanan. Layanan ini berlaku untuk seluruh lini kendaraan GWM.",
       desc_en:
-        "Experience the thrill of off-road adventure with GWM’s TANK vehicles. This zone is designed for those who want to feel the power and comfort firsthand.",
+        "Our Emergency Roadside Assistance service is ready to provide immediate support whenever you need it. Whether you have a flat tire, run out of gas, broken down, or lost/lost keys, our team of experts is just a call away to ensure you're back on the road safely and comfortably. Because every journey deserves seamless security. We cover over 200 cities with 600 service partners. This service applies to the entire GWM vehicle lineup.",
     },
     {
       id: "ora",
-      title: "ERA",
-      image: "/assets/accessories.png",
-      desc_id:
-        "Nikmati suasana santai dengan kopi dan makanan ringan sambil mengenal lebih dekat mobil listrik ORA dari GWM.",
-      desc_en:
-        "Relax and recharge at the ORA Café Lounge while getting to know GWM’s electric vehicle lineup up close.",
-    },
-    {
-      id: "afterservice",
-      title: "GWM INCHCAPE",
-      image: "/assets/dealers/pondokindah.png",
-      desc_id:
-        "Layanan purna jual lengkap untuk kenyamanan dan ketenangan Anda setelah memiliki kendaraan GWM.",
-      desc_en:
-        "A complete after-sales service center to ensure your peace of mind after owning a GWM vehicle.",
+      title: "CUSTOMER SERVICE",
+      image: "/assets/about/era2.jpg",
+      desc_id: "HUBUNGI GWM CUSTOMER CENTER DI: 150 - 496 (GWM) 24 JAM",
+      desc_en: "CONTACT GWM CUSTOMER CENTER AT: 150 - 496 (GWM) 24 HOURS",
+      cta_link: "https://wa.me/+628187654321",
     },
   ];
 
@@ -59,7 +49,7 @@ const EraDetail = () => {
             }`}
           >
             <div
-              className={`relative mx-auto w-full sm:w-2/3 lg:w-full rounded-md lg:px-4 overflow-hidden aspect-[3/2] ${
+              className={`relative mx-auto w-full sm:w-2/3 lg:w-full rounded-sm lg:px-4 overflow-hidden aspect-[3/2] ${
                 (index + 1) % 2 === 0
                   ? "order-first lg:order-last lg:mr-0"
                   : "lg:ml-0"
@@ -81,9 +71,18 @@ const EraDetail = () => {
                 <h2 className="text-dark text-3xl font-bold text-center mb-6 lg:mb-8">
                   {item.title}
                 </h2>
-                <p className="text-dark/80 text-base font-normal leading-relaxed lg:text-start text-center">
+                <p className="text-dark/80 text-sm md:text-base font-normal leading-relaxed lg:text-start text-center">
                   {locale === "en" ? item.desc_en : item.desc_id}
                 </p>
+                {item.cta_link && (
+                  <a
+                    href={item.cta_link}
+                    target="_blank"
+                    className="mt-4 w-max md:w-auto text-center bg-primary hover:border-transparent text-white px-4 py-2 lg:px-6  rounded-lg font-semibold border border-white uppercase"
+                  >
+                    {locale === "en" ? "CONTACT US" : "HUBUNGI KAMI"}
+                  </a>
+                )}
               </div>
             </div>
           </div>

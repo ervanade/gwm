@@ -62,7 +62,7 @@ const Hero = ({ dataHero }) => {
             ? dataHero?.map((item, index) => (
                 <SwiperSlide key={index}>
                   {/* <Link href={item?.link}> */}
-                  <div className="w-full relative h-screen cursor-pointer">
+                  <div className="w-full relative h-[80vh] md:h-screen cursor-pointer">
                     <Image
                       src={item.image_url}
                       alt={"Banner Mobil GWM"}
@@ -73,9 +73,9 @@ const Hero = ({ dataHero }) => {
                     />
                     {/* <div className="absolute inset-0 bg-gradient-to-r from-black/30 to-black/50" /> */}
 
-                    <div className="absolute top-1/2 md:top-[35%] left-0 right-0">
+                    <div className="absolute bottom-1/5 md:top-[35%] left-0 right-0 top ">
                       <div className="max-w-7xl mx-auto px-6 lg:px-12">
-                        <div className="flex flex-col gap-2 justify-start text-white space-y-4 lg:space-y-8 max-w-[600px] md:items-start md:text-left">
+                        <div className="flex flex-col gap-2 justify-start text-white lg:gap-6 max-w-[600px] md:items-start md:text-left">
                           <p className="font-bold text-2xl md:text-3xl lg:text-[32px] leading-tight">
                             {locale === "en" ? item.title_en : item.title}
                           </p>
@@ -84,9 +84,13 @@ const Hero = ({ dataHero }) => {
                               ? item.description_en
                               : item.description}
                           </p>
-                          <div className="flex flex-col sm:flex-row gap-4 text-sm md:text-base">
+                          <div className="flex flex-col mt-2 sm:flex-row gap-2 md:gap-4 text-sm md:text-base">
                             <Link
-                               href={item.url ? `${item.url}` : `/${locale}/models/tank-500`}
+                              href={
+                                item.url
+                                  ? `${item.url}`
+                                  : `/${locale}/models/tank-500`
+                              }
                               className="w-max md:w-auto cursor-pointer bg-primary text-white px-4 py-2 lg:px-6 rounded-lg font-semibold uppercase"
                             >
                               {item?.alt_text}
@@ -108,18 +112,18 @@ const Hero = ({ dataHero }) => {
             : data?.map((item, index) => (
                 <SwiperSlide key={index}>
                   {/* <Link href={item?.link}> */}
-                  <div className="w-full relative h-screen cursor-pointer">
+                  <div className="w-full relative h-[80vh] md:h-screen cursor-pointer">
                     <Image
                       src={item.image_default}
                       alt={item.title || "GWM Hero"}
                       layout="fill" // Membuat gambar memenuhi kontainer
                       objectFit="cover" // Menjaga rasio aspek dan memotong bagian luar
-                      objectPosition="center" // Memusatkan gambar
                       priority={index === 0} // Memuat gambar pertama lebih awal
+                      className="z-0 object-[65%_50%] md:object-center"
                     />
                     {/* <div className="absolute inset-0 bg-gradient-to-r from-black/30 to-black/50" /> */}
 
-                    <div className="absolute top-1/2 md:top-[35%] left-0 right-0">
+                    <div className="absolute top-2/5 md:top-[35%] left-0 right-0">
                       <div className="max-w-7xl mx-auto px-6 lg:px-12">
                         <div className="flex flex-col gap-2 items-center justify-start text-white space-y-4 lg:space-y-8 max-w-[600px] text-center md:items-start md:text-left">
                           <p className="font-bold text-2xl md:text-3xl lg:text-[32px] leading-tight">

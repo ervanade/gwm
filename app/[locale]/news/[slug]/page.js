@@ -32,7 +32,7 @@ export async function generateMetadata({ params }) {
         locale,
         path: `/articles/${article.slug}`,
         title: HTMLDecoderEncoder.decode(
-            isEnglish ? article?.meta_title_en : article?.meta_title || article?.title
+            isEnglish ? article?.meta_title_en + " | GWM Inchcape Indonesia" : article?.meta_title + " | GWM Inchcape Indonesia" || article?.title + " | GWM Inchcape Indonesia"
         ),
         description: HTMLDecoderEncoder.decode(
             isEnglish ? article?.meta_desc_en : article?.meta_desc || ""
