@@ -75,10 +75,10 @@ export default function DealerSection({ dataDealers }) {
     <section className="max-w-7xl mx-auto px-6 lg:px-12 xl:px-16 py-12 bg-white text-dark">
       <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-4 mb-8">
         <div>
-          <h2 className="text-3xl font-bold mb-1">
+          <h2 className="text-2xl lg:text-3xl font-bold mb-1">
             {locale === "en" ? "DEALER LOCATIONS" : "LOKASI DEALER"}
           </h2>
-          <p className="text-gray-600">
+          <p className="text-sm md:text-base text-gray-600">
             {locale === "en"
               ? "Find Official Dealer GWM in Indonesia"
               : "Temukan lokasi dealer resmi GWM di seluruh Indonesia"}
@@ -110,11 +110,11 @@ export default function DealerSection({ dataDealers }) {
             </div>
             <div className="p-4 space-y-2">
               <h3 className="font-bold text-lg">{dealer.name}</h3>
-              <p className="text-sm text-gray-600 flex items-start gap-2">
+              <p className="text-sm text-sm md:text-base text-gray-600 flex items-start gap-2">
                 <FaMapMarkerAlt className="text-primary mt-1 text-base" />
                 {dealer.address}
               </p>
-              <p className="text-sm text-gray-600 flex items-center gap-2">
+              <p className="text-sm text-sm md:text-base text-gray-600 flex items-center gap-2">
                 <FaPhoneAlt className="text-primary" /> {dealer.phone}
               </p>
               <div className="flex gap-2 pt-2">

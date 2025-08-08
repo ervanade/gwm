@@ -68,10 +68,10 @@ export default function GwmArticles() {
   return (
     <section className="max-w-7xl mx-auto px-6 lg:px-12 xl:px-16 py-12 bg-white text-dark">
       <div className="mb-8">
-        <h2 className="text-3xl font-bold mb-1">
+        <h2 className="text-2xl lg:text-3xl font-bold mb-1">
           {locale === "en" ? "NEWS & PROMO" : "NEWS & PROMO"}
         </h2>
-        <p className="text-gray-600">
+        <p className="text-sm md:text-base text-gray-600">
           {locale === "en"
             ? "Find the latest news and promotions from GWM Indonesia"
             : "Temukan berita dan promo terbaru dari GWM Indonesia"}

@@ -31,7 +31,7 @@ const ArticlesDetails = ({ article, related }) => {
                 <span key={i}>
                    <Link
               className="px-4 py-1.5 bg-primary text-white font-semibold rounded-full text-sm"
-              href={`/articles/tag/${tag.tag_name}`}
+              href={`/${locale}/news/tag/${tag.slug}`}
             >
                #{tag.tag_name}
             </Link>
@@ -77,7 +77,7 @@ const ArticlesDetails = ({ article, related }) => {
                 <h2 className="font-bold text-2xl mb-5">Artikel Terkait</h2>
                 {related.map((item, idx) => (
                   <Link
-                    href={`/articles/${item.slug}?lang=${locale}`}
+                    href={`/news/${item.slug}?lang=${locale}`}
                     key={idx}
                     className="block mb-4 group"
                   >

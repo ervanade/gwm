@@ -44,7 +44,7 @@ const EraDetail = () => {
         {dummyTenants.map((item, index) => (
           <div
             key={item.id}
-            className={`w-full justify-start items-center mt-12 gap-8 grid lg:grid-cols-2 grid-cols-1 ${
+            className={`w-full justify-start items-center mt-12 gap-4 lg:gap-8 grid lg:grid-cols-2 grid-cols-1 ${
               index === 0 ? "" : "mt-12"
             }`}
           >
@@ -68,7 +68,7 @@ const EraDetail = () => {
             {/* Konten */}
             <div className="w-full flex-col justify-start lg:items-start items-center  inline-flex">
               <div className="w-full flex-col justify-start lg:items-start items-center flex">
-                <h2 className="text-dark text-3xl font-bold text-center mb-6 lg:mb-8">
+                <h2 className="text-dark text-2xl lg:text-3xl font-bold text-center mb-4 lg:mb-8">
                   {item.title}
                 </h2>
                 <p className="text-dark/80 text-sm md:text-base font-normal leading-relaxed lg:text-start text-center">

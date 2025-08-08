@@ -115,7 +115,7 @@ const AboutUs = () => {
         {dummyTenants.map((item, index) => (
           <div
             key={item.id}
-            className={`w-full justify-start items-center mt-12 gap-8 grid lg:grid-cols-2 grid-cols-1 ${
+            className={`w-full justify-start items-center mt-12 gap-4 lg:gap-8 grid lg:grid-cols-2 grid-cols-1 ${
               index === 0 ? "" : "mt-12"
             }`}
           >
@@ -139,7 +139,7 @@ const AboutUs = () => {
             {/* Konten */}
             <div className="w-full flex-col justify-start lg:items-start items-center  inline-flex">
               <div className="w-full flex-col justify-start lg:items-start items-center flex">
-                <h2 className="text-dark text-3xl font-bold text-center mb-6 lg:mb-8">
+                <h2 className="text-dark text-2xl lg:text-3xl font-bold text-center mb-4 lg:mb-8">
                   {item.title}
                 </h2>
                 <p className="text-dark/80 text-sm md:text-base font-normal leading-relaxed lg:text-start text-center">
@@ -164,11 +164,11 @@ const AboutUs = () => {
           </div>
         </div>
       </div>
-      <div className="py-4 md:py-8 px-6 bg-gray-100">
-        <h2 className="text-3xl font-bold mb-1 text-center text-primary">
+      <div className="py-6 md:py-8 px-6 bg-gray-100">
+        <h2 className="text-2xl lg:text-3xl font-bold mb-1 text-center text-primary">
           {locale === "en" ? "Awards & Achievements" : "Penghargaan & Prestasi"}
         </h2>
-        <p className="text-gray-600 text-center">
+        <p className="text-sm md:text-base text-gray-600 text-center">
           {locale === "en"
             ? "GWM has consistently earned global recognition and numerous awards for its design, engineering, 4WD capabilities and exceptional value over the years."
             : "GWM secara konsisten mendapatkan pengakuan global dan berbagai penghargaan atas desain, rekayasa, kemampuan 4WD, serta nilai luar biasa yang ditawarkan selama bertahun-tahun."}

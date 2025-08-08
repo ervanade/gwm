@@ -48,7 +48,7 @@ export default function ProductNavbar({ modelName = "TANK 500" }) {
         <div className="w-full lg:w-auto overflow-x-auto scroll-smooth">
           <div
             ref={scrollRef}
-            className="flex gap-3 min-w-max pb-1 border-b border-gray-200"
+            className="flex gap-2 md:gap-3 min-w-max pb-1 border-b border-gray-200"
           >
             {sections.map((s) => (
               <button
