@@ -40,24 +40,24 @@ const Footer = ({ dataSettings }) => {
                     />
                   </Link>
                 </li>
-                <li className="flex items-center gap-2">
+                {/* <li className="flex items-center gap-2">
                   <FaBuilding size={24} className="!text-2xl" />
                   <span className="text-sm">
                     {dataSettings?.address
                       ? dataSettings?.address
                       : ` Jl. Arjuna Utara No.188 kav.89, RT.1/RW.1, Tj. Duren Sel., Kec. Grogol petamburan, Kota Jakarta Bara`}
                   </span>
-                </li>
+                </li> */}
                 <li className="flex lg:items-center lg:flex-row flex-col gap-4 mt-2">
                   <ul>
-                    <li className="flex items-center gap-2">
+                    {/* <li className="flex items-center gap-2">
                       <FaPhoneAlt />
                       <span className="text-sm">
                         {dataSettings?.phone_number
                           ? dataSettings?.phone_number
                           : `+62 811-1234-5678`}
                       </span>
-                    </li>
+                    </li> */}
                     <li className="flex items-center gap-2">
                       <FaMessage />
                       <span className="text-sm">

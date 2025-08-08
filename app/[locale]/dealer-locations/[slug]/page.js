@@ -22,7 +22,7 @@ const fetchGwmDealer = async (slug) => {
 
 // ✅ SEO Metadata Generator
 export async function generateMetadata({ params }) {
-    const { slug, locale } = params;
+    const { slug, locale } = await params;
     const { data } = await fetchGwmDealer(slug);
     const dealer = data
 

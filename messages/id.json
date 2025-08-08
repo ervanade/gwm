@@ -10,10 +10,10 @@
    "Navbar": {
     "items": [
       { "label": "MODELS", "link": "/models" },
-      { "label": "TENTANG GWM", "link": "/about-gwm" },
       { "label": "AFTER SALES", "link": "/after-sales" },
       { "label": "NEWS & PROMO", "link": "/news" },
-      { "label": "LOKASI DEALER", "link": "/dealer-locations" }
+      { "label": "LOKASI DEALER", "link": "/dealer-locations" },
+      { "label": "TENTANG GWM", "link": "/about-gwm" }
     ]
   }
 }

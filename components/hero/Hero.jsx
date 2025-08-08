@@ -73,7 +73,7 @@ const Hero = ({ dataHero }) => {
                   {/* <Link href={item?.link}> */}
                   <div className="w-full relative h-[80vh] md:h-screen cursor-pointer">
                     <Image
-                      src={isMobile ? item.image_url : item.image_url}
+                      src={isMobile ? item.image_m_url : item.image_url}
                       alt={"Banner Mobil GWM"}
                       layout="fill" // Membuat gambar memenuhi kontainer
                       objectFit="cover" // Menjaga rasio aspek dan memotong bagian luar

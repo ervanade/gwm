@@ -21,7 +21,7 @@ const fetchGwmArticle = async (slug) => {
 
 // ✅ SEO Metadata Generator
 export async function generateMetadata({ params }) {
-    const { slug, locale } = params;
+    const { slug, locale } = await params;
     const article = await fetchGwmArticle(slug);
 
     if (!article) return notFound();

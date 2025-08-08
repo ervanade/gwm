@@ -44,7 +44,7 @@ const fetchModels = async (slug) => {
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_API_KEY}/api/v1/products/slug/${slug}`,
     {
-      next: { revalidate: 1 },
+      next: { revalidate: 60*5 },
       // cache: 'no-store',
       method: "GET",
       headers: {

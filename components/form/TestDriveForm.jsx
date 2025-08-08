@@ -350,7 +350,7 @@ export default function TestDriveForm({ locale }) {
             I agree to the use of my personal data by your company and/or
             provision of my personal data to your affiliates, subsidiaries,
             and/or associated companies in direct marketing. I agree to receive
-            news and information from PT. Inchcape Indomobil Energi Baru
+            news and information from PT. Inchcape GWM Retail Indonesia
             Distribusi by WhatsApp, Phone call, and/or Email.
           </label>
         </div>
