@@ -54,6 +54,7 @@ const DetailAfterSales = () => {
         {dummyTenants.map((item, index) => (
           <div
             key={item.id}
+            id={item.id}
             className={`w-full justify-start items-center mt-12 gap-4 lg:gap-8 grid lg:grid-cols-2 grid-cols-1 ${
               index === 0 ? "" : "mt-12"
             }`}
