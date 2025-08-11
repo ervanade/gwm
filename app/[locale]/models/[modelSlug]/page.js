@@ -44,7 +44,7 @@ const fetchModels = async (slug) => {
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_API_KEY}/api/v1/products/slug/${slug}`,
     {
-      next: { revalidate: 60*5 },
+      next: { revalidate:60 * 5 },
       // cache: 'no-store',
       method: "GET",
       headers: {
@@ -72,6 +72,7 @@ const page = async ({ params }) => {
     <div className='bg-white text-dark'>
       <ProductHero
         image={data?.cover_url || "/hero-1.jpg"}
+        imageMobile={data?.cover_m_url || data?.cover_url || "/hero-1.jpg"}
         title={data?.name || "HAVAL H6 HEV"}
         subtitle={data?.tipe || "Luxury Offroad SUV"}
         price={data?.price || "850.000.000"}

@@ -1,21 +1,30 @@
 "use client";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { useLocale } from "next-intl";
 
-const ProductHero = ({ image, title, subtitle, price, brochure }) => {
+const ProductHero = ({ image, imageMobile, title, subtitle, price, brochure }) => {
   const locale = useLocale();
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 500);
+    };
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
   return (
     <div className="relative w-full h-[80vh]" id="hero">
       {/* Background Image */}
       <Image
-        src={image}
+src={isMobile ? imageMobile : image}
         alt={title}
         layout="fill"
         objectFit="cover"
         priority
-        className="z-0 object-[65%_50%] md:object-center"
+        className="z-0 object-center"
       />
 
       {/* Overlay Text Content */}
