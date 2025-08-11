@@ -61,7 +61,19 @@ const whyGWM = [
     image: "/assets/icons/car-icon.png", // Make sure this path exists
   },
 ];
-const AfterSales = () => {
+
+function scopeGrapeJSCSS(css, scopeClass = ".grapejs-wrapper") {
+  return css.replace(/(^|\})\s*([^{\}]+)\s*\{/g, (match, p1, selector) => {
+    // Tambahkan prefix hanya pada selector, bukan pada @keyframes dll
+    if (selector.startsWith("@")) return match;
+    const scopedSelectors = selector
+      .split(",")
+      .map((sel) => `${scopeClass} ${sel.trim()}`)
+      .join(", ");
+    return `${p1} ${scopedSelectors} {`;
+  });
+}
+const AfterSales = ({dataWhy}) => {
   const locale = useLocale();
   const renderProductCard = (product, index) => {
     const isSquare = product.type === "square";
@@ -156,7 +168,22 @@ const AfterSales = () => {
         </div>
       </div> */}
 
-      <div className="max-w-7xl mx-auto w-full px-6 lg:px-12 py-12 md:py-16">
+{dataWhy ? (
+        <div className="grapejs-wrapper">
+          <div
+            dangerouslySetInnerHTML={{ __html: JSON.parse(dataWhy?.html) }}
+          />
+          <style
+            dangerouslySetInnerHTML={{
+              __html: scopeGrapeJSCSS(JSON.parse(dataWhy?.css)),
+            }}
+          />
+        </div>
+      ) : (
+        ""
+      )}
+
+      {/* <div className="max-w-7xl mx-auto w-full px-6 lg:px-12 py-12 md:py-16">
         <h2 className="text-3xl font-bold text-center mb-8 lg:mb-12">
           WHY GWM INCHCAPE
         </h2>{" "}
@@ -168,7 +195,7 @@ const AfterSales = () => {
               .map((product, index) => renderWhyCard(product, index))}
           </div>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };

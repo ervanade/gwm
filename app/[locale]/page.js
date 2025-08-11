@@ -66,6 +66,10 @@ export default async function HomePage({ params }) {
   const dataAfterSales = locale === "en"
     ? data?.pages?.["gwm-after-sales-en"]
     : data?.pages?.["gwm-after-sales"] || {};
+
+    const dataWhy = locale === "en"
+    ? data?.pages?.["why-gwm-inchcape-en"]
+    : data?.pages?.["why-gwm-inchcape"] || {};
   return (
     <>
       <Hero dataHero={data?.banners || null} />
@@ -75,7 +79,7 @@ export default async function HomePage({ params }) {
         dataModels={data?.products_overview || []}
         dataAfterSales={dataAfterSales}
       />
-      <AfterSales />
+      <AfterSales dataWhy={dataWhy}/>
     </>
   );
 }
