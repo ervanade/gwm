@@ -8,7 +8,7 @@ import { getBaseMeta } from '@/lib/seo';
 import React from 'react'
 
 export async function generateMetadata({ params }) {
-    const locale = params.locale || "id";
+    const { locale } = await params;
 
     const meta = {
         id: {
