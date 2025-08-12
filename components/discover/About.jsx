@@ -3,6 +3,18 @@
 import Image from "next/image";
 import React from "react";
 import { useLocale } from "next-intl";
+
+function scopeGrapeJSCSS(css, scopeClass = ".grapejs-wrapper") {
+  return css.replace(/(^|\})\s*([^{\}]+)\s*\{/g, (match, p1, selector) => {
+    // Tambahkan prefix hanya pada selector, bukan pada @keyframes dll
+    if (selector.startsWith("@")) return match;
+    const scopedSelectors = selector
+      .split(",")
+      .map((sel) => `${scopeClass} ${sel.trim()}`)
+      .join(", ");
+    return `${p1} ${scopedSelectors} {`;
+  });
+}
 const dummyTenants = [
   {
     id: "tank",
@@ -63,7 +75,7 @@ const whyGWM = [
     image: "/assets/icons/car-icon.png", // Make sure this path exists
   },
 ];
-const AboutUs = () => {
+const AboutUs = ({ data }) => {
   const locale = useLocale();
 
   const renderWhyCard = (product, index) => {
@@ -100,18 +112,19 @@ const AboutUs = () => {
 
   return (
     <section className=" text-dark">
-      <div className="max-w-7xl mx-auto w-full px-6 lg:px-12 py-12 md:py-16relative scroll-mt-12">
-        {/* <div className="mb-16">
-          <h1 className="text-3xl font-bold mb-6">
-            {locale === "en" ? "GWM After Sales" : "GWM After Sales"}
-          </h1>
-          <p className="sub-title">
-            {locale === "en"
-              ? "Learn more about the exclusive experience zones of GWM."
-              : "Jelajahi berbagai zona pengalaman eksklusif dari GWM."}
-          </p>
-        </div> */}
-
+      {data ? (
+        <div className="grapejs-wrapper">
+          <div dangerouslySetInnerHTML={{ __html: JSON.parse(data?.html) }} />
+          <style
+            dangerouslySetInnerHTML={{
+              __html: scopeGrapeJSCSS(JSON.parse(data?.css)),
+            }}
+          />
+        </div>
+      ) : (
+        ""
+      )}
+      {/* <div className="max-w-7xl mx-auto w-full px-6 lg:px-12 py-12 md:py-16relative scroll-mt-12">
         {dummyTenants.map((item, index) => (
           <div
             key={item.id}
@@ -136,7 +149,6 @@ const AboutUs = () => {
               />
             </div>
 
-            {/* Konten */}
             <div className="w-full flex-col justify-start lg:items-start items-center  inline-flex">
               <div className="w-full flex-col justify-start lg:items-start items-center flex">
                 <h2 className="text-dark text-2xl lg:text-3xl font-bold text-center mb-4 lg:mb-8">
@@ -183,7 +195,7 @@ const AboutUs = () => {
           className="object-cover"
           priority
         />
-      </div>
+      </div> */}
     </section>
   );
 };
