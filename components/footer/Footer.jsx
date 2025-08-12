@@ -121,7 +121,7 @@ const Footer = ({ dataSettings }) => {
                 </li>
                 <li>
                   <Link
-                    href={`/https://wa.me/+628187654321`}
+                    href={`/contact-us`}
                     target="_blank"
                     className="text-sm font-normal hover:text-primary"
                   >
