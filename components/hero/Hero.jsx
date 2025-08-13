@@ -74,7 +74,7 @@ const Hero = ({ dataHero }) => {
                   <div className="w-full relative h-[80vh] md:h-screen cursor-pointer">
                     <Image
                       src={isMobile ? item.image_m_url : item.image_url}
-                      alt={"Banner Mobil GWM"}
+                      alt={item?.alt_text || "Banner Mobil GWM"}
                       layout="fill" // Membuat gambar memenuhi kontainer
                       objectFit="cover" // Menjaga rasio aspek dan memotong bagian luar
                       objectPosition="center" // Memusatkan gambar
@@ -102,7 +102,9 @@ const Hero = ({ dataHero }) => {
                               }
                               className="w-max md:w-auto cursor-pointer bg-primary text-white px-4 py-2 lg:px-6 rounded-lg font-semibold uppercase"
                             >
-                              {item?.alt_text}
+                             {locale === "en"
+                              ? item.btn_txt_en
+                              : item.btn_txt}
                             </Link>
                             <Link
                               href={`/${locale}/test-drive`}
