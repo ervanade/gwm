@@ -52,7 +52,7 @@ const page = async ({ params }) => {
   return (
     <div>
       <PageHero
-        image="/assets/hero-dealers.png"
+        image="/assets/hero-dealers2.jpg"
         title={locale == "en" ? "Find a Dealer" : "Lokasi Dealer"}
         subtitle={locale == "en" ? "Visit GWM convenient & premium dealers. Enjoy freshly-brewed free coffee from our barista everyday and book your test drive today." : "Kunjungi dealer GWM yang nyaman dan premium. Nikmati kopi hangat langsung dari barista terbaik, gratis untuk anda setiap hari dan jadwalkan test drive Anda hari ini."}
       />
