@@ -170,7 +170,7 @@ export default function TestDriveForm({ locale }) {
         email: formData.email,
         phone: `+62${formData.phone}`,
         model: formData.model,
-        dealer: formData.dealer,
+        dealer_Location: formData.dealer,
         preferred_date: formData.preferred_date,
       };
 
