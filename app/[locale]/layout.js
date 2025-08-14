@@ -9,6 +9,8 @@ import "./globals.css";
 import StickyMenu from '@/components/StickyMenu';
 import Footer from '@/components/footer/Footer';
 import ReCaptchaProviderWrapper from '@/components/ReCaptchaProviderWrapper';
+import parse from 'html-react-parser';
+const HTMLDecoderEncoder = require("html-encoder-decoder");
 
 const helvetica = localFont({
   src: [
@@ -137,8 +139,10 @@ export default async function LocaleLayout({
 }) {
   // Ensure that the incoming `locale` is valid
   const { locale } = await params;
-  const { data : dataSettings } = await getData()
+  const { data: dataSettings } = await getData()
   const { data } = await getDataProducts()
+  const headScript = dataSettings?.before_close_head || ``;
+
   if (!hasLocale(routing.locales, locale)) {
     notFound();
   }
@@ -146,15 +150,19 @@ export default async function LocaleLayout({
 
   return (
     <html lang={locale} className={helvetica.className}>
+      <head>
+        {parse(HTMLDecoderEncoder.decode(headScript))}
+
+      </head>
       <body className='!font-helvetica'>
         <NextIntlClientProvider messages={messages}>
-        <ReCaptchaProviderWrapper>
+          <ReCaptchaProviderWrapper>
 
-          <Navbar dataModels={data || []} />
-          {children}
-          <StickyMenu data={dataSettings || []}/>
-          <Footer dataSettings={dataSettings || []}/>
-        </ReCaptchaProviderWrapper>
+            <Navbar dataModels={data || []} />
+            {children}
+            <StickyMenu data={dataSettings || []} />
+            <Footer dataSettings={dataSettings || []} />
+          </ReCaptchaProviderWrapper>
         </NextIntlClientProvider>
       </body>
     </html>

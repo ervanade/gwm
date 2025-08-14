@@ -28,6 +28,17 @@ const highlightProductsData = [
     image: "/assets/accessories.png", // Make sure this path exists
     link: "#",
   },
+  {
+    id: "ora",
+    title_id: "Dealer Kami",
+    title_en: "Our Dealers",
+    image: "/assets/dealers/tomang.png",
+    desc_id:
+      "Kunjungi dealer GWM yang nyaman dan premium. Nikmati kopi hangat langsung dari barista terbaik, gratis untuk anda setiap hari dan jadwalkan test drive Anda hari ini.",
+    desc_en:
+      "Visit GWM convenient & premium dealers. Enjoy freshly-brewed free coffee from our barista everyday and book your test drive today.",
+    dealer_link: "/dealer-locations",
+  },
 ];
 const whyGWM = [
   {
@@ -73,7 +84,7 @@ function scopeGrapeJSCSS(css, scopeClass = ".grapejs-wrapper") {
     return `${p1} ${scopedSelectors} {`;
   });
 }
-const AfterSales = ({dataWhy}) => {
+const AfterSales = ({ dataWhy }) => {
   const locale = useLocale();
   const renderProductCard = (product, index) => {
     const isSquare = product.type === "square";
@@ -168,7 +179,7 @@ const AfterSales = ({dataWhy}) => {
         </div>
       </div> */}
 
-{dataWhy ? (
+      {dataWhy ? (
         <div className="grapejs-wrapper">
           <div
             dangerouslySetInnerHTML={{ __html: JSON.parse(dataWhy?.html) }}

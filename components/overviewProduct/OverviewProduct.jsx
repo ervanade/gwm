@@ -96,7 +96,7 @@ const OverviewProduct = ({ overviewHtml, dataModels, dataAfterSales }) => {
             id: model.id,
             type: idx < 3 ? "square" : "wide",
             mainTitle: model.category?.category || model.name || "-",
-            subTitle: model.model || model.tipe || "-",
+            subTitle: model.tipe || model.model || "-",
             buttonText: `${model.model || ""} `,
             image: model.overview_image_url,
             link: `/models/${model.slug}`,
@@ -129,7 +129,7 @@ const OverviewProduct = ({ overviewHtml, dataModels, dataAfterSales }) => {
         <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
         <div className="absolute top-6 left-6 text-white">
           <p className="text-base font-light mb-2">{product.mainTitle}</p>
-          <h4 className="text-2xl font-bold leading-tight">
+          <h4 className="text-xl font-bold leading-tight">
             {product.subTitle}
           </h4>
         </div>

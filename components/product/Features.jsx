@@ -172,14 +172,14 @@ const Features = ({ dataFeature, dataSpec, dataHl }) => {
       {dataHl ? (
         <div className="mx-auto w-full text-black" id="hero">
           <div className="">
-            <div className="w-full relative h-[70vh] cursor-pointer">
+            <div className="w-full relative h-[50vh] md:h-[70vh] cursor-pointer">
               <div className="absolute inset-0 bg-gradient-to-b lg:bg-gradient-to-r from-black/50 to-transparent z-10"></div>
               <Image
                 src={dataHl?.image_hl_url || `/assets/highlight1.png`}
                 alt={dataHl?.title || "GWM Hero"}
                 layout="fill"
+                className="object-[65%_50%] md:object-center"
                 objectFit="cover"
-                objectPosition="center"
               />
               <div className="absolute top-[35%] left-0 right-0 z-20">
                 <div className="max-w-7xl mx-auto px-6 lg:px-12">
