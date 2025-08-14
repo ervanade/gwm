@@ -6,6 +6,21 @@ import PageHero from '@/components/hero/PageHero'
 import { getBaseMeta } from '@/lib/seo';
 import React from 'react'
 
+const fetchEra = async (slug) => {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_KEY}/api/v1/pages/slug/${slug}`, {
+    next: { revalidate: 3600 },
+    method: "GET",
+    headers: {
+      "X-Api-Key": process.env.NEXT_PUBLIC_APP_X_API_KEY,
+    },
+  });
+
+  if (!res.ok) throw new Error("Failed to fetch era");
+
+  return res.json();
+};
+
+
 export async function generateMetadata({ params }) {
   const { locale } = await params;
 
@@ -34,6 +49,9 @@ export async function generateMetadata({ params }) {
 
 const page = async ({ params }) => {
   const { locale } = await params;
+  const { data } = await fetchEra(locale === "en" ? "gwm-era-en" : "gwm-era");
+  if (!data) return notFound();
+
   return (
     <div>
       <PageHero
@@ -41,7 +59,7 @@ const page = async ({ params }) => {
         title={locale == "en" ? "ERA" : "ERA"}
         subtitle={locale == "en" ? "GWM Inchcape’s Emergency Roadside Assistance ensures your peace of mind on every journey. Get support anytime, anywhere across Indonesia." : "Layanan Emergency Roadside Assistance dari GWM Inchcape siap membantu Anda kapan pun dibutuhkan. Aman berkendara bersama dukungan terpercaya kami."}
       />
-      <EraDetail />
+      <EraDetail data={data || {}} />
     </div>
   )
 }

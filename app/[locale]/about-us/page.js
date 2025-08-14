@@ -48,7 +48,7 @@ export async function generateMetadata({ params }) {
 
 const page = async ({ params }) => {
   const { locale } = await params;
-  const { data } = await fetchAbout(locale === "en" ? "about-us" : "about-us");
+  const { data } = await fetchAbout(locale === "en" ? "about-us-en" : "about-us");
   if (!data) return notFound();
   return (
     <div>
