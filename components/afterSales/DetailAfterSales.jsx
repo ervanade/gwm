@@ -127,7 +127,7 @@ const DetailAfterSales = () => {
     {
       id: "accessories",
       title_id: "AKSESORIS",
-      title_id: "ACCESSORIES",
+      title_en: "ACCESSORIES",
       image: "/assets/accessories.png",
       desc_id:
         "Maksimalkan Gaya Kendaraan Kesayangan Anda Dengan Aksesoris Gwm. Hubungi Atau Kunjungi Dealer Terdekat Untuk Mendapatkan Informasi Seputar Koleksi Aksesoris Gwm.",
