@@ -34,7 +34,7 @@ export async function generateMetadata({ params }) {
         locale,
         path: `/dealer-locations/${dealer.slug}`,
         title: HTMLDecoderEncoder.decode(
-            isEnglish ? "Visit " + dealer?.meta_title : "Kunjungi " + dealer?.meta_title || dealer?.title
+            isEnglish ? "Visit Dealer " + dealer?.meta_title : "Kunjungi Dealer " + dealer?.meta_title || dealer?.title
         ),
         description: HTMLDecoderEncoder.decode(
             isEnglish ? "Find information about " + dealer?.meta_description : "Temukan informasi tentang " + dealer?.meta_description || ""

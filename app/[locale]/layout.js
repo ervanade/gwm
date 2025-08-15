@@ -141,8 +141,16 @@ export default async function LocaleLayout({
   const { locale } = await params;
   const { data: dataSettings } = await getData()
   const { data } = await getDataProducts()
-  const headScript = dataSettings?.before_close_head || ``;
+  const headScript = dataSettings?.before_close_head || `<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-LK8WGN61EN"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
 
+  gtag('config', 'G-LK8WGN61EN');
+</script>`;
+  const bodyScript = dataSettings?.before_close_body || ``;
   if (!hasLocale(routing.locales, locale)) {
     notFound();
   }
@@ -164,6 +172,8 @@ export default async function LocaleLayout({
             <Footer dataSettings={dataSettings || []} />
           </ReCaptchaProviderWrapper>
         </NextIntlClientProvider>
+        {parse(HTMLDecoderEncoder.decode(bodyScript))}
+
       </body>
     </html>
   );
