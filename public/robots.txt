@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# Sitemap untuk setiap bahasa
+Sitemap: https://gwminchcape.co.id/sitemap.xml

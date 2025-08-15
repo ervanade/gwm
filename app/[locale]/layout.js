@@ -50,15 +50,15 @@ export async function generateMetadata({ params }) {
   const isEnglish = locale?.includes('en');
 
   return {
-    title: isEnglish
-      ? 'GWM Inchcape Indonesia | Official GWM Car Dealership in Indonesia'
-      : 'GWM Inchcape Indonesia | Dealer Resmi Mobil GWM di Indonesia',
-    description: isEnglish
-      ? 'Visit GWM Inchcape, your official GWM car dealership in Indonesia. Explore the latest GWM models, attractive offers, and professional after-sales services.'
-      : 'Kunjungi GWM Inchcape, dealer resmi mobil GWM di Indonesia. Temukan berbagai model GWM terbaru, penawaran menarik, dan layanan purna jual profesional.',
-    keywords: isEnglish
-      ? ['GWM Inchcape', 'dealer GWM', 'mobil GWM', 'harga GWM', 'GWM terbaru', 'beli GWM', 'Servis GWM']
-      : ['GWM Inchcape', 'dealer GWM', 'mobil GWM', 'harga GWM', 'GWM terbaru', 'beli GWM', 'Servis GWM'],
+    // title: isEnglish
+    //   ? 'GWM Inchcape Indonesia | Official GWM Car Dealership in Indonesia'
+    //   : 'GWM Inchcape Indonesia | Dealer Resmi Mobil GWM di Indonesia',
+    // description: isEnglish
+    //   ? 'Visit GWM Inchcape, your official GWM car dealership in Indonesia. Explore the latest GWM models, attractive offers, and professional after-sales services.'
+    //   : 'Kunjungi GWM Inchcape, dealer resmi mobil GWM di Indonesia. Temukan berbagai model GWM terbaru, penawaran menarik, dan layanan purna jual profesional.',
+    // keywords: isEnglish
+    //   ? ['GWM Inchcape', 'dealer GWM', 'mobil GWM', 'harga GWM', 'GWM terbaru', 'beli GWM', 'Servis GWM']
+    //   : ['GWM Inchcape', 'dealer GWM', 'mobil GWM', 'harga GWM', 'GWM terbaru', 'beli GWM', 'Servis GWM'],
     applicationName: 'GWM Inchcape',
     authors: [{ name: 'GWM Inchcape', url: 'https://gwminchcape.co.id' }],
     creator: 'GWM Inchcape',
@@ -88,12 +88,12 @@ export async function generateMetadata({ params }) {
           alt: 'Logo GWM Inchcape',
         },
       ],
-      locale: isEnglish ? 'en-US' : 'id-ID',
+      locale: isEnglish ? 'en' : 'id',
       type: 'website',
     },
     robots: {
-      index: false,
-      follow: false,
+      index: true,
+      follow: true,
     },
   };
 }

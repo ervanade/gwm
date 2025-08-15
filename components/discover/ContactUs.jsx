@@ -15,9 +15,9 @@ const ContactUs = () => {
       title_id: "Kontak Kami",
       title_en: "Contact Us",
       image: "/assets/about/era2.jpg",
-      desc_id: `<p>Tim <strong>GWM Customer Center</strong> siap membantu Anda 24 jam untuk segala kebutuhan informasi, layanan, maupun bantuan darurat. Hubungi kami melalui telepon di <a  className ="font-bold" href="tel:150496">150-496 (GWM)</a> atau WhatsApp di <a classname ="font-bold" href="https://wa.me/628187654321">+62 818-765-4321</a>. Anda juga dapat mengirim email ke <a classname ="font-bold" href="mailto:cs@gwm.info@inchcape.co.id">cs@gwm.info@inchcape.co.id</a>. <br/>Untuk informasi langsung dan test drive, silakan kunjungi dealer resmi kami di bawah ini.</p>`,
-      desc_en: `<p>Our <strong>GWM Customer Center</strong> team is ready 24/7 to assist you with information, services, and emergency support. Contact us via phone at <a className ="font-bold" href="tel:150496">150-496 (GWM)</a> or WhatsApp at <a classname ="font-bold" href="https://wa.me/628187654321">+62 818-765-4321</a>. You can also email us at <a classname ="font-bold" href="mailto:cs@gwm.info@inchcape.co.id">cs@gwm.info@inchcape.co.id</a><br/>For direct information and test drives, please visit our authorized dealers listed below.</p>`,
-      cta_link: "https://wa.me/+628187654321",
+      desc_id: `<p>Tim <strong>GWM Customer Center</strong> siap membantu Anda 24 jam untuk segala kebutuhan informasi, layanan, maupun bantuan darurat. Hubungi kami melalui telepon di <a  className ="font-bold" href="tel:150496">150-496 (GWM)</a> atau WhatsApp di <a classname ="font-bold" href="https://wa.me/6285186821765">+62 851-8682-1765</a>. Anda juga dapat mengirim email ke <a classname ="font-bold" href="mailto:gwm.info@inchcape.co.id">gwm.info@inchcape.co.id</a>. <br/>Untuk informasi langsung dan test drive, silakan kunjungi dealer resmi kami di bawah ini.</p>`,
+      desc_en: `<p>Our <strong>GWM Customer Center</strong> team is ready 24/7 to assist you with information, services, and emergency support. Contact us via phone at <a className ="font-bold" href="tel:150496">150-496 (GWM)</a> or WhatsApp at <a classname ="font-bold" href="https://wa.me/6285186821765">+62 851-8682-1765</a>. You can also email us at <a classname ="font-bold" href="mailto:gwm.info@inchcape.co.id">gwm.info@inchcape.co.id</a><br/>For direct information and test drives, please visit our authorized dealers listed below.</p>`,
+      cta_link: "https://wa.me/+6285186821765",
     },
     {
       id: "ora",

@@ -12,7 +12,7 @@ const fallbackDealers = [
     area: "Jakarta Selatan",
     address:
       "Pondok Indah Mall 1, GF – Lobby 3A Jl. Metro Pondok Indah No.1, Pd. Pinang, Kec. Kby.Lama, Jakarta Selatan, DKI Jakarta 12310",
-    phone: "+62 21 12345678",
+    phone: "+6285186821765",
     image: "/assets/dealers/pondokindah.png",
     gmaps: "https://maps.app.goo.gl/nzvHYWa8Uw6vrU9v5",
     slug: "gwm-pondok-indah-mall-1s",
@@ -22,7 +22,7 @@ const fallbackDealers = [
     area: "Jakarta Barat",
     address:
       "Jl. Arjuna Utara No.188 kav.89, RT.1/RW.1, Tj. Duren Sel., Kec. Grogol petamburan, Jakarta Barat, DKI Jakarta 11470",
-    phone: "+62 21 23456789",
+    phone: "+6285186821765",
     image: "/assets/dealers/tomang.png",
     gmaps: "https://maps.app.goo.gl/pSf16TLgpxmqg2877",
     slug: "gwm-tomang-3s",
@@ -32,7 +32,7 @@ const fallbackDealers = [
     area: "Jakarta Pusat",
     address:
       "Agora Mall, L2 Floor, Jl. M.H. Thamrin No.10, Kb. Melati, Kecamatan Tanah Abang, Jakarta Pusat, DKI Jakarta 10230",
-    phone: "+62 21 34567890",
+    phone: "+6285186821765",
     image: "/assets/dealers/tankstudio.png",
     gmaps: "https://maps.app.goo.gl/9hVyvUmCWpHPr3aW9",
     slug: "gwm-tank-studio",
