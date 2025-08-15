@@ -10,6 +10,7 @@ import StickyMenu from '@/components/StickyMenu';
 import Footer from '@/components/footer/Footer';
 import ReCaptchaProviderWrapper from '@/components/ReCaptchaProviderWrapper';
 import parse from 'html-react-parser';
+import CookieConsent from '@/components/CookieConsent';
 const HTMLDecoderEncoder = require("html-encoder-decoder");
 
 const helvetica = localFont({
@@ -171,6 +172,7 @@ export default async function LocaleLayout({
             <StickyMenu data={dataSettings || []} />
             <Footer dataSettings={dataSettings || []} />
           </ReCaptchaProviderWrapper>
+          <CookieConsent />
         </NextIntlClientProvider>
         {parse(HTMLDecoderEncoder.decode(bodyScript))}
 
