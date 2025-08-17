@@ -1,83 +1,176 @@
+import PageHero from '@/components/hero/PageHero';
 import React from 'react'
 
 const page = async ({ params }) => {
     const { locale } = await params
+    const isEN = locale === "en";
     return (
-        <div className="max-w-7xl mx-auto px-6 lg:px-12 py-12">
-            <h1 className="text-3xl font-bold mb-6">Kebijakan Privasi</h1>
+        <main>
+            <PageHero
+                image="/hero-1.jpg"
+                title={locale == "en" ? "Privacy Policy" : "Kebijakan Privasi"}
+                subtitle={locale == "en" ? "We are committed to protecting your personal data. Learn how we collect, use, and safeguard your information in our Privacy Policy." : "Kami berkomitmen untuk melindungi data pribadi Anda. Pelajari bagaimana kami mengumpulkan, menggunakan, dan melindungi informasi Anda dalam Kebijakan Privasi ini."}
+            />
+            <div className="max-w-7xl mx-auto px-6 lg:px-12 py-12">
+                <h1 className="text-3xl font-bold mb-6">
+                    {isEN ? "Privacy Policy" : "Kebijakan Privasi"}
+                </h1>
 
-            <p className="mb-4">
-                Selamat datang di <strong>gwminchcape.co.id</strong>. Kami berkomitmen
-                untuk melindungi dan menghormati privasi Anda. Halaman ini menjelaskan
-                bagaimana kami mengumpulkan, menggunakan, dan melindungi informasi
-                pribadi Anda saat menggunakan situs web kami.
-            </p>
+                {/* --- Intro --- */}
+                <section className="mb-8">
+                    <h2 className="text-xl font-semibold mb-3">
+                        {isEN ? "Your Privacy Matters." : "Privasi Anda Penting."}
+                    </h2>
+                    <p>
+                        {isEN
+                            ? "We are committed to protecting your personal data. Learn how we collect, use, and safeguard your information in our Privacy Policy."
+                            : "Kami berkomitmen untuk melindungi data pribadi Anda. Pelajari bagaimana kami mengumpulkan, menggunakan, dan melindungi informasi Anda dalam Kebijakan Privasi ini."}
+                    </p>
+                </section>
 
-            <h2 className="text-xl font-semibold mt-8 mb-3">1. Informasi yang Kami Kumpulkan</h2>
-            <p className="mb-4">
-                Kami dapat mengumpulkan informasi berikut:
-            </p>
-            <ul className="list-disc pl-6 mb-4">
-                <li>Informasi kontak (nama, email, nomor telepon) saat Anda mengisi formulir.</li>
-                <li>Data penggunaan situs (halaman yang dikunjungi, durasi kunjungan).</li>
-                <li>Informasi teknis (alamat IP, jenis browser, perangkat yang digunakan).</li>
-            </ul>
+                {/* --- Collection --- */}
+                <section className="mb-8">
+                    <h2 className="text-xl font-semibold mb-3">
+                        {isEN ? "Collection of Personal Data" : "Pengumpulan Data Pribadi"}
+                    </h2>
+                    <p className="mb-3">
+                        {isEN
+                            ? `"Personal data” refers to any data which directly or indirectly identifies you as an individual. We collect and use personal data that we believe to be relevant and necessary to conduct our business with you. The types of personal data we collect may include:`
+                            : `"Data pribadi” merujuk pada setiap data yang secara langsung atau tidak langsung mengidentifikasi Anda sebagai individu. Kami mengumpulkan dan menggunakan data pribadi yang relevan dan diperlukan untuk menjalankan bisnis kami dengan Anda. Jenis data pribadi yang kami kumpulkan dapat mencakup:"`}
+                    </p>
+                    <ul className="list-disc pl-6 space-y-1">
+                        <li>
+                            {isEN
+                                ? "Contact information (name, email, address, phone number)"
+                                : "Informasi kontak (nama, email, alamat, nomor telepon)"}
+                        </li>
+                        <li>
+                            {isEN
+                                ? "Unique identifiers (KTP / SIM, passport number)"
+                                : "Identitas unik (KTP / SIM, nomor paspor)"}
+                        </li>
+                        <li>
+                            {isEN
+                                ? "Billing information (credit card, bank account, billing address)"
+                                : "Informasi penagihan (kartu kredit, rekening bank, alamat penagihan)"}
+                        </li>
+                    </ul>
+                </section>
 
-            <h2 className="text-xl font-semibold mt-8 mb-3">2. Penggunaan Informasi</h2>
-            <p className="mb-4">Informasi yang kami kumpulkan digunakan untuk:</p>
-            <ul className="list-disc pl-6 mb-4">
-                <li>Meningkatkan pengalaman pengguna di situs kami.</li>
-                <li>Menghubungi Anda terkait pertanyaan atau layanan yang diminta.</li>
-                <li>Menganalisis performa situs melalui alat seperti Google Analytics.</li>
-            </ul>
+                {/* --- Usage --- */}
+                <section className="mb-8">
+                    <h2 className="text-xl font-semibold mb-3">
+                        {isEN ? "Use of Personal Data" : "Penggunaan Data Pribadi"}
+                    </h2>
+                    <p className="mb-3">
+                        {isEN
+                            ? "Your personal data may be used for the following purposes:"
+                            : "Data pribadi Anda dapat digunakan untuk tujuan berikut:"}
+                    </p>
+                    <ul className="list-disc pl-6 space-y-1">
+                        <li>
+                            {isEN
+                                ? "Purchase of our products/services"
+                                : "Pembelian produk/layanan kami"}
+                        </li>
+                        <li>
+                            {isEN
+                                ? "Vehicle insurance, financing, leasing, maintenance and repair"
+                                : "Asuransi kendaraan, pembiayaan, leasing, perawatan, dan perbaikan"}
+                        </li>
+                        <li>
+                            {isEN
+                                ? "Customer service and responding to queries"
+                                : "Layanan pelanggan dan merespons pertanyaan"}
+                        </li>
+                        <li>
+                            {isEN
+                                ? "Market research, surveys, and promotional updates"
+                                : "Riset pasar, survei, dan pembaruan promosi"}
+                        </li>
+                        <li>
+                            {isEN
+                                ? "Compliance with applicable laws"
+                                : "Kepatuhan terhadap hukum yang berlaku"}
+                        </li>
+                    </ul>
+                </section>
 
-            <h2 className="text-xl font-semibold mt-8 mb-3">3. Cookies</h2>
-            <p className="mb-4">
-                Situs ini menggunakan cookies untuk meningkatkan pengalaman browsing,
-                menyimpan preferensi pengguna, serta analisis pengunjung.
-                Anda dapat menonaktifkan cookies melalui pengaturan browser Anda,
-                namun beberapa fitur situs mungkin tidak berfungsi optimal.
-            </p>
+                {/* --- Direct Marketing --- */}
+                <section className="mb-8">
+                    <h2 className="text-xl font-semibold mb-3">Direct Marketing</h2>
+                    <p>
+                        {isEN
+                            ? "We may use your personal data for direct marketing carried out by PT Inchcape Indomobil Energi Baru and its affiliates. This may include promotional emails, product updates, and offers. We will only use your data with your consent or where permitted by law."
+                            : "Kami dapat menggunakan data pribadi Anda untuk pemasaran langsung yang dilakukan oleh PT Inchcape Indomobil Energi Baru dan afiliasinya. Ini dapat mencakup email promosi, pembaruan produk, dan penawaran. Kami hanya akan menggunakan data Anda dengan persetujuan Anda atau jika diizinkan oleh hukum."}
+                    </p>
+                </section>
 
-            <h2 className="text-xl font-semibold mt-8 mb-3">4. Perlindungan Data</h2>
-            <p className="mb-4">
-                Kami menerapkan langkah-langkah keamanan yang wajar untuk melindungi
-                informasi pribadi Anda. Namun, kami tidak dapat menjamin sepenuhnya
-                keamanan data yang dikirimkan melalui internet.
-            </p>
+                {/* --- Disclosure --- */}
+                <section className="mb-8">
+                    <h2 className="text-xl font-semibold mb-3">
+                        {isEN ? "Disclosure of Personal Data" : "Pengungkapan Data Pribadi"}
+                    </h2>
+                    <p className="mb-3">
+                        {isEN
+                            ? "Your personal data may be disclosed to service providers, affiliates, legal authorities, or in cases of mergers/acquisitions as required."
+                            : "Data pribadi Anda dapat diungkapkan kepada penyedia layanan, afiliasi, otoritas hukum, atau dalam kasus merger/akuisisi sebagaimana diwajibkan."}
+                    </p>
+                </section>
 
-            <h2 className="text-xl font-semibold mt-8 mb-3">5. Berbagi Informasi</h2>
-            <p className="mb-4">
-                Kami tidak menjual atau menyewakan data pribadi Anda kepada pihak ketiga.
-                Data hanya dapat dibagikan dengan pihak ketiga terpercaya (misalnya penyedia layanan IT)
-                sesuai kebutuhan layanan.
-            </p>
+                {/* --- Storage & Retention --- */}
+                <section className="mb-8">
+                    <h2 className="text-xl font-semibold mb-3">
+                        {isEN ? "Storage & Retention" : "Penyimpanan & Retensi Data"}
+                    </h2>
+                    <p>
+                        {isEN
+                            ? "We may process and store your data outside Indonesia. Data will be erased when no longer needed, unless legally required."
+                            : "Kami dapat memproses dan menyimpan data Anda di luar Indonesia. Data akan dihapus jika sudah tidak diperlukan lagi, kecuali diwajibkan secara hukum."}
+                    </p>
+                </section>
 
-            <h2 className="text-xl font-semibold mt-8 mb-3">6. Hak Anda</h2>
-            <p className="mb-4">
-                Anda memiliki hak untuk:
-            </p>
-            <ul className="list-disc pl-6 mb-4">
-                <li>Meminta salinan data pribadi Anda.</li>
-                <li>Meminta perbaikan atau penghapusan data pribadi Anda.</li>
-                <li>Membatasi atau menolak pemrosesan data tertentu.</li>
-            </ul>
+                {/* --- Security --- */}
+                <section className="mb-8">
+                    <h2 className="text-xl font-semibold mb-3">
+                        {isEN ? "Commitment to Data Security" : "Komitmen Keamanan Data"}
+                    </h2>
+                    <p>
+                        {isEN
+                            ? "We use physical, technological, and organizational measures to safeguard your data. However, no transmission over the Internet is 100% secure."
+                            : "Kami menggunakan langkah fisik, teknologi, dan organisasi untuk melindungi data Anda. Namun, transmisi data melalui internet tidak pernah 100% aman."}
+                    </p>
+                </section>
 
-            <h2 className="text-xl font-semibold mt-8 mb-3">7. Perubahan Kebijakan</h2>
-            <p className="mb-4">
-                Kami dapat memperbarui kebijakan privasi ini dari waktu ke waktu.
-                Perubahan akan dipublikasikan di halaman ini dengan tanggal revisi terbaru.
-            </p>
+                {/* --- Cookies --- */}
+                <section className="mb-8">
+                    <h2 className="text-xl font-semibold mb-3">Cookies</h2>
+                    <p>
+                        {isEN
+                            ? "We use cookies to enhance your browsing experience. You may disable cookies in your browser settings, but some site features may not function properly."
+                            : "Kami menggunakan cookies untuk meningkatkan pengalaman browsing Anda. Anda dapat menonaktifkan cookies di pengaturan browser, namun beberapa fitur situs mungkin tidak berfungsi dengan baik."}
+                    </p>
+                </section>
 
-            <h2 className="text-xl font-semibold mt-8 mb-3">8. Kontak Kami</h2>
-            <p className="mb-4">
-                Jika Anda memiliki pertanyaan mengenai kebijakan privasi ini,
-                silakan hubungi kami melalui email:{" "}
-                <a href="mailto:gwm.info@inchcape.co.id" className="text-teal-500 underline">
-                    gwm.info@inchcape.co.id
-                </a>.
-            </p>
-        </div>
+                {/* --- Contact --- */}
+                <section>
+                    <h2 className="text-xl font-semibold mb-3">
+                        {isEN ? "Contact Us" : "Hubungi Kami"}
+                    </h2>
+                    <p>
+                        {isEN
+                            ? "If you have questions about our Privacy Policy, please contact us at Sequis Tower Building, 7th Floor, Jl Jend Sudirman Kav. 71 SCBD Lot11B, Jakarta 12190 or via email at "
+                            : "Jika Anda memiliki pertanyaan terkait Kebijakan Privasi ini, silakan hubungi kami di Gedung Sequis Tower Lantai 7, Jl Jend Sudirman Kav. 71 SCBD Lot11B, Jakarta 12190 atau melalui email ke "}
+                        <a
+                            href="mailto:gwm.info@inchcape.co.id"
+                            className="text-teal-600 underline"
+                        >
+                            gwm.info@inchcape.co.id
+                        </a>
+                    </p>
+                </section>
+            </div>
+        </main>
     )
 }
 
