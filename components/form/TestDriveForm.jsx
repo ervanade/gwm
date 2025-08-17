@@ -234,7 +234,9 @@ export default function TestDriveForm({ locale }) {
       <form onSubmit={handleSubmit} className="space-y-6">
         {/* Full Name */}
         <div>
-          <label className="block font-medium mb-1">Full Name</label>
+          <label className="block font-medium mb-1">
+            Full Name<span className="text-red-600 text-xs">*</span>
+          </label>
           <input
             name="fullName"
             type="text"
@@ -248,7 +250,9 @@ export default function TestDriveForm({ locale }) {
 
         {/* WhatsApp */}
         <div>
-          <label className="block font-medium mb-1">WhatsApp Number</label>
+          <label className="block font-medium mb-1">
+            WhatsApp Number<span className="text-red-600 text-xs">*</span>
+          </label>
           <div className="flex items-center">
             <span className="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border border-r-0 border-gray-400 rounded-l-lg py-2">
               +62
@@ -267,7 +271,9 @@ export default function TestDriveForm({ locale }) {
 
         {/* Email */}
         <div>
-          <label className="block font-medium mb-1">Email</label>
+          <label className="block font-medium mb-1">
+            Email<span className="text-red-600 text-xs">*</span>
+          </label>
           <input
             name="email"
             type="email"
@@ -281,7 +287,9 @@ export default function TestDriveForm({ locale }) {
 
         {/* GWM Model */}
         <div>
-          <label className="block font-medium mb-1">GWM Model</label>
+          <label className="block font-medium mb-1">
+            GWM Model<span className="text-red-600 text-xs">*</span>
+          </label>
           <select
             name="model"
             required
@@ -302,7 +310,9 @@ export default function TestDriveForm({ locale }) {
 
         {/* Dealer Location */}
         <div>
-          <label className="block font-medium mb-1">Dealer Location</label>
+          <label className="block font-medium mb-1">
+            Dealer Location<span className="text-red-600 text-xs">*</span>
+          </label>
           <select
             name="dealer"
             required
@@ -323,7 +333,9 @@ export default function TestDriveForm({ locale }) {
 
         {/* Date */}
         <div>
-          <label className="block font-medium mb-1">Preferred Date</label>
+          <label className="block font-medium mb-1">
+            Preferred Date<span className="text-red-600 text-xs">*</span>
+          </label>
           <input
             name="preferred_date"
             type="date"

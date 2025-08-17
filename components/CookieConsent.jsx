@@ -27,7 +27,7 @@ export default function CookieConsent() {
   if (!show) return null;
 
   return (
-    <div className="fixed bottom-0 left-0 w-full bg-gray-900 text-white p-4 z-50 shadow-lg">
+    <div className="fixed bottom-0 left-0 w-full bg-gray-900 text-white p-4 z-[999] shadow-lg">
       <div className="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3 text-center sm:text-left">
         {/* Konten teks notifikasi */}
         <p className="text-sm">
@@ -47,13 +47,13 @@ export default function CookieConsent() {
         <div className="flex gap-4 flex-shrink-0">
           <button
             onClick={declineCookies}
-            className="border border-white hover:bg-white text-white hover:text-gray-900 px-4 py-2 rounded text-sm transition-colors"
+            className="cursor-pointer border border-white hover:bg-white text-white hover:text-gray-900 px-4 py-2 rounded text-sm transition-colors"
           >
             {locale === "en" ? `Decline` : `Tolak`}
           </button>
           <button
             onClick={acceptCookies}
-            className="bg-primary hover:bg-primary/90 text-white px-4 py-2 rounded text-sm transition-colors"
+            className="cursor-pointer bg-primary hover:bg-primary/90 text-white px-4 py-2 rounded text-sm transition-colors"
           >
             {locale === "en" ? `Accept` : `Terima`}
           </button>
