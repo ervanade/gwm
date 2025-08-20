@@ -27,13 +27,13 @@ export async function generateMetadata({ params }) {
     id: {
       title: "Tentang Kami | GWM Inchcape Indonesia",
       description:
-        "Kenali GWM Inchcape Indonesia lebih dekat. Pelajari visi, misi, dan komitmen kami dalam menghadirkan mobil berkualitas dan layanan terbaik di Indonesia.",
+        "Kenali Inchcape GWM Retail Indonesia lebih dekat. Pelajari visi, misi, dan komitmen kami dalam menghadirkan mobil berkualitas dan layanan terbaik di Indonesia.",
       keywords: ["tentang gwm", "gwm indonesia", "dealer mobil resmi"],
     },
     en: {
       title: "About Us | GWM Inchcape Indonesia",
       description:
-        "Learn more about GWM Inchcape Indonesia. Discover our mission, vision, and commitment to delivering premium vehicles and top service in Indonesia.",
+        "Learn more about Inchcape GWM Retail Indonesia better. Discover about our vision, mission, and commitment to providing quality cars and the best service in Indonesia.",
       keywords: ["about gwm", "gwm indonesia", "official car dealer"],
     },
   };

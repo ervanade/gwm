@@ -10,13 +10,13 @@ export async function generateMetadata({ params }) {
     id: {
       title: "Lokasi Dealer GWM Inchcape Terdekat | GWM Inchcape Indonesia",
       description:
-        "Temukan lokasi dealer resmi GWM Inchcape terdekat di Indonesia. Dapatkan petunjuk arah, jam operasional, dan informasi kontak untuk kunjungan Anda.",
+        "Temukan lokasi dealer resmi GWM Inchcape terdekat di Jakarta & sekitarnya. Dapatkan petunjuk lokasi, jam operasional, dan informasi kontak untuk kunjungan Anda.",
       keywords: ["dealer GWM", "lokasi dealer", "dealer mobil Indonesia"],
     },
     en: {
       title: "Nearest GWM Inchcape Official Dealers Location | GWM Inchcape Indonesia",
       description:
-        "Find your nearest official GWM Inchcape dealers in Indonesia. Get directions, opening hours, and contact information for your visit.",
+        "Find the nearest authorized GWM Inchcape dealer in Jakarta and the surrounding area. Get directions, operating hours, and contact information for your visit.",
       keywords: ["GWM dealers", "Indonesia dealer locations", "GWM service"],
     },
   };

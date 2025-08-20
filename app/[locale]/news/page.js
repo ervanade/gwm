@@ -11,13 +11,13 @@ export async function generateMetadata({ params }) {
     id: {
       title: "Berita & Promo Terbaru GWM | GWM Inchcape Indonesia",
       description:
-        "Dapatkan update terbaru tentang GWM Inchcape: promo mobil, peluncuran model baru, dan berita industri otomotif di Indonesia.",
+        "Ikuti berita & promo GWM terbaru bulan ini. Temukan informasi seputar peluncuran model terbaru GWM, tips, serta promosi terbaru.",
       keywords: ["berita gwm", "promo gwm", "info mobil baru"],
     },
     en: {
       title: "Latest GWM News & Promotions | GWM Inchcape Indonesia",
       description:
-        "Stay updated with the latest GWM Inchcape news: car promotions, model launches, and automotive industry insights in Indonesia.",
+        "Stay up-to-date with GWM's latest news and promotions this month. Find information about the latest GWM model launches, tips, and promotions.",
       keywords: ["gwm news", "car promotion", "automotive indonesia"],
     },
   };

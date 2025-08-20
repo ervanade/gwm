@@ -17,13 +17,13 @@ export async function generateMetadata({ params }) {
 
   const meta = {
     id: {
-      title: `GWM Inchcape Indonesia | Dealer Resmi GWM di Indonesia`,
-      description: `"GWM Inchcape Indonesia menghadirkan dealer resmi GWM di Indonesia – model lengkap, layanan purnajual, test drive, dan lokasi dealer terpercaya.`,
+      title: `GWM Inchcape Indonesia | Dealer Resmi GWM Indonesia`,
+      description: `"Kunjungi GWM Inchcape, dealer resmi mobil GWM di Indonesia. Temukan berbagai model GWM terbaru, penawaran menarik, test drive, lokasi dealer dan layanan purna jual profesional.`,
       keywords: ['GWM Inchcape', 'dealer GWM', 'mobil GWM', 'harga GWM', 'GWM terbaru', 'beli GWM', 'Servis GWM'],
     },
     en: {
-      title: `GWM Inchcape Indonesia | Official GWM Dealer in Indonesia`,
-      description: `Discover GWM Inchcape Indonesia, Indonesia’s official GWM dealer with full model range, aftersales support, test drive booking & trusted dealership locations.`,
+      title: `GWM Inchcape Indonesia | Official GWM Dealer Indonesia`,
+      description: `Visit GWM Inchcape, your official GWM car dealership in Indonesia. Explore the latest GWM models, attractive offers, test drive, dealer locations and professional after-sales services.`,
       keywords:
         ['GWM Inchcape', 'GWM dealer', 'GWM car', 'GWM price', 'latest GWM', 'buy GWM', 'GWM service'],
     },

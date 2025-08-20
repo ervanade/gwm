@@ -11,13 +11,13 @@ export async function generateMetadata({ params }) {
     id: {
       title: "Jadwalkan Test Drive GWM | Rasakan Sensasinya di GWM Inchcape",
       description:
-        "Segera jadwalkan test drive mobil GWM impian Anda di GWM Inchcape. Rasakan performa dan kenyamanan langsung sebelum memutuskan. Daftar sekarang!",
+        "Daftar test drive GWM Tank 500, Tank 300, Ora 03, Haval Jolion & Haval H6. Rasakan performa dan pengalaman berkendara premium. Booking test drive di GWM Inchcape Indonesia",
       keywords: ["test drive GWM", "jadwal test drive", "mobil GWM"],
     },
     en: {
       title: "Schedule GWM Test Drive | Experience It at GWM Inchcape",
       description:
-        "Schedule a test drive for your dream GWM car at GWM Inchcape today. Experience the performance and comfort firsthand before deciding. Book now!",
+        "Register for a test drive of the GWM Tank 500, Tank 300, Ora 03, Haval Jolion, and Haval H6. Feel the premium performance and driving experience. Book test drive now only at GWM Inchcape Indonesia.",
       keywords: ["GWM test drive", "car test drive", "drive before buy"],
     },
   };
