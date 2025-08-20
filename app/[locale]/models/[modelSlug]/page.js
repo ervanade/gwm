@@ -20,14 +20,14 @@ export async function generateMetadata({ params }) {
 
   const meta = {
     id: {
-      title: `GWM ${modelName} - Spesifikasi & Fitur Mobil GWM`,
-      description: `"GWM  ${modelName}, ${data?.tipe}. Cek fitur lengkap, harga, lokasi dealer resmi, dan booking test drive di GWM Inchcape Indonesia.
+      title: data?.meta_title ? data?.meta_title : `GWM ${modelName} - Spesifikasi & Fitur Mobil GWM`,
+      description: data?.meta_desc ? data?.meta_desc : `"GWM  ${modelName}, ${data?.tipe}. Cek fitur lengkap, harga, lokasi dealer resmi, dan booking test drive di GWM Inchcape Indonesia.
 `,
       keywords: [modelName, "SUV GWM", "Mobil Hybrid", "Spesifikasi"],
     },
     en: {
-      title: `${modelName} Model - GWM Car Specifications & Features | GWM Inchcape Indonesia`,
-      description: `GWM ${modelName}, ${data?.tipe}. View full specs, price, official dealer locations, and schedule a test drive with GWM Inchcape Indonesia.`,
+      title: data?.meta_title_en ? data?.meta_title_en : `${modelName} Model - GWM Car Specifications & Features | GWM Inchcape Indonesia`,
+      description: data?.meta_desc_en ? data?.meta_desc_en : `GWM ${modelName}, ${data?.tipe}. View full specs, price, official dealer locations, and schedule a test drive with GWM Inchcape Indonesia.`,
       keywords: [modelName, "GWM SUV", "Hybrid car", "Car specs"],
     },
   };
@@ -44,7 +44,7 @@ const fetchModels = async (slug) => {
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_API_KEY}/api/v1/products/slug/${slug}`,
     {
-      next: { revalidate:60 * 5 },
+      next: { revalidate: 60 * 5 },
       // cache: 'no-store',
       method: "GET",
       headers: {
