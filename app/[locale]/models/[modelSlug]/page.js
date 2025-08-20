@@ -20,13 +20,13 @@ export async function generateMetadata({ params }) {
 
   const meta = {
     id: {
-      title: data?.meta_title ? data?.meta_title : `GWM ${modelName} - Spesifikasi & Fitur Mobil GWM`,
-      description: data?.meta_desc ? data?.meta_desc : `"GWM  ${modelName}, ${data?.tipe}. Cek fitur lengkap, harga, lokasi dealer resmi, dan booking test drive di GWM Inchcape Indonesia.
+      title: data?.meta_title ? data?.meta_title : `${modelName} - Spesifikasi & Fitur Mobil GWM | GWM Inchcape`,
+      description: data?.meta_desc ? data?.meta_desc : `"GWM ${modelName}, ${data?.tipe}. Cek fitur lengkap, harga, lokasi dealer resmi, dan booking test drive di GWM Inchcape Indonesia.
 `,
       keywords: [modelName, "SUV GWM", "Mobil Hybrid", "Spesifikasi"],
     },
     en: {
-      title: data?.meta_title_en ? data?.meta_title_en : `${modelName} Model - GWM Car Specifications & Features | GWM Inchcape Indonesia`,
+      title: data?.meta_title_en ? data?.meta_title_en : `${modelName} - GWM Car Specifications & Features | GWM Inchcape`,
       description: data?.meta_desc_en ? data?.meta_desc_en : `GWM ${modelName}, ${data?.tipe}. View full specs, price, official dealer locations, and schedule a test drive with GWM Inchcape Indonesia.`,
       keywords: [modelName, "GWM SUV", "Hybrid car", "Car specs"],
     },
