@@ -20,6 +20,7 @@ export default function TestDriveForm({ locale }) {
     dealer: "",
     agree: false,
   });
+  const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const [gwmModels, setGwmModels] = useState([]);
   const [dealerLocations, setDealerLocations] = useState([]);
@@ -78,13 +79,43 @@ export default function TestDriveForm({ locale }) {
     fetchDealers();
   }, []);
 
+  const getMinDate = () => {
+    const now = new Date();
+    const utc = now.getTime() + now.getTimezoneOffset() * 60000;
+    const wib = new Date(utc + 7 * 60 * 60000); // UTC+7
+    wib.setDate(wib.getDate() + 2);
+    return wib.toISOString().split("T")[0];
+  };
+
   const handleChange = (e) => {
-    const { name, value, type, checked } = e.target;
+    const { name, value } = e.target;
+
+    if (name === "preferred_date") {
+      const now = new Date();
+      const utc = now.getTime() + now.getTimezoneOffset() * 60000;
+      const wib = new Date(utc + 7 * 3600000);
+      wib.setHours(0, 0, 0, 0);
+
+      const minDate = new Date(wib);
+      minDate.setDate(wib.getDate() + 2);
+
+      const inputDate = new Date(value + "T00:00:00+07:00");
+
+      if (inputDate < minDate) {
+        setError(`Tanggal minimal ${minDate.toISOString().split("T")[0]}`);
+        return;
+      } else {
+        setError("");
+      }
+    }
+
     setFormData((prev) => ({
       ...prev,
-      [name]: type === "checkbox" ? checked : value,
+      [name]: value,
     }));
   };
+  
+  
 
   const validateForm = () => {
     const today = new Date();
@@ -333,19 +364,24 @@ export default function TestDriveForm({ locale }) {
 
         {/* Date */}
         <div>
-          <label className="block font-medium mb-1">
-            Preferred Date<span className="text-red-600 text-xs">*</span>
-          </label>
-          <input
-            name="preferred_date"
-            type="date"
-            required
-            value={formData.preferred_date}
-            onChange={handleChange}
-            className="w-full border border-gray-400 rounded-lg px-4 py-2 focus:ring-2 focus:ring-primary focus:outline-none"
-            min={new Date().toISOString().split("T")[0]}
-          />
-        </div>
+  <label className="block font-medium mb-1">
+    Preferred Date<span className="text-red-600 text-xs">*      
+    </span>
+  </label>
+  <input
+    name="preferred_date"
+    type="date"
+    required
+    value={formData.preferred_date}
+    onChange={handleChange}
+    className="w-full border border-gray-400 rounded-lg px-4 py-2 focus:ring-2 focus:ring-primary focus:outline-none"
+    min={getMinDate()}
+
+  />
+  <span className="text-red-600 text-xs mt-2"> {error && <p className="text-red-500 text-xs">{error}</p>}
+  </span>
+</div>
+
 
         {/* Agreement */}
         <div className="flex items-start gap-2">
