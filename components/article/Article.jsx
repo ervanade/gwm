@@ -146,9 +146,14 @@ export default function GwmArticles() {
                 )}
               </div>
               <div className="p-6">
-                <h5 className="block text-lg md:text-xl mb-2 font-semibold line-clamp-3">
-                  {locale === "en" ? item.title_en : item.title}
-                </h5>
+                <Link
+                  href={`/${locale}/news/${item.slug}`}
+                  className="hover:underline"
+                >
+                  <h5 className="block text-lg md:text-xl mb-2 font-semibold line-clamp-3 hover:underline">
+                    {locale === "en" ? item.title_en : item.title}
+                  </h5>
+                </Link>
                 <p className="line-clamp-3 text-sm md:text-base font-light min-h-[76px]">
                   {locale === "en" ? item.excerpt_en : item.excerpt}
                 </p>
