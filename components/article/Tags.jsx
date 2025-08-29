@@ -85,7 +85,7 @@ export default function GwmArticlesByTag({ slugTag }) {
         <div className="mb-6 overflow-x-auto whitespace-nowrap no-scrollbar">
           <Link
             href={`/${locale}/news`}
-            className={`inline-block mr-4 px-4 py-2 rounded-full font-sm md:font-base font-semibold ${
+            className={`inline-block mr-2 md:mr-4 px-4 py-2 rounded-full text-sm md:text-base font-semibold ${
               !slugTag
                 ? "bg-primary text-white"
                 : "border border-black/80 text-black/80"
@@ -99,7 +99,7 @@ export default function GwmArticlesByTag({ slugTag }) {
               <Link
                 key={tag?.slug}
                 href={`/${locale}/news/tag/${tag?.slug}`}
-                className={`inline-block mr-4 px-4 py-2 rounded-full font-sm md:font-base ${
+                className={`inline-block mr-2 md:mr-4 px-4 py-2 rounded-full text-sm md:text-base ${
                   isActive
                     ? "bg-primary text-white"
                     : "border border-black/80 text-black/80"

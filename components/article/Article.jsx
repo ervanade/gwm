@@ -83,7 +83,7 @@ export default function GwmArticles() {
         <div className="mb-6 overflow-x-auto whitespace-nowrap no-scrollbar">
           <Link
             href={`/${locale}/news`}
-            className="inline-block mr-4 bg-primary text-white px-4 py-2 rounded-full font-sm md:font-base font-semibold"
+            className="inline-block mr-2 md:mr-4 bg-primary text-white px-4 py-2 rounded-full text-sm md:text-base font-semibold"
           >
             All Tags
           </Link>
@@ -91,7 +91,7 @@ export default function GwmArticles() {
             <Link
               key={tag?.slug}
               href={`/${locale}/news/tag/${tag?.slug}`}
-              className="inline-block mr-4 border border-black/80 text-black/80 px-4 py-2 rounded-full font-sm md:font-base"
+              className="inline-block mr-2 md:mr-4 border border-black/80 text-black/80 px-4 py-2 rounded-full text-sm md:text-base"
             >
               {locale === "en" ? tag?.tag_name || tag?.tag_name : tag?.tag_name}
             </Link>
