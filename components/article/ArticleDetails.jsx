@@ -8,9 +8,20 @@ import parse from "html-react-parser";
 const HTMLDecoderEncoder = require("html-encoder-decoder");
 
 import "./unreset.css";
-
+import { useLocale } from "next-intl";
+function scopeGrapeJSCSS(css, scopeClass = ".grapejs-wrapper") {
+  return css.replace(/(^|\})\s*([^{\}]+)\s*\{/g, (match, p1, selector) => {
+    // Tambahkan prefix hanya pada selector, bukan pada @keyframes dll
+    if (selector.startsWith("@")) return match;
+    const scopedSelectors = selector
+      .split(",")
+      .map((sel) => `${scopeClass} ${sel.trim()}`)
+      .join(", ");
+    return `${p1} ${scopedSelectors} {`;
+  });
+}
 const ArticlesDetails = ({ article, related }) => {
-  const locale = useSearchParams().get("lang") || "id";
+  const locale = useLocale() || "id";
 
   const title = locale === "en" ? article?.title_en : article?.title;
   const content = locale === "en" ? article?.content_en : article?.content;
@@ -25,50 +36,50 @@ const ArticlesDetails = ({ article, related }) => {
           </h1>
 
           <div className="flex flex-col items-center justify-center gap-2 sm:flex-row sm:gap-4 text-sm mb-4 text-gray-700">
-          {article.tags?.length > 0 && (
-            <div className="text-center text-primary font-medium text-sm">
-              {article.tags.map((tag, i) => (
-                <span key={i}>
-                   <Link
-              className="px-4 py-1.5 bg-primary text-white font-semibold rounded-full text-sm"
-              href={`/${locale}/news/tag/${tag.slug}`}
-            >
-               #{tag.tag_name}
-            </Link>
-                  {/* {i < article.tags.length - 1 && ", "} */}
-                </span>
-              ))}
-            </div>
-          )}
+            {article.tags?.length > 0 && (
+              <div className="text-center text-primary font-medium text-sm">
+                {article.tags.map((tag, i) => (
+                  <span key={i}>
+                    <Link
+                      className="px-4 py-1.5 bg-primary text-white font-semibold rounded-full text-sm"
+                      href={`/${locale}/news/tag/${tag.slug}`}
+                    >
+                      #{tag.tag_name}
+                    </Link>
+                    {/* {i < article.tags.length - 1 && ", "} */}
+                  </span>
+                ))}
+              </div>
+            )}
             {article.published_at && (
               <p>{format(parseISO(article.published_at), "yyyy MMM dd")}</p>
             )}
           </div>
 
-        
-
           <div className="flex flex-col lg:flex-row w-full mt-5 gap-8">
             <div className="flex-[3_3_0%]">
-              {
-                (article.cover_url && (
-                  <div className="aspect-[16/8] lg:aspect-[16/6] w-full overflow-hidden rounded-lg relative">
-                    <Image
-                      src={article.cover_url || article.image}
-                      alt={article.alt_text || "Article GWM"}
-                      sizes="100vw"
-                      fill
-                      className="object-cover"
-                      priority
-                    />
-                  </div>
-                ))}
+              {article.cover_url && (
+                <div className="aspect-[16/8] lg:aspect-[16/6] w-full overflow-hidden rounded-lg relative">
+                  <Image
+                    src={article.cover_url || article.image}
+                    alt={article.alt_text || "Article GWM"}
+                    sizes="100vw"
+                    fill
+                    className="object-cover"
+                    priority
+                  />
+                </div>
+              )}
 
               <div className="news-text mt-5 prose max-w-none prose-img:rounded-md prose-headings:scroll-mt-24">
-                {content ? (
+                <div className="grapejs-wrapper">
+                  <div dangerouslySetInnerHTML={{ __html: content }} />
+                </div>
+                {/* {content ? (
                   parse(HTMLDecoderEncoder.decode(content))
                 ) : (
                   <p className="text-gray-500">Konten tidak tersedia.</p>
-                )}
+                )} */}
               </div>
             </div>
 
