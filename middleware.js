@@ -30,7 +30,7 @@ export default function middleware(request) {
   // Redirect ke default locale jika path tanpa prefix
   const url = request.nextUrl.clone();
   url.pathname = `/${defaultLocale}${pathname}`;
-  return NextResponse.redirect(url);
+  return NextResponse.redirect(url, 301);
 }
 
 export const config = {

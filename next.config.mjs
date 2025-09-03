@@ -33,7 +33,95 @@ const nextConfig = {
   reactStrictMode: true,  // Enables strict mode for better debugging
   // swcMinify: true,  // Faster JavaScript minification
   compress: true,   // Enables compression (gzip and brotli),
-  trailingSlash: false
+  trailingSlash: false,
+  async redirects() {
+    return [
+      // Root diarahkan ke /id
+      {
+        source: "/",
+        destination: "/id",
+        permanent: true,
+      },
+
+      // Contact Us
+      {
+        source: "/contact-us",
+        destination: "/id/contact-us",
+        permanent: true,
+      },
+
+      // After Sales
+      {
+        source: "/after-sales",
+        destination: "/id/after-sales",
+        permanent: true,
+      },
+      {
+        source: "/en/after-sales/",
+        destination: "/en/after-sales",
+        permanent: true,
+      },
+
+      // Dealer Locations
+      {
+        source: "/dealer-locations",
+        destination: "/id/dealer-locations",
+        permanent: true,
+      },
+      {
+        source: "/dealer-locations/:path*",
+        destination: "/id/dealer-locations/:path*",
+        permanent: true,
+      },
+
+      // ERA
+      {
+        source: "/era",
+        destination: "/id/era",
+        permanent: true,
+      },
+
+      // Models
+      {
+        source: "/models/:path*",
+        destination: "/id/models/:path*",
+        permanent: true,
+      },
+
+      // News
+      {
+        source: "/news",
+        destination: "/id/news",
+        permanent: true,
+      },
+      {
+        source: "/news/:path*",
+        destination: "/id/news/:path*",
+        permanent: true,
+      },
+
+      // Privacy Policy
+      {
+        source: "/privacy-policy",
+        destination: "/id/privacy-policy",
+        permanent: true,
+      },
+
+      // Test Drive
+      {
+        source: "/test-drive",
+        destination: "/id/test-drive",
+        permanent: true,
+      },
+
+      // Hilangkan trailing slash
+      {
+        source: "/:path*/",
+        destination: "/:path*",
+        permanent: true,
+      },
+    ];
+  },
   // optimizeFonts: true,  // Optimizes font loading for better performance
 };
 
