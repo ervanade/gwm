@@ -64,7 +64,7 @@ export async function generateMetadata({ params }) {
     authors: [{ name: 'GWM Inchcape', url: 'https://gwminchcape.co.id' }],
     creator: 'GWM Inchcape',
     publisher: 'GWM Inchcape',
-    metadataBase: new URL('https://gwminchcape.co.id'),
+    // metadataBase: new URL('https://gwminchcape.co.id'),
     // alternates: {
     //   canonical: `/?lang=${lang}`,
     //   languages: {
@@ -79,7 +79,7 @@ export async function generateMetadata({ params }) {
       description: isEnglish
         ? 'Visit GWM Inchcape, your official GWM car dealership in Indonesia. Explore the latest GWM models, attractive offers, and professional after-sales services.'
         : 'Kunjungi GWM Inchcape, dealer resmi mobil GWM di Indonesia. Temukan berbagai model GWM terbaru, penawaran menarik, dan layanan purna jual profesional.',
-      url: 'https://gwminchcape.co.id',
+      // url: 'https://gwminchcape.co.id/id',
       siteName: 'GWM Inchcape',
       images: [
         {
