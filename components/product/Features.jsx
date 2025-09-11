@@ -172,33 +172,41 @@ const Features = ({ dataFeature, dataSpec, dataHl }) => {
       {dataHl ? (
         <div className="mx-auto w-full text-black" id="hero">
           <div className="">
-            <div className="w-full relative h-[50vh] md:h-[70vh] cursor-pointer">
+            <div className="w-full relative h-auto md:h-[70vh] cursor-pointer">
+              {/* Overlay */}
               <div className="absolute inset-0 bg-gradient-to-b lg:bg-gradient-to-r from-black/50 to-transparent z-10"></div>
-              <Image
-                src={dataHl?.image_hl_url || `/assets/highlight1.png`}
-                alt={dataHl?.title || "GWM Hero"}
-                layout="fill"
-                className="object-[65%_50%] md:object-center"
-                objectFit="cover"
-              />
-              <div className="absolute top-[35%] left-0 right-0 z-20">
+
+              {/* Image */}
+              <div className="relative w-full aspect-[16/9] md:aspect-auto md:h-[70vh]">
+                <Image
+                  src={dataHl?.image_hl_url || `/assets/highlight1.png`}
+                  alt={dataHl?.title || "GWM Hero"}
+                  fill
+                  className="object-cover md:object-[65%_50%] md:object-center"
+                  priority
+                />
+              </div>
+
+              {/* Content */}
+              {/* Mobile center, Desktop tetap 35% dari atas */}
+              <div className="absolute inset-0 flex items-center justify-center text-center md:block md:top-[35%] md:text-left z-[12]">
                 <div className="max-w-7xl mx-auto px-6 lg:px-12">
-                  <div className="flex flex-col gap-2 items-center justify-start text-white space-y-4 lg:space-y-8 max-w-[600px] text-center md:items-start md:text-left">
-                    <p className="font-bold text-2xl md:text-3xl lg:text-[32px] leading-tight">
+                  <div className="flex flex-col gap-2 items-center text-center md:items-start md:text-left text-white space-y-4 lg:space-y-8 max-w-[600px] mx-auto md:mx-0">
+                    <p className="font-bold text-xl md:text-3xl lg:text-[32px] leading-tight">
                       {locale === "en" ? dataHl.title_en : dataHl.title}
                     </p>
-                    <p className="text-base sm:text-lg lg:text-xl text-white/85 leading-relaxed">
+                    <p className=" text-sm md:text-base sm:text-lg lg:text-xl text-white/85 md:leading-relaxed">
                       {locale === "en"
                         ? dataHl.description_en
                         : dataHl.description}
                     </p>
-                    <div className="flex flex-col sm:flex-row gap-4">
+                    <div className="flex flex-col sm:flex-row gap-2 md:gap-4">
                       <Link
                         href="/test-drive"
                         target="_blank"
                         rel="noopener noreferrer"
                         aria-label="button"
-                        className="bg-transparent hover:bg-primary hover:border-transparent text-white px-4 py-2 lg:px-6  rounded-lg font-semibold border border-white flex items-center gap-2"
+                        className="bg-transparent hover:bg-primary hover:border-transparent text-white text-sm md:text-base py-1 px-3 md:px-4 md:py-2 lg:px-6 rounded-lg font-semibold border border-white flex items-center gap-2"
                       >
                         Test Drive
                         <FaChevronRight />
