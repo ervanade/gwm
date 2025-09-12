@@ -39,89 +39,90 @@ const nextConfig = {
       // Root diarahkan ke /id
       {
         source: "/",
-        destination: "/id",
+        destination: "https://gwminchcape.co.id/id",
         permanent: true,
       },
 
       // Contact Us
       {
         source: "/contact-us",
-        destination: "/id/contact-us",
+        destination: "https://gwminchcape.co.id/id/contact-us",
         permanent: true,
       },
 
       // After Sales
       {
         source: "/after-sales",
-        destination: "/id/after-sales",
+        destination: "https://gwminchcape.co.id/id/after-sales",
         permanent: true,
       },
       {
         source: "/en/after-sales/",
-        destination: "/en/after-sales",
+        destination: "https://gwminchcape.co.id/en/after-sales",
         permanent: true,
       },
 
       // Dealer Locations
       {
         source: "/dealer-locations",
-        destination: "/id/dealer-locations",
+        destination: "https://gwminchcape.co.id/id/dealer-locations",
         permanent: true,
       },
       {
         source: "/dealer-locations/:path*",
-        destination: "/id/dealer-locations/:path*",
+        destination: "https://gwminchcape.co.id/id/dealer-locations/:path*",
         permanent: true,
       },
 
       // ERA
       {
         source: "/era",
-        destination: "/id/era",
+        destination: "https://gwminchcape.co.id/id/era",
         permanent: true,
       },
 
       // Models
       {
         source: "/models/:path*",
-        destination: "/id/models/:path*",
+        destination: "https://gwminchcape.co.id/id/models/:path*",
         permanent: true,
       },
 
       // News
       {
         source: "/news",
-        destination: "/id/news",
+        destination: "https://gwminchcape.co.id/id/news",
         permanent: true,
       },
       {
         source: "/news/:path*",
-        destination: "/id/news/:path*",
+        destination: "https://gwminchcape.co.id/id/news/:path*",
         permanent: true,
       },
 
       // Privacy Policy
       {
         source: "/privacy-policy",
-        destination: "/id/privacy-policy",
+        destination: "https://gwminchcape.co.id/id/privacy-policy",
         permanent: true,
       },
 
       // Test Drive
       {
         source: "/test-drive",
-        destination: "/id/test-drive",
+        destination: "https://gwminchcape.co.id/id/test-drive",
         permanent: true,
       },
 
       // Hilangkan trailing slash
       {
         source: "/:path*/",
-        destination: "/:path*",
+        destination: "https://gwminchcape.co.id/:path*",
         permanent: true,
       },
     ];
   },
+
   // optimizeFonts: true,  // Optimizes font loading for better performance
 };
 
