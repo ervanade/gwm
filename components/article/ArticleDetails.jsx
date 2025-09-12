@@ -10,16 +10,40 @@ const HTMLDecoderEncoder = require("html-encoder-decoder");
 import "./unreset.css";
 import { useLocale } from "next-intl";
 function scopeGrapeJSCSS(css, scopeClass = ".grapejs-wrapper") {
-  return css.replace(/(^|\})\s*([^{\}]+)\s*\{/g, (match, p1, selector) => {
-    // Tambahkan prefix hanya pada selector, bukan pada @keyframes dll
+  const addScope = (selector) => {
+    // Kalau sudah ada scopeClass, jangan ditambah lagi
+    if (selector.includes(scopeClass)) return selector.trim();
+    return `${scopeClass} ${selector.trim()}`;
+  };
+
+  // Tangani blok @media
+  css = css.replace(/@media[^{]+\{([\s\S]+?)\}\s*\}/g, (match, inner) => {
+    const scopedInner = inner.replace(/(^|\})\s*([^{\}]+)\s*\{/g, (m, p1, selector) => {
+      if (selector.startsWith("@")) return m;
+      const scopedSelectors = selector
+        .split(",")
+        .map(sel => addScope(sel))
+        .join(", ");
+      return `${p1} ${scopedSelectors} {`;
+    });
+    return match.replace(inner, scopedInner);
+  });
+
+  // Tangani selector di luar @media
+  css = css.replace(/(^|\})\s*([^{\}]+)\s*\{/g, (match, p1, selector) => {
     if (selector.startsWith("@")) return match;
     const scopedSelectors = selector
       .split(",")
-      .map((sel) => `${scopeClass} ${sel.trim()}`)
+      .map(sel => addScope(sel))
       .join(", ");
     return `${p1} ${scopedSelectors} {`;
   });
+
+  return css;
 }
+
+
+
 const ArticlesDetails = ({ article, related }) => {
   const locale = useLocale() || "id";
 
