@@ -13,6 +13,8 @@ import { Link } from "@/i18n/navigation";
 export default function StickyMenu({ data }) {
   const [isMobile, setIsMobile] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
+  const whatsappMessage = "Hi GWM, saya telah mengunjungi WEBSITE GWM Inchcape Retail, dan tertarik ingin mendapatkan informasi lebih lanjut.";
+const encodedMessage = encodeURIComponent(whatsappMessage);
   const menuItems = [
     {
       label: "Brochure",
@@ -25,7 +27,7 @@ export default function StickyMenu({ data }) {
     {
       label: "WhatsApp",
       icon: <FaWhatsapp />,
-      link: `https://wa.me/${data?.whatsapp || ""}`,
+      link: `https://wa.me/${data?.whatsapp || ""}?text=${encodedMessage}`,
     },
   ];
 
