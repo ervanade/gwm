@@ -58,7 +58,7 @@ const EraDetail = ({ data }) => {
       image: "/assets/about/era2.jpg",
       desc_id: "HUBUNGI GWM CUSTOMER CENTER DI: 150 - 496 (GWM) 24 JAM",
       desc_en: "CONTACT GWM CUSTOMER CENTER AT: 150 - 496 (GWM) 24 HOURS",
-      cta_link: "https://wa.me/+6285186821765",
+      cta_link: "https://wa.me/6285186821765?text=Halo%20GWM,%20saya%20telah%20mengunjungi%20WEBSITE%20GWM%20Inchcape%20Retail,%20dan%20tertarik%20ingin%20mendapatkan%20informasi%20lebih%20lanjut.",
     },
   ];
 
