@@ -42,6 +42,11 @@ const nextConfig = {
         destination: "https://gwminchcape.co.id/id",
         permanent: true,
       },
+      {
+        source: "/id/",
+        destination: "https://gwminchcape.co.id/id",
+        permanent: true,
+      },
 
       // Contact Us
       {
