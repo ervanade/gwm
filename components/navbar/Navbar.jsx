@@ -327,6 +327,9 @@ const Navbar = ({ dataModels }) => {
 
         <button
           onClick={() => setMenuOpen(true)}
+          aria-label="Button Navbar Mobile"
+          name="Button Navbar Mobile"
+          id="Button Navbar Mobile"
           className={`lg:hidden ${
             color ? "text-dark" : "text-white"
           } text-2xl cursor-pointer`}

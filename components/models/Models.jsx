@@ -187,7 +187,7 @@ const Models = ({ dataModels = [], dataCategories = [] }) => {
                 </div>
               </div>
               <div className="flex-grow sm:flex-none">
-                <h4 className="font-semibold text-lg">{car.title}</h4>
+                <h3 className="font-semibold text-lg">{car.title}</h3>
                 <p className="text-sm text-gray-600">{car.subtitle}</p>
               </div>
             </Link>
