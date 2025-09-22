@@ -187,6 +187,14 @@ export default function TestDriveForm({ locale }) {
       Swal.fire("Error", "Token reCAPTCHA tidak tersedia", "error");
       return;
     }
+    if (typeof window !== "undefined" && window.dataLayer) {
+      window.dataLayer.push({
+        event: "formSubmission",
+        fullName: formData.fullName,
+        phone: `+62${formData.phone}`,
+        email: formData.email,
+      });
+    }
     setLoading(true);
     Swal.fire({
       title: "Mengirim Permintaan...",
@@ -215,6 +223,7 @@ export default function TestDriveForm({ locale }) {
           },
         }
       );
+
 
       if (response.status === 200 || response.status === 201) {
         Swal.fire({
@@ -406,6 +415,7 @@ export default function TestDriveForm({ locale }) {
         {/* Submit */}
         <div className="flex justify-center">
           <button
+          id="submit_testdrive"
             type="submit"
             className="bg-primary text-white font-bold px-6 py-3 text-lg cursor-pointer rounded-lg hover:bg-primary/90 transition disabled:opacity-50"
             disabled={!formData.agree || loading}

@@ -142,21 +142,14 @@ export default async function LocaleLayout({
   const { locale } = await params;
   const { data: dataSettings } = await getData()
   const { data } = await getDataProducts()
-  const headScript = dataSettings?.before_close_head || `<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-LK8WGN61EN"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-LK8WGN61EN');
-</script>
-<!-- Google Tag Manager -->
+  const headScript = dataSettings?.before_close_head || `<!-- Google Tag Manager -->
+<script>window.dataLayer = window.dataLayer || [];</script>
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
 j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','GTM-KCK7VX4C');</script>
-<!-- End Google Tag Manager -->`;
+<!-- End Google Tag Manager -->`;
   const bodyScript = dataSettings?.before_close_body || ``;
   if (!hasLocale(routing.locales, locale)) {
     notFound();
