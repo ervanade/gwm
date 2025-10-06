@@ -7,24 +7,24 @@ import parse from "html-react-parser";
 import { Link } from "@/i18n/navigation";
 const HTMLDecoderEncoder = require("html-encoder-decoder");
 
-const DetailAfterSales = () => {
+const DetailAccessories = () => {
   const locale = useLocale();
 
   const dummyTenants = [
     {
-      id: "warranty",
-      title_id: "WARRANTY",
-      title_en: "WARRANTY",
-      image: "/assets/warranty.png",
+      id: "Kit",
+      title_id: "AKSESORIS",
+      title_en: "ACCESSORIES",
+      image: "/assets/tank-300-acc.png",
       desc_id: `
 <section class="text-dark">
   <h3 class="text-lg md:text-xl font-bold uppercase tracking-wide">
-    Berkendara Jelajahi Berbagai Medan dengan Bebas Khawatir.
+   Exterior Part
   </h3>
 
   <ol class="mt-4 space-y-5 list-decimal pl-5">
     <li>
-      <h4 class="font-semibold">TANK 500 Warranty</h4>
+      <h4 class="font-semibold">TANK 300 Fury Kit</h4>
       <ul class="mt-2 space-y-1 list-disc pl-4 text-sm md:text-base">
         <li><span class="font-medium">8 Tahun / 200.000 KM</span> – Garansi Baterai Hybrid</li>
         <li><span class="font-medium">7 Tahun / 200.000 KM</span> – Garansi Umum</li>
@@ -33,7 +33,7 @@ const DetailAfterSales = () => {
     </li>
 
     <li>
-      <h4 class="font-semibold">TANK 300 Warranty</h4>
+      <h4 class="font-semibold">TANK 500 Fury Kit</h4>
       <ul class="mt-2 space-y-1 list-disc pl-4 text-sm md:text-base">
         <li><span class="font-medium">8 Tahun / 200.000 KM</span> – Garansi Baterai Hybrid</li>
         <li><span class="font-medium">7 Tahun / 200.000 KM</span> – Garansi Umum</li>
@@ -42,7 +42,7 @@ const DetailAfterSales = () => {
     </li>
 
     <li>
-      <h4 class="font-semibold">HAVAL H6 Warranty</h4>
+      <h4 class="font-semibold">HAVAL H6 Kit</h4>
       <ul class="mt-2 space-y-1 list-disc pl-4 text-sm md:text-base">
         <li><span class="font-medium">8 Tahun / 200.000 KM</span> – Garansi Baterai Hybrid</li>
         <li><span class="font-medium">7 Tahun / 200.000 KM</span> – Garansi Umum</li>
@@ -51,7 +51,7 @@ const DetailAfterSales = () => {
     </li>
 
     <li>
-      <h4 class="font-semibold">HAVAL Jolion Warranty</h4>
+      <h4 class="font-semibold">HAVAL Jolion Kit</h4>
       <ul class="mt-2 space-y-1 list-disc pl-4 text-sm md:text-base">
         <li><span class="font-medium">8 Tahun / 200.000 KM</span> – Garansi Baterai Hybrid</li>
         <li><span class="font-medium">7 Tahun / 200.000 KM</span> – Garansi Umum</li>
@@ -59,7 +59,7 @@ const DetailAfterSales = () => {
     </li>
 
     <li>
-      <h4 class="font-semibold">ORA 03 Warranty</h4>
+      <h4 class="font-semibold">ORA 03 Kit</h4>
       <ul class="mt-2 space-y-1 list-disc pl-4 text-sm md:text-base">
         <li><span class="font-medium">8 Tahun / 200.000 KM</span> – Garansi Baterai</li>
         <li><span class="font-medium">7 Tahun / 200.000 KM</span> – Garansi Umum</li>
@@ -73,50 +73,50 @@ const DetailAfterSales = () => {
       desc_en: `
 <section class="text-dark">
   <h3 class="text-lg md:text-xl font-bold uppercase tracking-wide">
-    Drive Across Any Terrain with Peace of Mind.
+   Exterior Part
   </h3>
 
   <ol class="mt-4 space-y-5 list-decimal pl-5">
     <li>
-      <h4 class="font-semibold">TANK 500 Warranty</h4>
+      <h4 class="font-semibold">TANK 500 Kit</h4>
       <ul class="mt-2 space-y-1 list-disc pl-4 text-sm md:text-base">
-        <li><span class="font-medium">8 Years / 200,000 KM</span> – Hybrid Battery Warranty</li>
-        <li><span class="font-medium">7 Years / 200,000 KM</span> – General Warranty</li>
+        <li><span class="font-medium">8 Years / 200,000 KM</span> – Hybrid Battery Kit</li>
+        <li><span class="font-medium">7 Years / 200,000 KM</span> – General Kit</li>
         <li><span class="font-medium">3 Years / 30,000 KM</span> – Annual Maintenance Parts & Labor</li>
       </ul>
     </li>
 
     <li>
-      <h4 class="font-semibold">TANK 300 Warranty</h4>
+      <h4 class="font-semibold">TANK 300 Kit</h4>
       <ul class="mt-2 space-y-1 list-disc pl-4 text-sm md:text-base">
-        <li><span class="font-medium">8 Years / 200,000 KM</span> – Hybrid Battery Warranty</li>
-        <li><span class="font-medium">7 Years / 200,000 KM</span> – General Warranty</li>
+        <li><span class="font-medium">8 Years / 200,000 KM</span> – Hybrid Battery Kit</li>
+        <li><span class="font-medium">7 Years / 200,000 KM</span> – General Kit</li>
         <li><span class="font-medium">3 Years / 30,000 KM</span> – Annual Maintenance Parts & Labor</li>
       </ul>
     </li>
 
     <li>
-      <h4 class="font-semibold">HAVAL H6 Warranty</h4>
+      <h4 class="font-semibold">HAVAL H6 Kit</h4>
       <ul class="mt-2 space-y-1 list-disc pl-4 text-sm md:text-base">
-        <li><span class="font-medium">8 Years / 200,000 KM</span> – Hybrid Battery Warranty</li>
-        <li><span class="font-medium">7 Years / 200,000 KM</span> – General Warranty</li>
+        <li><span class="font-medium">8 Years / 200,000 KM</span> – Hybrid Battery Kit</li>
+        <li><span class="font-medium">7 Years / 200,000 KM</span> – General Kit</li>
         <li><span class="font-medium">3 Years / 30,000 KM</span> – Annual Maintenance Parts & Labor</li>
       </ul>
     </li>
 
     <li>
-      <h4 class="font-semibold">HAVAL Jolion Warranty</h4>
+      <h4 class="font-semibold">HAVAL Jolion Kit</h4>
       <ul class="mt-2 space-y-1 list-disc pl-4 text-sm md:text-base">
-        <li><span class="font-medium">8 Years / 200,000 KM</span> – Hybrid Battery Warranty</li>
-        <li><span class="font-medium">7 Years / 200,000 KM</span> – General Warranty</li>
+        <li><span class="font-medium">8 Years / 200,000 KM</span> – Hybrid Battery Kit</li>
+        <li><span class="font-medium">7 Years / 200,000 KM</span> – General Kit</li>
       </ul>
     </li>
 
     <li>
-      <h4 class="font-semibold">ORA 03 Warranty</h4>
+      <h4 class="font-semibold">ORA 03 Kit</h4>
       <ul class="mt-2 space-y-1 list-disc pl-4 text-sm md:text-base">
-        <li><span class="font-medium">8 Years / 200,000 KM</span> – Battery Warranty</li>
-        <li><span class="font-medium">7 Years / 200,000 KM</span> – General Warranty</li>
+        <li><span class="font-medium">8 Years / 200,000 KM</span> – Battery Kit</li>
+        <li><span class="font-medium">7 Years / 200,000 KM</span> – General Kit</li>
         <li><span class="font-medium">3 Years / 30,000 KM</span> – Free Maintenance and Service Fee</li>
       </ul>
     </li>
@@ -126,26 +126,24 @@ const DetailAfterSales = () => {
     },
     {
       id: "accessories",
-      title_id: "AKSESORIS",
-      title_en: "ACCESSORIES",
-      image: "/assets/tank-300-acc.png",
-      detail_link: "/after-sales/accessories",
+      title_id: "TANK 500 FURY VERSION",
+      title_en: "TANK 500 FURY VERSION",
+      image: "/assets/tank-500-fury.png",
       desc_id:
-        "Maksimalkan Gaya Kendaraan Kesayangan Anda Dengan Aksesoris Gwm. Hubungi Atau Kunjungi Dealer Terdekat Untuk Mendapatkan Informasi Seputar Koleksi Aksesoris Gwm.",
+        "Dibuat untuk para petualang sejati, TANK 500 FURY adalah kendaraan off-road yang telah dikustomisasi sepenuhnya untuk menaklukkan medan paling ekstrem. Dilengkapi dengan roof rack, side ladder, adjustable shock absorbers, dan lebih banyak fitur lainnya, kendaraan ini menawarkan ketahanan serta performa yang luar biasa. Baik saat menjelajahi alam liar maupun mendorong batas eksplorasi, TANK 500 FURY memastikan setiap perjalanan menjadi petualangan yang tak terlupakan.",
       desc_en:
-        "Maximize The Style Of Your Beloved Vehicle With Gwm Accessories. Contact Or Visit The Nearest Dealer To Get Information About The Gwm Accessories Collection.",
+        "Built for true adventurers, the TANK 500 FURY is a fully customized off-road vehicle designed to conquer the most extreme terrain. Equipped with a roof rack, side ladder, adjustable shock absorbers, and more, it offers exceptional durability and performance. Whether exploring the wilderness or pushing the boundaries of exploration, the TANK 500 FURY ensures every journey is an unforgettable adventure.",
     },
     
     {
       id: "afterservice",
-      title_id: "Dealer Kami",
-      title_en: "Our Dealers",
-      image: "/assets/dealers/tomang.png",
+      title_id: "TANK 300 FURY VERSION",
+      title_en: "TANK 300 FURY VERSION",
+      image: "/assets/tank-300-fury2.png",
       desc_id:
-        "Kunjungi dealer GWM yang nyaman dan premium. Nikmati kopi hangat langsung dari barista terbaik, gratis untuk anda setiap hari dan jadwalkan test drive Anda hari ini.",
+        "TANK 300 FURY adalah monster off-road yang telah dimodifikasi sepenuhnya, dirancang untuk mereka yang haus akan petualangan. Dilengkapi dengan roof rack, side ladder, adjustable shock absorbers, dan masih banyak lagi, kendaraan ini menawarkan daya tahan dan performa maksimal di segala medan. Baik saat menaklukkan jalur terjal maupun menjelajahi wilayah yang belum terjamah, TANK 300 FURY siap menghadapi setiap tantangan dengan percaya diri.",
       desc_en:
-        "Visit GWM convenient & premium dealers. Enjoy freshly-brewed free coffee from our barista everyday and book your test drive today.",
-      dealer_link: "/dealer-locations",
+        "The TANK 300 FURY is a fully modified off-road monster designed for those with a thirst for adventure. Equipped with a roof rack, side ladder, adjustable shock absorbers, and more, it offers maximum durability and performance in all terrains. Whether conquering rugged trails or exploring uncharted territory, the TANK 300 FURY is ready to face any challenge with confidence.",
     },
   ];
 
@@ -227,4 +225,4 @@ const DetailAfterSales = () => {
   );
 };
 
-export default DetailAfterSales;
+export default DetailAccessories;
