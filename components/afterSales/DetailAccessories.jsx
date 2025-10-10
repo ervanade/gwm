@@ -18,109 +18,21 @@ const DetailAccessories = () => {
       image: "/assets/tank-300-acc.png",
       desc_id: `
 <section class="text-dark">
-  <h3 class="text-lg md:text-xl font-bold uppercase tracking-wide">
-   Exterior Part
+  <h3 class="text-lg md:text-xl font-bold uppercase tracking-wide mb-4 lg:mb-8">
+   Aksesori Lengkap untuk Seluruh Lini GWM
   </h3>
-
-  <ol class="mt-4 space-y-5 list-decimal pl-5">
-    <li>
-      <h4 class="font-semibold">TANK 300 Fury Kit</h4>
-      <ul class="mt-2 space-y-1 list-disc pl-4 text-sm md:text-base">
-        <li><span class="font-medium">8 Tahun / 200.000 KM</span> – Garansi Baterai Hybrid</li>
-        <li><span class="font-medium">7 Tahun / 200.000 KM</span> – Garansi Umum</li>
-        <li><span class="font-medium">3 Tahun / 30.000 KM</span> – Suku Cadang & Jasa Perawatan Tahunan</li>
-      </ul>
-    </li>
-
-    <li>
-      <h4 class="font-semibold">TANK 500 Fury Kit</h4>
-      <ul class="mt-2 space-y-1 list-disc pl-4 text-sm md:text-base">
-        <li><span class="font-medium">8 Tahun / 200.000 KM</span> – Garansi Baterai Hybrid</li>
-        <li><span class="font-medium">7 Tahun / 200.000 KM</span> – Garansi Umum</li>
-        <li><span class="font-medium">3 Tahun / 30.000 KM</span> – Suku Cadang & Jasa Perawatan Tahunan</li>
-      </ul>
-    </li>
-
-    <li>
-      <h4 class="font-semibold">HAVAL H6 Kit</h4>
-      <ul class="mt-2 space-y-1 list-disc pl-4 text-sm md:text-base">
-        <li><span class="font-medium">8 Tahun / 200.000 KM</span> – Garansi Baterai Hybrid</li>
-        <li><span class="font-medium">7 Tahun / 200.000 KM</span> – Garansi Umum</li>
-        <li><span class="font-medium">3 Tahun / 30.000 KM</span> – Suku Cadang & Jasa Perawatan Tahunan</li>
-      </ul>
-    </li>
-
-    <li>
-      <h4 class="font-semibold">HAVAL Jolion Kit</h4>
-      <ul class="mt-2 space-y-1 list-disc pl-4 text-sm md:text-base">
-        <li><span class="font-medium">8 Tahun / 200.000 KM</span> – Garansi Baterai Hybrid</li>
-        <li><span class="font-medium">7 Tahun / 200.000 KM</span> – Garansi Umum</li>
-      </ul>
-    </li>
-
-    <li>
-      <h4 class="font-semibold">ORA 03 Kit</h4>
-      <ul class="mt-2 space-y-1 list-disc pl-4 text-sm md:text-base">
-        <li><span class="font-medium">8 Tahun / 200.000 KM</span> – Garansi Baterai</li>
-        <li><span class="font-medium">7 Tahun / 200.000 KM</span> – Garansi Umum</li>
-        <li><span class="font-medium">3 Tahun / 30.000 KM</span> – Gratis Perawatan & Biaya Servis</li>
-      </ul>
-    </li>
-  </ol>
+<p class="text-dark/80 text-sm md:text-base font-normal leading-relaxed">Tingkatkan pengalaman berkendara Anda dengan aksesori premium yang dirancang khusus untuk seluruh lini kendaraan GWM. Baik itu peningkatan fungsional, sentuhan gaya, atau peningkatan performa, aksesori kami disesuaikan dengan gaya hidup Anda.
+Dengan Aksesori Resmi GWM, nikmati kualitas, daya tahan, dan ketenangan pikiran—karena setiap perjalanan layak mendapatkan yang terbaik.</p>
 </section>
 `,
 
       desc_en: `
 <section class="text-dark">
-  <h3 class="text-lg md:text-xl font-bold uppercase tracking-wide">
-   Exterior Part
-  </h3>
-
-  <ol class="mt-4 space-y-5 list-decimal pl-5">
-    <li>
-      <h4 class="font-semibold">TANK 500 Kit</h4>
-      <ul class="mt-2 space-y-1 list-disc pl-4 text-sm md:text-base">
-        <li><span class="font-medium">8 Years / 200,000 KM</span> – Hybrid Battery Kit</li>
-        <li><span class="font-medium">7 Years / 200,000 KM</span> – General Kit</li>
-        <li><span class="font-medium">3 Years / 30,000 KM</span> – Annual Maintenance Parts & Labor</li>
-      </ul>
-    </li>
-
-    <li>
-      <h4 class="font-semibold">TANK 300 Kit</h4>
-      <ul class="mt-2 space-y-1 list-disc pl-4 text-sm md:text-base">
-        <li><span class="font-medium">8 Years / 200,000 KM</span> – Hybrid Battery Kit</li>
-        <li><span class="font-medium">7 Years / 200,000 KM</span> – General Kit</li>
-        <li><span class="font-medium">3 Years / 30,000 KM</span> – Annual Maintenance Parts & Labor</li>
-      </ul>
-    </li>
-
-    <li>
-      <h4 class="font-semibold">HAVAL H6 Kit</h4>
-      <ul class="mt-2 space-y-1 list-disc pl-4 text-sm md:text-base">
-        <li><span class="font-medium">8 Years / 200,000 KM</span> – Hybrid Battery Kit</li>
-        <li><span class="font-medium">7 Years / 200,000 KM</span> – General Kit</li>
-        <li><span class="font-medium">3 Years / 30,000 KM</span> – Annual Maintenance Parts & Labor</li>
-      </ul>
-    </li>
-
-    <li>
-      <h4 class="font-semibold">HAVAL Jolion Kit</h4>
-      <ul class="mt-2 space-y-1 list-disc pl-4 text-sm md:text-base">
-        <li><span class="font-medium">8 Years / 200,000 KM</span> – Hybrid Battery Kit</li>
-        <li><span class="font-medium">7 Years / 200,000 KM</span> – General Kit</li>
-      </ul>
-    </li>
-
-    <li>
-      <h4 class="font-semibold">ORA 03 Kit</h4>
-      <ul class="mt-2 space-y-1 list-disc pl-4 text-sm md:text-base">
-        <li><span class="font-medium">8 Years / 200,000 KM</span> – Battery Kit</li>
-        <li><span class="font-medium">7 Years / 200,000 KM</span> – General Kit</li>
-        <li><span class="font-medium">3 Years / 30,000 KM</span> – Free Maintenance and Service Fee</li>
-      </ul>
-    </li>
-  </ol>
+<h3 class="text-lg md:text-xl font-bold uppercase tracking-wide mb-4 lg:mb-8">
+Complete Accessories for the Entire GWM Lineup
+</h3>
+<p class="text-dark/80 text-sm md:text-base font-normal leading-relaxed">Enhance your driving experience with premium accessories specifically designed for the entire GWM vehicle line. Whether it's a functional upgrade, a touch of style, or a performance boost, our accessories are tailored to your lifestyle.
+With GWM Official Accessories, enjoy quality, durability, and peace of mind—because every ride deserves the best.</p>
 </section>
 `,
     },
