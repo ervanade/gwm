@@ -16,6 +16,7 @@ const DetailAccessories = () => {
       title_id: "AKSESORIS",
       title_en: "ACCESSORIES",
       image: "/assets/tank-300-acc.png",
+      detail_link: "https://www.tokopedia.com",
       desc_id: `
 <section class="text-dark">
   <h3 class="text-lg md:text-xl font-bold uppercase tracking-wide mb-4 lg:mb-8">

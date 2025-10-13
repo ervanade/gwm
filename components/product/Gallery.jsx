@@ -7,6 +7,8 @@ import { Navigation } from "swiper/modules";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import "swiper/css";
 import "swiper/css/navigation";
+import { Link } from "@/i18n/navigation";
+import { useLocale } from "next-intl";
 
 const tabs = ["all", "exterior", "interior"];
 
@@ -14,6 +16,7 @@ export function Gallery({ dataGallery }) {
   const [activeTab, setActiveTab] = useState("all");
   const [activeIndex, setActiveIndex] = useState(0);
   const [swiperInstance, setSwiperInstance] = useState(null);
+  const locale = useLocale()
   const prevRef = useRef(null);
   const nextRef = useRef(null);
 
@@ -33,6 +36,7 @@ export function Gallery({ dataGallery }) {
   }, [activeTab]);
 
   return (
+    <>
     <section id="gallery" className="max-w-7xl mx-auto px-6 lg:px-12 py-12">
       <h2 className="text-3xl font-bold text-left mb-6 lg:mb-12">GALLERY</h2>
 
@@ -141,5 +145,14 @@ export function Gallery({ dataGallery }) {
         </div>
       )}
     </section>
+    <section id="cta2" className="max-w-7xl mx-auto px-6 lg:px-12 py-12 bg-slate-200 flex items-center justify-center">
+    <Link 
+                href={`/test-drive`}
+                className="w-max bg-primary text-center text-white px-5 py-3 rounded-lg font-semibold text-sm hover:bg-primary/90 transition"
+              >
+               {locale == "en" ? 'VISIT GWM DEALERS' : "KUNJUNGI DEALER GWM"} 
+                </Link>
+</section>
+    </>
   );
 }
