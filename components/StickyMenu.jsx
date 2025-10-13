@@ -46,6 +46,11 @@ const encodedMessage = encodeURIComponent(whatsappMessage);
           <Link
             key={index}
             href={item.link}
+            id={
+              item.label === "WhatsApp"
+                ? "whatsapp_button"
+                : item.label
+            }
             target={
               item.label === "WhatsApp" || item.label === "Brochure"
                 ? "_blank"
