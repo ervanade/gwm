@@ -2,7 +2,7 @@
 
 import dynamic from "next/dynamic";
 import Hero from '@/components/hero/Hero';
-
+import Models from '@/components/models/Models';
 
 const HeroSkeleton = () => (
     <div className="w-full h-[600px] bg-gray-200 animate-pulse flex items-center justify-center">
@@ -22,10 +22,10 @@ const HeroSkeleton = () => (
 //     ssr: false,
 //     loading: () => <HeroSkeleton />,
 //   });
-  const Models = dynamic(() => import("@/components/models/Models"), {
-    ssr: false,
-    loading: () => <Spinner />,
-  });
+//   const Models = dynamic(() => import("@/components/models/Models"), {
+//     ssr: false,
+//     loading: () => <Spinner />,
+//   });
   const OverviewProduct = dynamic(() => import("@/components/overviewProduct/OverviewProduct"), {
     ssr: false,
     loading: () => <Spinner />,
