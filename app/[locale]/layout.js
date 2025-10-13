@@ -4,11 +4,9 @@ import { routing } from '@/i18n/routing';
 import { getMessages } from 'next-intl/server';
 import Navbar from '@/components/navbar/Navbar';
 import localFont from 'next/font/local'
-import { useLocale } from 'next-intl/server';
 import "./globals.css";
 import StickyMenu from '@/components/StickyMenu';
 import Footer from '@/components/footer/Footer';
-import ReCaptchaProviderWrapper from '@/components/ReCaptchaProviderWrapper';
 import parse from 'html-react-parser';
 import CookieConsent from '@/components/CookieConsent';
 const HTMLDecoderEncoder = require("html-encoder-decoder");
@@ -164,13 +162,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       </head>
       <body className='!font-helvetica'>
         <NextIntlClientProvider messages={messages}>
-          <ReCaptchaProviderWrapper>
-
             <Navbar dataModels={data || []} />
             {children}
             <StickyMenu data={dataSettings || []} />
             <Footer dataSettings={dataSettings || []} />
-          </ReCaptchaProviderWrapper>
           <CookieConsent />
         </NextIntlClientProvider>
         {parse(HTMLDecoderEncoder.decode(bodyScript))}

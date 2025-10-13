@@ -1,5 +1,6 @@
 import TestDriveForm from '@/components/form/TestDriveForm';
 import PageHero from '@/components/hero/PageHero'
+import ReCaptchaProviderWrapper from '@/components/ReCaptchaProviderWrapper';
 import { getBaseMeta } from '@/lib/seo';
 import React from 'react'
 
@@ -31,6 +32,7 @@ export async function generateMetadata({ params }) {
 const page = async ({ params }) => {
   const { locale } = await params;
   return (
+    <ReCaptchaProviderWrapper>
     <div>
       <PageHero
         image="/assets/hero-testdrive.png"
@@ -39,6 +41,8 @@ const page = async ({ params }) => {
       />
       <TestDriveForm locale={locale} />
     </div>
+    </ReCaptchaProviderWrapper>
+
   )
 }
 
