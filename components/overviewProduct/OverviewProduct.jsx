@@ -253,7 +253,7 @@ const OverviewProduct = ({ overviewHtml, dataModels, dataAfterSales }) => {
         </div>
       </div> */}
 
-      {overviewHtml ? (
+      {overviewHtml && typeof window !== "undefined"? (
         <div className="grapejs-wrapper">
           <div
             dangerouslySetInnerHTML={{ __html: JSON.parse(overviewHtml?.html) }}
@@ -269,7 +269,7 @@ const OverviewProduct = ({ overviewHtml, dataModels, dataAfterSales }) => {
       )}
 
       {/* <style dangerouslySetInnerHTML={{ __html: JSON.parse(dataAfterSales?.css) }} /> */}
-      {dataAfterSales ? (
+      {dataAfterSales && typeof window !== "undefined" ? (
         <div
           dangerouslySetInnerHTML={{ __html: JSON.parse(dataAfterSales?.html) }}
         />

@@ -4,11 +4,13 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
-import Hero from '@/components/hero/Hero';
-import Models from '@/components/models/Models';
-import OverviewProduct from '@/components/overviewProduct/OverviewProduct';
-import AfterSales from '@/components/afterSales/AfterSales';
+import dynamic from "next/dynamic"
+// import Hero from '@/components/hero/Hero';
+// import Models from '@/components/models/Models';
+// import OverviewProduct from '@/components/overviewProduct/OverviewProduct';
+// import AfterSales from '@/components/afterSales/AfterSales';
 import { getBaseMeta } from '@/lib/seo';
+import HomepageClient from '@/components/HomePageClient';
 
 
 export async function generateMetadata({ params }) {
@@ -44,6 +46,8 @@ async function getData(locale) {
     method: 'GET',
     headers: {
       'X-Api-Key': process.env.NEXT_PUBLIC_APP_X_API_KEY,
+      'Cache-Control': 'max-age=300', // browser dan CDN cache 5 menit
+
     },
   })
   if (!res.ok) {
@@ -70,15 +74,7 @@ export default async function HomePage({ params }) {
     ? data?.pages?.["why-gwm-inchcape-en"]
     : data?.pages?.["why-gwm-inchcape"] || {};
   return (
-    <>
-      <Hero dataHero={data?.banners || null} />
-      <Models dataModels={data?.products || []} dataCategories={data?.categories || []} />
-      <OverviewProduct
-        overviewHtml={productHighlight}
-        dataModels={data?.products_overview || []}
-        dataAfterSales={dataAfterSales}
-      />
-      <AfterSales dataWhy={dataWhy}/>
-    </>
+    <HomepageClient data={{ ...data, locale }} />
+
   );
 }
