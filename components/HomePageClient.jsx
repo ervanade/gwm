@@ -1,7 +1,8 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import { useEffect, useState } from "react";
+import Hero from '@/components/hero/Hero';
+
 
 const HeroSkeleton = () => (
     <div className="w-full h-[600px] bg-gray-200 animate-pulse flex items-center justify-center">
@@ -17,10 +18,10 @@ const HeroSkeleton = () => (
   );
 
 // Import komponen dynamic client-only
-const Hero = dynamic(() => import("@/components/hero/Hero"), {
-    ssr: false,
-    loading: () => <HeroSkeleton />,
-  });
+// const Hero = dynamic(() => import("@/components/hero/Hero"), {
+//     ssr: false,
+//     loading: () => <HeroSkeleton />,
+//   });
   const Models = dynamic(() => import("@/components/models/Models"), {
     ssr: false,
     loading: () => <Spinner />,
@@ -36,14 +37,6 @@ const Hero = dynamic(() => import("@/components/hero/Hero"), {
 
 export default function HomepageClient({ data }) {
 
-    const [isMounted, setIsMounted] = useState(false);
-
-    useEffect(() => {
-      // Supaya komponen benar-benar client-only
-      setIsMounted(true);
-    }, []);
-  
-    if (!isMounted) return <HeroSkeleton />;
   const productHighlight = data?.locale === "en"
     ? data?.pages?.["product-highlight-en"] || {}
     : data?.pages?.["product-highlight"] || {};
