@@ -87,9 +87,19 @@ export default function TestDriveForm({ locale }) {
     return wib.toISOString().split("T")[0];
   };
 
+  const getMaxDate = () => {
+    const now = new Date();
+    const utc = now.getTime() + now.getTimezoneOffset() * 60000;
+    const wib = new Date(utc + 7 * 3600000);
+    wib.setDate(wib.getDate() + 30);
+    return wib.toISOString().split("T")[0];
+  };
+  
+
   const handleChange = (e) => {
     const { name, value } = e.target;
 
+    // ✅ handle preferred_date
     if (name === "preferred_date") {
       const now = new Date();
       const utc = now.getTime() + now.getTimezoneOffset() * 60000;
@@ -97,23 +107,29 @@ export default function TestDriveForm({ locale }) {
       wib.setHours(0, 0, 0, 0);
 
       const minDate = new Date(wib);
-      minDate.setDate(wib.getDate() + 2);
+      minDate.setDate(minDate.getDate() + 2);
+
+      const maxDate = new Date(wib);
+      maxDate.setDate(maxDate.getDate() + 30);
 
       const inputDate = new Date(value + "T00:00:00+07:00");
 
       if (inputDate < minDate) {
         setError(`Tanggal minimal ${minDate.toISOString().split("T")[0]}`);
         return;
-      } else {
-        setError("");
       }
+
+      if (inputDate > maxDate) {
+        setError(`Tanggal maksimal ${maxDate.toISOString().split("T")[0]}`);
+        return;
+      }
+
+      setError("");
     }
 
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
+    setFormData((prev) => ({ ...prev, [name]: value }));
   };
+
   
   
 
@@ -207,7 +223,7 @@ export default function TestDriveForm({ locale }) {
       const payload = {
         fullname: formData.fullName,
         email: formData.email,
-        phone: `+62${formData.phone}`,
+        phone: `+62${formData.phone.replace(/^0+/, "")}`,
         model: formData.model,
         dealer_Location: formData.dealer,
         preferred_date: formData.preferred_date,
@@ -385,6 +401,8 @@ export default function TestDriveForm({ locale }) {
     onChange={handleChange}
     className="w-full border border-gray-400 rounded-lg px-4 py-2 focus:ring-2 focus:ring-primary focus:outline-none"
     min={getMinDate()}
+    max={getMaxDate()}   // ✅ tambah ini
+
 
   />
   <span className="text-red-600 text-xs mt-2"> {error && <p className="text-red-500 text-xs">{error}</p>}
