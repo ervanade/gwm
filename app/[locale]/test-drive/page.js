@@ -1,5 +1,6 @@
 import TestDriveForm from '@/components/form/TestDriveForm';
 import PageHero from '@/components/hero/PageHero'
+import ModelsTestDrive from '@/components/models/ModelsTestDrive';
 import ReCaptchaProviderWrapper from '@/components/ReCaptchaProviderWrapper';
 import { getBaseMeta } from '@/lib/seo';
 import React from 'react'
@@ -29,8 +30,44 @@ export async function generateMetadata({ params }) {
     ...meta[locale],
   });
 }
+
+async function getDataProducts() {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_KEY}/api/v1/products`, {
+    // cache: 'no-store',
+    next: { revalidate: 3600 },
+    method: 'GET',
+    headers: {
+      'X-Api-Key': process.env.NEXT_PUBLIC_APP_X_API_KEY,
+    },
+  })
+  if (!res.ok) {
+    // This will activate the closest `error.js` Error Boundary
+    throw new Error('Failed to fetch data')
+  }
+
+  return res.json()
+}
+
+async function getDataCategories() {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_KEY}/api/v1/categories`, {
+    // cache: 'no-store',
+    next: { revalidate: 3600 },
+    method: 'GET',
+    headers: {
+      'X-Api-Key': process.env.NEXT_PUBLIC_APP_X_API_KEY,
+    },
+  })
+  if (!res.ok) {
+    // This will activate the closest `error.js` Error Boundary
+    throw new Error('Failed to fetch data')
+  }
+
+  return res.json()
+}
 const page = async ({ params }) => {
   const { locale } = await params;
+  const { data: dataCategory } = await getDataCategories()
+  const { data } = await getDataProducts()
   return (
     <ReCaptchaProviderWrapper>
     <div>
@@ -39,6 +76,8 @@ const page = async ({ params }) => {
         title={locale == "en" ? "Test Drive" : "Test Drive"}
         subtitle={locale == "en" ? "Experience the toughness and advanced technology of GWM. Schedule your test drive now!" : "Rasakan langsung ketangguhan serta teknologi canggih dari GWM. Jadwalkan test drive sekarang!"}
       />
+      <ModelsTestDrive dataModels={data || []} dataCategories={dataCategory || []} />
+
       <TestDriveForm locale={locale} />
     </div>
     </ReCaptchaProviderWrapper>
