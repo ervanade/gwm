@@ -9,6 +9,7 @@ import StickyMenu from '@/components/StickyMenu';
 import Footer from '@/components/footer/Footer';
 import parse from 'html-react-parser';
 import CookieConsent from '@/components/CookieConsent';
+import CaptureSource from '@/components/CaptureSource';
 const HTMLDecoderEncoder = require("html-encoder-decoder");
 
 const helvetica = localFont({
@@ -167,6 +168,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <StickyMenu data={dataSettings || []} />
             <Footer dataSettings={dataSettings || []} />
           <CookieConsent />
+          <CaptureSource />
         </NextIntlClientProvider>
         {parse(HTMLDecoderEncoder.decode(bodyScript))}
 

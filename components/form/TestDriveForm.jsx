@@ -5,6 +5,7 @@ import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
 import Swal from "sweetalert2"; // Pastikan sudah diinstal
 import axios from "axios"; // Pastikan sudah diinstal
 import { FaCheckCircle } from "react-icons/fa";
+import Cookies from "js-cookie";
 
 // Data dummy (fallback) jika API gagal
 const dummyModels = ["TANK 500", "HAVAL H6", "ORA O3 BEV"];
@@ -227,6 +228,7 @@ export default function TestDriveForm({ locale }) {
         model: formData.model,
         dealer_Location: formData.dealer,
         preferred_date: formData.preferred_date,
+        source:  Cookies.get("raw_source") || ""
       };
 
       const response = await axios.post(
