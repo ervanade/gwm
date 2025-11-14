@@ -182,7 +182,7 @@ export default function GwmArticles() {
         <div className="flex justify-center items-center mt-12 lg:mt-16">
           <button
             onClick={handleLoadMore}
-            className="bg-black text-white py-3 text-xl lg:text-[24px] font-semibold mt-4 px-8"
+            className="bg-primary text-white py-3 text-xl lg:text-[24px] font-semibold mt-4 px-8"
           >
             {locale === "en" ? "Load More" : "Tampilkan Lebih Banyak"}
           </button>
