@@ -27,7 +27,7 @@ const DealerDetails = ({ article, related }) => {
           <div className="flex flex-col lg:flex-row w-full mt-5 gap-8">
             <div className="flex-[3_3_0%]">
               {article.image && (
-                <div className="aspect-[16/8] lg:aspect-[16/8] w-full overflow-hidden rounded-lg relative">
+                <div className="aspect-[16/8] lg:aspect-[16/7] w-full overflow-hidden rounded-lg relative">
                   <Image
                     src={article.image}
                     alt={article.alt_text || "Article GWM"}

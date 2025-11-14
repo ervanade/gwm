@@ -83,7 +83,7 @@ const ArticlesDetails = ({ article, related }) => {
           <div className="flex flex-col lg:flex-row w-full mt-5 gap-8">
             <div className="flex-[3_3_0%]">
               {article.cover_url && (
-                <div className="aspect-[16/8] lg:aspect-[16/8] w-full overflow-hidden rounded-lg relative">
+                <div className="aspect-[16/8] lg:aspect-[16/6] w-full overflow-hidden rounded-lg relative">
                   <Image
                     src={article.cover_url || article.image}
                     alt={article.alt_text || "Article GWM"}
