@@ -278,7 +278,7 @@ export default function TestDriveForm({ locale }) {
 
   return (
     <section
-      className="bg-white py-12 px-6 lg:px-12 max-w-3xl mx-auto text-dark"
+      className="bg-white py-8 lg:py-12 px-6 lg:px-12 max-w-3xl mx-auto text-dark"
       id="testdrive-form"
     >
       <h2 className="text-3xl lg:text-[40px] font-bold mb-3 text-center">

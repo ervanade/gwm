@@ -28,12 +28,12 @@ const ModelsTestDrive = ({ dataModels = [], dataCategories = [] }) => {
   const filteredModels = getFilteredModels();
 
   return (
-    <div>
+    <div className="w-full bg-slate-50">
       <div
-        className="max-w-7xl mx-auto w-full py-8 xl:py-10 bg-slate-50 text-dark px-6 scroll-mt-[120px]"
+        className="max-w-7xl mx-auto w-full py-6 xl:py-8  text-dark px-6 scroll-mt-[120px]"
         id="models"
       >
-        <h2 className="text-3xl font-bold text-center mb-6">MODELS</h2>
+        {/* <h2 className="text-3xl font-bold text-center mb-6">Models</h2> */}
 
         {/* Tabs */}
         <div
@@ -100,7 +100,7 @@ const ModelsTestDrive = ({ dataModels = [], dataCategories = [] }) => {
                 </div>
               </div>
               <div className="flex-grow sm:flex-none">
-                <h3 className="font-semibold text-lg">{car.title}</h3>
+                <h3 className="font-semibold text-base lg:text-lg">{car.title}</h3>
                 <p className="text-sm text-gray-600">{car.subtitle}</p>
               </div>
             </Link>
