@@ -18,14 +18,17 @@ function scopeGrapeJSCSS(css, scopeClass = ".grapejs-wrapper") {
 
   // Tangani blok @media
   css = css.replace(/@media[^{]+\{([\s\S]+?)\}\s*\}/g, (match, inner) => {
-    const scopedInner = inner.replace(/(^|\})\s*([^{\}]+)\s*\{/g, (m, p1, selector) => {
-      if (selector.startsWith("@")) return m;
-      const scopedSelectors = selector
-        .split(",")
-        .map(sel => addScope(sel))
-        .join(", ");
-      return `${p1} ${scopedSelectors} {`;
-    });
+    const scopedInner = inner.replace(
+      /(^|\})\s*([^{\}]+)\s*\{/g,
+      (m, p1, selector) => {
+        if (selector.startsWith("@")) return m;
+        const scopedSelectors = selector
+          .split(",")
+          .map((sel) => addScope(sel))
+          .join(", ");
+        return `${p1} ${scopedSelectors} {`;
+      }
+    );
     return match.replace(inner, scopedInner);
   });
 
@@ -34,15 +37,13 @@ function scopeGrapeJSCSS(css, scopeClass = ".grapejs-wrapper") {
     if (selector.startsWith("@")) return match;
     const scopedSelectors = selector
       .split(",")
-      .map(sel => addScope(sel))
+      .map((sel) => addScope(sel))
       .join(", ");
     return `${p1} ${scopedSelectors} {`;
   });
 
   return css;
 }
-
-
 
 const ArticlesDetails = ({ article, related }) => {
   const locale = useLocale() || "id";
@@ -83,7 +84,7 @@ const ArticlesDetails = ({ article, related }) => {
           <div className="flex flex-col lg:flex-row w-full mt-5 gap-8">
             <div className="flex-[3_3_0%]">
               {article.cover_url && (
-                <div className="aspect-[16/8] lg:aspect-[16/6] w-full overflow-hidden rounded-lg relative">
+                <div className="aspect-[16/8] lg:aspect-[16/7] w-full overflow-hidden rounded-lg relative">
                   <Image
                     src={article.cover_url || article.image}
                     alt={article.alt_text || "Article GWM"}
