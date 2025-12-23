@@ -3,67 +3,53 @@
 import { useLocale } from "next-intl";
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import axios from "axios";
+import useSWR from "swr";
+
+const fetcher = (url) =>
+  axios
+    .get(url, {
+      headers: {
+        "X-Api-Key": process.env.NEXT_PUBLIC_APP_X_API_KEY,
+        "Content-Type": "application/json",
+      },
+    })
+    .then((res) => res.data);
 
 export default function GwmArticles() {
   const locale = useLocale();
-  const [articles, setArticles] = useState([]);
-  const [tags, setTags] = useState([]);
-  const [loading, setLoading] = useState(true);
   const [page, setPage] = useState(1);
-  const [pagination, setPagination] = useState(null);
 
-  const fetchArticles = async (pageNum = 1) => {
-    try {
-      const res = await axios.get(
-        `${process.env.NEXT_PUBLIC_API_KEY}/api/v1/article?page=${pageNum}`,
-        {
-          headers: {
-            "X-Api-Key": process.env.NEXT_PUBLIC_APP_X_API_KEY,
-            "Content-Type": "application/json",
-          },
-        }
-      );
+  const { data, isLoading } = useSWR(
+    `${process.env.NEXT_PUBLIC_API_KEY}/api/v1/article?page=${page}`,
+    fetcher,
+    {
+      keepPreviousData: true,
+      revalidateOnFocus: false,
+      dedupingInterval: 10000
+    }
+  );
 
-      const fetchedData = res.data.data || [];
+  const articles = useMemo(() => data?.data || [], [data]);
+  const pagination = data;
 
-      if (pageNum === 1) {
-        setArticles(fetchedData);
-      } else {
-        setArticles((prev) => [...prev, ...fetchedData]);
-      }
-
-      setPagination(res.data);
-      setLoading(false);
-
-      // Ambil semua tag unik dari artikel
-      const tagMap = new Map();
-      fetchedData.forEach((item) => {
-        if (Array.isArray(item.tags)) {
-          item.tags.forEach((tag) => {
-            if (tag.slug && !tagMap.has(tag.slug)) {
-              tagMap.set(tag.slug, tag);
-            }
-          });
+  const tags = useMemo(() => {
+    const map = new Map();
+    articles.forEach((item) => {
+      item.tags?.forEach((tag) => {
+        if (tag.slug && !map.has(tag.slug)) {
+          map.set(tag.slug, tag);
         }
       });
-      setTags(Array.from(tagMap.values()));
-    } catch (err) {
-      console.error("Error fetching articles", err);
-      setLoading(false);
-    }
-  };
-
-  useEffect(() => {
-    fetchArticles(1);
-  }, []);
+    });
+    return Array.from(map.values());
+  }, [articles]);
 
   const handleLoadMore = () => {
-    const nextPage = page + 1;
-    setPage(nextPage);
-    fetchArticles(nextPage);
+    setPage((prev) => prev + 1);
   };
+
 
   return (
     <section className="max-w-7xl mx-auto px-6 lg:px-12 xl:px-16 py-12 bg-white text-dark">
@@ -101,7 +87,7 @@ export default function GwmArticles() {
 
       {/* Article Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {loading ? (
+        {isLoading ? (
           [...Array(3)].map((_, index) => (
             <div
               key={index}
@@ -179,10 +165,10 @@ export default function GwmArticles() {
 
       {/* Load More */}
       {pagination?.current_page < pagination?.last_page && (
-        <div className="flex justify-center items-center mt-12 lg:mt-16">
+        <div className="flex justify-center items-center mt-12">
           <button
             onClick={handleLoadMore}
-            className="bg-primary text-white py-3 text-xl lg:text-[24px] font-semibold mt-4 px-8"
+            className="bg-primary text-white py-3 text-base lg:text-xl font-semibold mt-4 px-6 rounded cursor-pointer"
           >
             {locale === "en" ? "Load More" : "Tampilkan Lebih Banyak"}
           </button>
