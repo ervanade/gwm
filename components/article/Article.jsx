@@ -3,9 +3,10 @@
 import { useLocale } from "next-intl";
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useMemo, useState } from "react";
+import { useMemo } from "react";
 import axios from "axios";
 import useSWR from "swr";
+import { useRouter, useSearchParams } from "next/navigation";
 
 const fetcher = (url) =>
   axios
@@ -19,20 +20,25 @@ const fetcher = (url) =>
 
 export default function GwmArticles() {
   const locale = useLocale();
-  const [page, setPage] = useState(1);
+  const router = useRouter();
+  const searchParams = useSearchParams();
+
+  // page dari URL (default = 1)
+  const page = Number(searchParams.get("page")) || 1;
 
   const { data, isLoading } = useSWR(
     `${process.env.NEXT_PUBLIC_API_KEY}/api/v1/article?page=${page}`,
     fetcher,
     {
-      keepPreviousData: true,
       revalidateOnFocus: false,
-      dedupingInterval: 10000
+      dedupingInterval: 10000,
+      keepPreviousData: true,
     }
   );
 
   const articles = useMemo(() => data?.data || [], [data]);
   const pagination = data;
+  const totalPages = pagination?.last_page || 1;
 
   const tags = useMemo(() => {
     const map = new Map();
@@ -46,16 +52,17 @@ export default function GwmArticles() {
     return Array.from(map.values());
   }, [articles]);
 
-  const handleLoadMore = () => {
-    setPage((prev) => prev + 1);
-  };
+  const changePage = (pageNum) => {
+    if (pageNum < 1 || pageNum > totalPages) return;
 
+    router.push(`/${locale}/news?page=${pageNum}`, { scroll: true });
+  };
 
   return (
     <section className="max-w-7xl mx-auto px-6 lg:px-12 xl:px-16 py-12 bg-white text-dark">
       <div className="mb-8">
         <h2 className="text-2xl lg:text-3xl font-bold mb-1">
-          {locale === "en" ? "NEWS & PROMO" : "NEWS & PROMO"}
+          NEWS & PROMO
         </h2>
         <p className="text-sm md:text-base text-gray-600">
           {locale === "en"
@@ -75,11 +82,11 @@ export default function GwmArticles() {
           </Link>
           {tags.map((tag) => (
             <Link
-              key={tag?.slug}
-              href={`/${locale}/news/tag/${tag?.slug}`}
+              key={tag.slug}
+              href={`/${locale}/news/tag/${tag.slug}`}
               className="inline-block mr-2 md:mr-4 border border-black/80 text-black/80 px-4 py-2 rounded-full text-sm md:text-base"
             >
-              {locale === "en" ? tag?.tag_name || tag?.tag_name : tag?.tag_name}
+              {tag.tag_name}
             </Link>
           ))}
         </div>
@@ -100,12 +107,12 @@ export default function GwmArticles() {
             </div>
           ))
         ) : articles.length > 0 ? (
-          articles.map((item, index) => (
+          articles.map((item) => (
             <div
-              key={index}
-              className="relative flex flex-col mt-6 text-dark bg-white shadow-md bg-clip-border rounded-xl"
+              key={item.slug}
+              className="relative flex flex-col mt-6 bg-white shadow-md rounded-xl"
             >
-              <div className="relative h-56 -mt-6 overflow-hidden text-white shadow-lg rounded-t-lg">
+              <div className="relative h-56 -mt-6 overflow-hidden rounded-t-lg">
                 <Image
                   src={
                     item.cover_large?.startsWith("http")
@@ -115,28 +122,12 @@ export default function GwmArticles() {
                   alt={item.meta_title || item.title}
                   fill
                   className="object-cover"
-                  priority={index === 0}
                 />
-                {item.tags?.length > 0 && (
-                  <div className="absolute bottom-4 left-2 flex flex-wrap gap-1">
-                    {item.tags.map((tag, i) => (
-                      <Link
-                        key={i}
-                        href={`/${locale}/news/tag/${tag?.slug}`}
-                        className="bg-primary text-white px-3 py-1 text-[10px] rounded-full"
-                      >
-                        #{tag?.tag_name}
-                      </Link>
-                    ))}
-                  </div>
-                )}
               </div>
+
               <div className="p-6">
-                <Link
-                  href={`/${locale}/news/${item.slug}`}
-                  className="hover:underline"
-                >
-                  <h5 className="block text-lg md:text-xl mb-2 font-semibold line-clamp-3 hover:underline">
+                <Link href={`/${locale}/news/${item.slug}`}>
+                  <h5 className="text-lg md:text-xl mb-2 font-semibold line-clamp-3 hover:underline">
                     {locale === "en" ? item.title_en : item.title}
                   </h5>
                 </Link>
@@ -144,10 +135,11 @@ export default function GwmArticles() {
                   {locale === "en" ? item.excerpt_en : item.excerpt}
                 </p>
               </div>
+
               <div className="p-6 pt-0">
                 <Link
                   href={`/${locale}/news/${item.slug}`}
-                  className="text-sm py-3 px-6 rounded-md bg-primary text-white shadow-md hover:shadow-lg transition"
+                  className="inline-block text-sm py-3 px-6 rounded-md bg-primary text-white"
                 >
                   {locale === "en" ? "Read More" : "Selengkapnya"}
                 </Link>
@@ -155,22 +147,48 @@ export default function GwmArticles() {
             </div>
           ))
         ) : (
-          <p className="text-center col-span-3 text-gray-500">
+          <p className="col-span-3 text-center text-gray-500">
             {locale === "en"
-              ? "No articles available at the moment."
-              : "Belum ada artikel saat ini."}
+              ? "No articles available."
+              : "Belum ada artikel."}
           </p>
         )}
       </div>
 
-      {/* Load More */}
-      {pagination?.current_page < pagination?.last_page && (
-        <div className="flex justify-center items-center mt-12">
+      {/* PAGINATION */}
+      {totalPages > 1 && (
+        <div className="flex justify-center items-center gap-2 mt-12 flex-wrap">
           <button
-            onClick={handleLoadMore}
-            className="bg-primary text-white py-3 text-base lg:text-xl font-semibold mt-4 px-6 rounded cursor-pointer"
+            onClick={() => changePage(page - 1)}
+            disabled={page === 1}
+            className="px-4 py-2 border rounded disabled:opacity-50 cursor-pointer"
           >
-            {locale === "en" ? "Load More" : "Tampilkan Lebih Banyak"}
+            Prev
+          </button>
+
+          {Array.from({ length: totalPages }).map((_, i) => {
+            const p = i + 1;
+            return (
+              <button
+                key={p}
+                onClick={() => changePage(p)}
+                className={`px-4 py-2 border rounded cursor-pointer ${
+                  p === page
+                    ? "bg-primary text-white"
+                    : "bg-white text-black"
+                }`}
+              >
+                {p}
+              </button>
+            );
+          })}
+
+          <button
+            onClick={() => changePage(page + 1)}
+            disabled={page === totalPages}
+            className="px-4 py-2 border rounded cursor-pointer disabled:opacity-50"
+          >
+            Next
           </button>
         </div>
       )}
