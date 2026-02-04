@@ -1,33 +1,47 @@
-import ExteriorColorSection from '@/components/exteriorColor/ExteriorColor'
-import ProductHero from '@/components/hero/ProductHero'
-import NavbarProduct from '@/components/navbar/NavbarProduct'
-import Features from '@/components/product/Features'
-import { Gallery } from '@/components/product/Gallery'
-import { getBaseMeta } from '@/lib/seo'
-import { notFound } from 'next/navigation'
-import React from 'react'
+import ExteriorColorSection from "@/components/exteriorColor/ExteriorColor";
+import TestDriveForm from "@/components/form/TestDriveForm";
+import ProductHero from "@/components/hero/ProductHero";
+import NavbarProduct from "@/components/navbar/NavbarProduct";
+import Features from "@/components/product/Features";
+import { Gallery } from "@/components/product/Gallery";
+import { getBaseMeta } from "@/lib/seo";
+import { notFound } from "next/navigation";
+import React from "react";
 
 export async function generateMetadata({ params }) {
-  const useParams = await params
-  const locale = await useParams.locale || "id";
+  const useParams = await params;
+  const locale = (await useParams.locale) || "id";
 
   const slug = useParams.modelSlug;
   const { data } = await fetchModels(slug);
-
 
   // Fetch model name based on slug if needed
   const modelName = data?.model.toUpperCase();
 
   const meta = {
     id: {
-      title: data?.meta_title ? data?.meta_title : `GWM ${modelName} - Spesifikasi & Fitur Mobil GWM | GWM Indonesia`,
-      description: data?.meta_desc ? data?.meta_desc : `"GWM ${modelName}, ${data?.tipe}. Cek fitur lengkap, harga, lokasi dealer resmi, dan booking test drive di GWM Inchcape Indonesia.
+      title: data?.meta_title
+        ? data?.meta_title
+        : `GWM ${modelName} - Spesifikasi & Fitur Mobil GWM | GWM Indonesia`,
+      description: data?.meta_desc
+        ? data?.meta_desc
+        : `"GWM ${modelName}, ${data?.tipe}. Cek fitur lengkap, harga, lokasi dealer resmi, dan booking test drive di GWM Inchcape Indonesia.
 `,
-      keywords: [modelName, "SUV GWM", "Mobil Hybrid", "Spesifikasi", "Mobil GWM"],
+      keywords: [
+        modelName,
+        "SUV GWM",
+        "Mobil Hybrid",
+        "Spesifikasi",
+        "Mobil GWM",
+      ],
     },
     en: {
-      title: data?.meta_title_en ? data?.meta_title_en : `GWM ${modelName} - GWM Car Specifications & Features | GWM Indonesia`,
-      description: data?.meta_desc_en ? data?.meta_desc_en : `GWM ${modelName}, ${data?.tipe}. View full specs, price, official dealer locations, and schedule a test drive with GWM Inchcape Indonesia.`,
+      title: data?.meta_title_en
+        ? data?.meta_title_en
+        : `GWM ${modelName} - GWM Car Specifications & Features | GWM Indonesia`,
+      description: data?.meta_desc_en
+        ? data?.meta_desc_en
+        : `GWM ${modelName}, ${data?.tipe}. View full specs, price, official dealer locations, and schedule a test drive with GWM Inchcape Indonesia.`,
       keywords: [modelName, "GWM SUV", "Hybrid car", "Car specs", "GWM CAR"],
     },
   };
@@ -50,7 +64,7 @@ const fetchModels = async (slug) => {
       headers: {
         "X-Api-Key": process.env.NEXT_PUBLIC_APP_X_API_KEY,
       },
-    }
+    },
   );
   if (res?.status === 404) {
     return notFound(); // Pastikan tidak menyebabkan error
@@ -67,9 +81,11 @@ const fetchModels = async (slug) => {
 const page = async ({ params }) => {
   const { modelSlug } = await params;
   const { data } = await fetchModels(modelSlug);
+  const useParams = await params;
+  const locale = (await useParams.locale) || "id";
 
   return (
-    <div className='bg-white text-dark'>
+    <div className="bg-white text-dark">
       <ProductHero
         image={data?.cover_url || "/hero-1.jpg"}
         imageMobile={data?.cover_m_url || data?.cover_url || "/hero-1.jpg"}
@@ -82,20 +98,28 @@ const page = async ({ params }) => {
 
       <ExteriorColorSection dataColors={data?.colors || []} />
 
-      <Features dataFeature={data?.features || []} dataSpec={data?.spec || []} dataHl={data ? {
-        title: data?.title,
-        title_en: data?.title_en,
-        description: data?.description,
-        description_en: data?.description_en,
-        image_hl_url: data?.image_hl_url,
-        spec_image_url: data?.spec_image_url,
-        name: data?.name
-      } : null} />
+      <Features
+        dataFeature={data?.features || []}
+        dataSpec={data?.spec || []}
+        dataHl={
+          data
+            ? {
+                title: data?.title,
+                title_en: data?.title_en,
+                description: data?.description,
+                description_en: data?.description_en,
+                image_hl_url: data?.image_hl_url,
+                spec_image_url: data?.spec_image_url,
+                name: data?.name,
+              }
+            : null
+        }
+      />
 
       <Gallery dataGallery={data?.gallery || []} />
-
+      <TestDriveForm locale={locale} modelSlug={modelSlug} />
     </div>
-  )
-}
+  );
+};
 
-export default page
+export default page;

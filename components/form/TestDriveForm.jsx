@@ -11,7 +11,7 @@ import Cookies from "js-cookie";
 const dummyModels = ["TANK 500", "HAVAL H6", "ORA O3 BEV"];
 const dummyDealers = ["Jakarta", "Bandung", "Surabaya"];
 
-export default function TestDriveForm({ locale }) {
+export default function TestDriveForm({ locale, modelSlug }) {
   const [formData, setFormData] = useState({
     fullName: "",
     email: "",
@@ -35,7 +35,7 @@ export default function TestDriveForm({ locale }) {
     const fetchModels = async () => {
       try {
         const response = await axios.get(
-          `${process.env.NEXT_PUBLIC_API_KEY}/api/v1/products`
+          `${process.env.NEXT_PUBLIC_API_KEY}/api/v1/products`,
         );
         const products = response.data.data;
         if (products.length > 0) {
@@ -45,7 +45,7 @@ export default function TestDriveForm({ locale }) {
             dummyModels.map((name) => ({
               name,
               slug: name.toLowerCase().replace(" ", "-"),
-            }))
+            })),
           );
         }
       } catch (error) {
@@ -54,7 +54,7 @@ export default function TestDriveForm({ locale }) {
           dummyModels.map((name) => ({
             name,
             slug: name.toLowerCase().replace(" ", "-"),
-          }))
+          })),
         );
       }
     };
@@ -62,7 +62,7 @@ export default function TestDriveForm({ locale }) {
     const fetchDealers = async () => {
       try {
         const response = await axios.get(
-          `${process.env.NEXT_PUBLIC_API_KEY}/api/v1/dealer`
+          `${process.env.NEXT_PUBLIC_API_KEY}/api/v1/dealer`,
         );
         const dealers = response.data.data;
         if (dealers.length > 0) {
@@ -80,6 +80,19 @@ export default function TestDriveForm({ locale }) {
     fetchDealers();
   }, []);
 
+  useEffect(() => {
+    if (modelSlug && gwmModels.length > 0) {
+      const foundModel = gwmModels.find((m) => m.slug === modelSlug);
+
+      if (foundModel) {
+        setFormData((prev) => ({
+          ...prev,
+          model: foundModel.slug,
+        }));
+      }
+    }
+  }, [modelSlug, gwmModels]);
+
   const getMinDate = () => {
     const now = new Date();
     const utc = now.getTime() + now.getTimezoneOffset() * 60000;
@@ -95,7 +108,6 @@ export default function TestDriveForm({ locale }) {
     wib.setDate(wib.getDate() + 30);
     return wib.toISOString().split("T")[0];
   };
-  
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -131,9 +143,6 @@ export default function TestDriveForm({ locale }) {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  
-  
-
   const validateForm = () => {
     const today = new Date();
     today.setHours(0, 0, 0, 0);
@@ -152,7 +161,7 @@ export default function TestDriveForm({ locale }) {
       Swal.fire(
         "Error",
         "Nomor WhatsApp tidak valid. Masukkan 10-13 digit angka.",
-        "error"
+        "error",
       );
       return false;
     }
@@ -168,7 +177,7 @@ export default function TestDriveForm({ locale }) {
       Swal.fire(
         "Error",
         "Pilih tanggal test drive yang Anda inginkan.",
-        "error"
+        "error",
       );
       return false;
     }
@@ -176,7 +185,7 @@ export default function TestDriveForm({ locale }) {
       Swal.fire(
         "Error",
         "Tanggal test drive tidak boleh di masa lalu.",
-        "error"
+        "error",
       );
       return false;
     }
@@ -228,7 +237,7 @@ export default function TestDriveForm({ locale }) {
         model: formData.model,
         dealer_Location: formData.dealer,
         preferred_date: formData.preferred_date,
-        source:  Cookies.get("raw_source") || ""
+        source: Cookies.get("raw_source") || "",
       };
 
       const response = await axios.post(
@@ -239,9 +248,8 @@ export default function TestDriveForm({ locale }) {
             "Content-Type": "application/json",
             Authorization: `Bearer ${process.env.NEXT_PUBLIC_TOKEN_KEY}`,
           },
-        }
+        },
       );
-
 
       if (response.status === 200 || response.status === 201) {
         Swal.fire({
@@ -269,7 +277,7 @@ export default function TestDriveForm({ locale }) {
         "Error",
         error.response?.data?.message ||
           "Gagal mengirim permintaan. Silakan coba lagi.",
-        "error"
+        "error",
       );
     } finally {
       setLoading(false);
@@ -289,7 +297,12 @@ export default function TestDriveForm({ locale }) {
           ? "Start your new journey with GWM. Please fill out the form below to book a test drive schedule."
           : "Mulai perjalanan baru anda bersama GWM. Silahkan isi form dibawah ini untuk menjadwalkan test drive GWM impian anda. "}
       </p>
-      <form id="form_testdrive" name="form_testdrive" onSubmit={handleSubmit} className="space-y-6">
+      <form
+        id="form_testdrive"
+        name="form_testdrive"
+        onSubmit={handleSubmit}
+        className="space-y-6"
+      >
         {/* Full Name */}
         <div>
           <label className="block font-medium mb-1">
@@ -391,26 +404,24 @@ export default function TestDriveForm({ locale }) {
 
         {/* Date */}
         <div>
-  <label className="block font-medium mb-1">
-    Preferred Date<span className="text-red-600 text-xs">*      
-    </span>
-  </label>
-  <input
-    name="preferred_date"
-    type="date"
-    required
-    value={formData.preferred_date}
-    onChange={handleChange}
-    className="w-full border border-gray-400 rounded-lg px-4 py-2 focus:ring-2 focus:ring-primary focus:outline-none"
-    min={getMinDate()}
-    max={getMaxDate()}   // ✅ tambah ini
-
-
-  />
-  <span className="text-red-600 text-xs mt-2"> {error && <p className="text-red-500 text-xs">{error}</p>}
-  </span>
-</div>
-
+          <label className="block font-medium mb-1">
+            Preferred Date<span className="text-red-600 text-xs">*</span>
+          </label>
+          <input
+            name="preferred_date"
+            type="date"
+            required
+            value={formData.preferred_date}
+            onChange={handleChange}
+            className="w-full border border-gray-400 rounded-lg px-4 py-2 focus:ring-2 focus:ring-primary focus:outline-none"
+            min={getMinDate()}
+            max={getMaxDate()} // ✅ tambah ini
+          />
+          <span className="text-red-600 text-xs mt-2">
+            {" "}
+            {error && <p className="text-red-500 text-xs">{error}</p>}
+          </span>
+        </div>
 
         {/* Agreement */}
         <div className="flex items-start gap-2">
@@ -435,7 +446,7 @@ export default function TestDriveForm({ locale }) {
         {/* Submit */}
         <div className="flex justify-center">
           <button
-          id="submit_testdrive"
+            id="submit_testdrive"
             type="submit"
             className="bg-primary text-white font-bold px-6 py-3 text-lg cursor-pointer rounded-lg hover:bg-primary/90 transition disabled:opacity-50"
             disabled={!formData.agree || loading}

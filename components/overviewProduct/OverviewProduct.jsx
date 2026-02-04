@@ -11,6 +11,8 @@ import "swiper/css";
 import "swiper/css/navigation";
 import { Link } from "@/i18n/navigation";
 import { useLocale } from "next-intl";
+import TestDriveForm from "../form/TestDriveForm";
+import ProductSlider from "./ProductSlider";
 // import "swiper/css/pagination"; // Uncomment if you use Pagination module
 
 const highlightProductsData = [
@@ -70,14 +72,17 @@ function scopeGrapeJSCSS(css, scopeClass = ".grapejs-wrapper") {
 
   // Tangani blok @media
   css = css.replace(/@media[^{]+\{([\s\S]+?)\}\s*\}/g, (match, inner) => {
-    const scopedInner = inner.replace(/(^|\})\s*([^{\}]+)\s*\{/g, (m, p1, selector) => {
-      if (selector.startsWith("@")) return m;
-      const scopedSelectors = selector
-        .split(",")
-        .map(sel => addScope(sel))
-        .join(", ");
-      return `${p1} ${scopedSelectors} {`;
-    });
+    const scopedInner = inner.replace(
+      /(^|\})\s*([^{\}]+)\s*\{/g,
+      (m, p1, selector) => {
+        if (selector.startsWith("@")) return m;
+        const scopedSelectors = selector
+          .split(",")
+          .map((sel) => addScope(sel))
+          .join(", ");
+        return `${p1} ${scopedSelectors} {`;
+      },
+    );
     return match.replace(inner, scopedInner);
   });
 
@@ -86,16 +91,13 @@ function scopeGrapeJSCSS(css, scopeClass = ".grapejs-wrapper") {
     if (selector.startsWith("@")) return match;
     const scopedSelectors = selector
       .split(",")
-      .map(sel => addScope(sel))
+      .map((sel) => addScope(sel))
       .join(", ");
     return `${p1} ${scopedSelectors} {`;
   });
 
   return css;
 }
-
-
-
 
 const OverviewProduct = ({ overviewHtml, dataModels, dataAfterSales }) => {
   const [isMobile, setIsMobile] = useState(false);
@@ -115,7 +117,7 @@ const OverviewProduct = ({ overviewHtml, dataModels, dataAfterSales }) => {
       ? dataModels
           .slice() // Buat salinan untuk menghindari mutasi array asli
           .sort((a, b) => (a.model || "").localeCompare(b.model || ""))
-          .slice(0, 5)
+          // .slice(0, 5)
           .map((model, idx) => ({
             id: model.id,
             type: idx < 3 ? "square" : "wide",
@@ -173,7 +175,7 @@ const OverviewProduct = ({ overviewHtml, dataModels, dataAfterSales }) => {
 
       {/* <GrapesjsRenderer projectJson={JSON.parse(overviewHtml?.content)} /> */}
 
-      <div className="max-w-7xl mx-auto w-full px-6 lg:px-12 pb-12 md:pb-16">
+      {/* <div className="max-w-7xl mx-auto w-full px-6 lg:px-12 pb-12 md:pb-16">
         {isMobile ? (
           <Swiper
             className="h-auto overflow-hidden relative cursor-grab"
@@ -212,7 +214,7 @@ const OverviewProduct = ({ overviewHtml, dataModels, dataAfterSales }) => {
             </div>
           </div>
         )}
-      </div>
+      </div> */}
 
       {/* <div className="mx-auto w-full text-black" id="hero">
         <div className="">
@@ -253,7 +255,7 @@ const OverviewProduct = ({ overviewHtml, dataModels, dataAfterSales }) => {
         </div>
       </div> */}
 
-      {overviewHtml && typeof window !== "undefined"? (
+      {/* {overviewHtml && typeof window !== "undefined"? (
         <div className="grapejs-wrapper">
           <div
             dangerouslySetInnerHTML={{ __html: JSON.parse(overviewHtml?.html) }}
@@ -266,7 +268,10 @@ const OverviewProduct = ({ overviewHtml, dataModels, dataAfterSales }) => {
         </div>
       ) : (
         ""
-      )}
+      )} */}
+      <ProductSlider data={displayData} />
+
+      <TestDriveForm locale={locale} />
 
       {/* <style dangerouslySetInnerHTML={{ __html: JSON.parse(dataAfterSales?.css) }} /> */}
       {dataAfterSales && typeof window !== "undefined" ? (
