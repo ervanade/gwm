@@ -95,22 +95,20 @@ const Hero = ({ dataHero }) => {
                           </p>
                           <div className="flex flex-col mt-2 sm:flex-row gap-2 md:gap-4 text-sm md:text-base">
                             <Link
+                              href={`/${locale}/test-drive`}
+                              className=" w-max md:w-auto cursor-pointer bg-primary text-white px-4 py-2 lg:px-6 rounded-lg font-semibold uppercase"
+                            >
+                              TEST DRIVE
+                            </Link>
+                            <Link
                               href={
                                 item.url
                                   ? `${item.url}`
                                   : `/${locale}/models/tank-500`
                               }
-                              className="w-max md:w-auto cursor-pointer bg-primary text-white px-4 py-2 lg:px-6 rounded-lg font-semibold uppercase"
+                              className="w-max md:w-auto text-center hover:bg-primary hover:border-transparent bg-transparent text-white px-4 py-2 lg:px-6  rounded-lg font-semibold border border-white uppercase"
                             >
-                             {locale === "en"
-                              ? item.btn_txt_en
-                              : item.btn_txt}
-                            </Link>
-                            <Link
-                              href={`/${locale}/test-drive`}
-                              className=" w-max md:w-auto text-center hover:bg-primary hover:border-transparent bg-transparent text-white px-4 py-2 lg:px-6  rounded-lg font-semibold border border-white uppercase"
-                            >
-                              TEST DRIVE
+                              {locale === "en" ? item.btn_txt_en : item.btn_txt}
                             </Link>
                           </div>
                         </div>
